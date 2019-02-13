@@ -13,6 +13,6 @@ To begin, run the following:
 This will build download `latex.sh` which can build the project as PDF by running the following:
 
 ```bash
-./latex.sh pdflatex latex.sh
+./latex.sh pdflatex master.tex
 ```
 
