@@ -13,6 +13,13 @@ To begin, run the following:
 This will build download `latex.sh` which can build the project as PDF by running the following:
 
 ```bash
-./latex.sh pdflatex latex.sh
+./build.sh
 ```
 
+## Using the container
+
+The project is based on a docker image, which can be accessed using the `./latex.sh file`
+
+```bash
+./latex [ARG]
+```

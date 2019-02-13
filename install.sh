@@ -7,5 +7,3 @@ chmod +x latexdockercmd.sh
 # Rename to something more memorable
 mv latexdockercmd.sh latex.sh
 
-# Build a PDF
-./latex.sh pdflatex master.tex
