@@ -1,0 +1,39 @@
+\input{setup/preamble.tex}% package inclusion and set up of the document
+\input{setup/hyphenations.tex}% 
+\input{setup/macros.tex}% my new macros
+\input{gls.tex}
+
+\begin{document}
+%frontmatter
+\pagestyle{empty} %disable headers and footers
+\pagenumbering{roman} %use roman page numbering in the frontmatter
+\input{sections/frontpage.tex}
+\input{sections/colophon.tex}
+\input{sections/titlepages.tex}
+\cleardoublepage
+\pdfbookmark[0]{Contents}{label:contents}
+\pagestyle{fancy} %enable headers and footers again
+\tableofcontents
+\listoftodos
+%Print the glossary
+\printglossaries
+\input{sections/preface.tex}
+\cleardoublepage
+%mainmatter
+\pagenumbering{arabic} %use arabic page numbering in the mainmatter
+
+\input{Part_1/index.tex}
+\input{Part_2/index.tex}
+\input{Part_3/index.tex}
+
+\textbf{Example of glossary usage}\newline
+\gls{utc} is 3 hours behind \gls{adt} and 10 hours ahead of \gls{est}. Next time it meets the glossary \gls{utc} it will look like so.\newline
+
+\textbf{Example of acronym usage}\newline
+\gls{Autc} is 3 hours behind \gls{Aadt} and 10 hours ahead of \gls{Aest}. Next time it meets the acronym \gls{Autc} it will look like so.\newline
+
+\printbibliography[heading=bibintoc]
+\label{bib:mybiblio}
+\appendix
+\input{sections/appAname.tex}
+\end{document}
