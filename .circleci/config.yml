@@ -1,0 +1,28 @@
+version: 2
+jobs:
+    build:
+        docker:
+            - image: paperist/alpine-texlive-ja
+        steps:
+            - run:
+                name: Installing dependancies
+                command: |
+                    apk add --update git patch curl
+                    apk add --update ca-certificates openssl && update-ca-certificates
+                    tlmgr install ulem latexdiff
+            - checkout
+            - run: cp .latexmkrc ~/.latexmkrc
+            - run:
+                name: Generating current version
+                command: |
+                    latexmk master.tex;
+                    mkdir /tmp/artifacts;
+                    cp master.pdf /tmp/artifacts/
+            - run:
+                name: Generating diff
+                command: |
+                    latexdiff-vc -e utf8 --git -r HEAD^ -r HEAD master.tex;
+                    latexmk master-diffHEAD^-HEAD.tex;
+                    cp master-diffHEAD^-HEAD.pdf /tmp/artifacts/
+            - store_artifacts:
+                path: /tmp/artifacts
