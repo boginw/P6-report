@@ -1,12 +1,12 @@
 \section{Endpoints at handoff}\label{app:state-at-handoff:endpoints}
 
-This section describes the different endpoint accessable on the API, at the time of handoff.
+This section describes the different endpoint accessible on the API, at the time of handoff. The endpoint descriptions are also available in the source code.
 
 \subsection{Account}
-For authorizing users these endpoints allow for user login and registering.
+These endpoints allow for everything account related, e.g., login and register.
 
 \begin{ept}
-    \epr{POST}{/v1/Account/login}{This endpoint allows the user to sign in to his/her account by providing valid username and password.}
+    \epr{POST}{/v1/Account/login}{This endpoint allows the user to sign in to his/her account by providing a valid username and password.}
 
     \epr{POST}{/v1/Account/register}{Register a new user in the REST-API}
 
@@ -26,7 +26,7 @@ The endpoints shown below describe how to get and modify information about depar
 \begin{ept}
     \epr{GET}{/v1/Department}{Get request for getting all the department names.}
 
-    \epr{POST}{/v1/Department}{Create a new department. it's only necesary to supply the departments name}
+    \epr{POST}{/v1/Department}{Create a new department. it's only necessary to supply the departments name}
 
     \epr{GET}{/v1/Department/\{id\}}{Get the department with the specified id.}
 
@@ -62,11 +62,11 @@ This describes all the error endpoints.
 This describes all the pictogram endpoints.
 
 \begin{ept}
-    \epr{GET}{/v1/Pictogram}{Get all public GirafRest.Models.Pictogram pictograms available to the user (i.e the public pictograms and those owned by the user (PRIVATE) and his department (PROTECTED)).}
+    \epr{GET}{/v1/Pictogram}{Get all public GirafRest.Models.Pictogram pictograms available to the user (i.e., the public pictograms and those owned by the user (PRIVATE) and his department (PROTECTED)).}
 
     \epr{POST}{/v1/Pictogram}{Create a new GirafRest.Models.Pictogram pictogram.}
 
-    \epr{GET}{/v1/Pictogram/\{id\}}{Read the GirafRest.Models.Pictogram pictogram with the specified id id and check if the user is authorized to see it.}
+    \epr{GET}{/v1/Pictogram/\{id\}}{Read the GirafRest.Models.Pictogram pictogram with the specified id and check if the user is authorized to see it.}
 
     \epr{PUT}{/v1/Pictogram/\{id\}}{Update info of a GirafRest.Models.Pictogram pictogram.}
 
@@ -76,7 +76,7 @@ This describes all the pictogram endpoints.
 
     \epr{PUT}{/v1/Pictogram/\{id\}/image}{Update the image of a GirafRest.Models.Pictogram pictogram with the given Id.}
 
-    \epr{GET}{/v1/Pictogram/\{id\}/image/raw}{Reads the raw pictogram image. You are allowed to read all public pictograms aswell as your own pictograms or any pictograms shared within the department}
+    \epr{GET}{/v1/Pictogram/\{id\}/image/raw}{Reads the raw pictogram image. You are allowed to read all public pictograms as well as your own pictograms or any pictograms shared within the department}
 
 \end{ept}
 
@@ -88,7 +88,7 @@ This describes all the status endpoints.
 
     \epr{GET}{/v1/Status/database}{End-point for checking connection to the database}
 
-    \epr{GET}{/v1/Status/version-info}{Endpoint for getting git version info i.e. branch and commithash}
+    \epr{GET}{/v1/Status/version-info}{Endpoint for getting git version info, i.e. branch and commithash}
 
 \end{ept}
 
@@ -98,7 +98,7 @@ This describes all the user endpoints.
 \begin{ept}
     \epr{GET}{/v1/User}{Find information about the currently authenticated user.}
 
-    \epr{GET}{/v1/User/\{id\}}{Find information on the user with the username supplied as a url query parameter or the current user.}
+    \epr{GET}{/v1/User/\{id\}}{Find information on the user with the username supplied as a URL query parameter or the current user.}
 
     \epr{PUT}{/v1/User/\{id\}}{Updates the user with the information in GirafRest.Models.DTOs.GirafUserDTO}
 
@@ -118,7 +118,7 @@ This describes all the user endpoints.
 
     \epr{DELETE}{\sout{/v1/User/\{id\}/resource}}{Deletes the resource of the user with the given Id}
 
-    \epr{GET}{/v1/User/\{id\}/citizens}{Gets the citizens of the user with the provided id. The provided user must be a guardian}
+    \epr{GET}{/v1/User/\{id\}/citizens}{Gets the citizens of the user with the provided id. The supplied user must be a guardian}
 
     \epr{GET}{/v1/User/\{id\}/guardians}{Gets the guardians for the specific citizen corresponding to the provided id.}
 
