@@ -1,0 +1,32 @@
+\section{\\State of The Frontend} \label{sec:StateFrontend}
+
+In this section we describe frontend of the WeekPlanner app. This knowledge is based on the code in release version 2018S3R1. 
+The frontend code is written in C\#, in the framework Xamarin. The interface is designed using the Model-View-ViewModel (MVVM) pattern, where the logic is separated from the user interface. The View layer contains the user interface, it handles the visual layout. In the MVVM pattern the view layer should not contain any logic, but only call functions from the ViewModel. The ViewModel then contains all necessary functions for communicating between the View layer and the Model layer. When a user for example pushes a button, the button will be connected to a function in the ViewModel. This is called databinding. 
+The model is the backend logic, and is separated from the ViewModel. 
+In the Giraf project “WeekPlanner”, there is a folder called Views, which contains all Views. Views are also referred to as a page. There is for example a View called LoginPage, which has a Corresponding ViewModel called LoginViewModel.
+When a user has entered his password and username on the login page, the user will push a button. The button is bounded to a LoginCommand, defined in the LoginViewModel. The function is then called without further logic from the View. The ViewModel validates the format of the password and username, and then validates the information through an api that connects with the backend of the system. 
+
+In the following, the folders in the weekplanner will be briefly described.
+
+\textbf{Views:}
+The Views folder contains all the Views/ pages of the project. This is the userinterface part of the system. A lot of the Views are not used for anything. 
+
+\textbf{ViewModels:}
+The Viewmodels folder contains the logic that corresponds to the Views. These will be directly connected. A lot of the Views that corespond with the ViewModels are not used, and therefore the ViewModels are not used.
+
+\textbf{ApplicationObjects:}
+Contains the setup of an instance of the application. The class “AppContainer” seems to be obsolete. 
+
+\textbf{Behaviors: }
+Defined behavior for bindings. 
+
+\textbf{Controls:}
+Contains a single list view, to be used as a template for a day in the week planner. 
+
+\textbf{Converters:} 
+A series of classes used to format data. 
+
+\textbf{Helpers: }
+A series of help classes, used in other classes. 
+
+\textbf{Models:}
