@@ -1,7 +1,7 @@
-\chapter{Appendix B Endpoints}\label{ch:appB}
+\section{Endpoints at handoff}\label{app:state-at-handoff:endpoints}
 
 \subsection{Account}
-This describes all the account endpoints.
+For authorizing users these endpoints allow for user login and registering.
 
 \begin{ept}
     \epr{POST}{/v1/Account/login}{This endpoint allows the user to sign in to his/her account by providing valid username and password.}
@@ -19,7 +19,7 @@ This describes all the account endpoints.
 \end{ept}
 
 \subsection{Department}
-This describes all the Department endpoints.
+The endpoints shown below describe how to get and modify information about departments. 
 
 \begin{ept}
     \epr{GET}{/v1/Department}{Get request for getting all the department names.}
@@ -43,7 +43,7 @@ This describes all the Department endpoints.
 \end{ept}
 
 \subsection{Error}
-This describes all the Error endpoints.
+This describes all the error endpoints.
 
 \begin{ept}
     \epr{GET}{/v1/Error}{All Error requests will redirect to this endpoint}
@@ -57,7 +57,7 @@ This describes all the Error endpoints.
 \end{ept}
 
 \subsection{Pictogram}
-This describes all the Pictogram endpoints.
+This describes all the pictogram endpoints.
 
 \begin{ept}
     \epr{GET}{/v1/Pictogram}{Get all public GirafRest.Models.Pictogram pictograms available to the user (i.e the public pictograms and those owned by the user (PRIVATE) and his department (PROTECTED)).}
@@ -79,7 +79,7 @@ This describes all the Pictogram endpoints.
 \end{ept}
 
 \subsection{Status}
-This describes all the Status endpoints.
+This describes all the status endpoints.
 
 \begin{ept}
     \epr{GET}{/v1/Status}{End-point for checking if the API is running}
@@ -91,7 +91,7 @@ This describes all the Status endpoints.
 \end{ept}
 
 \subsection{User}
-This describes all the User endpoints.
+This describes all the user endpoints.
 
 \begin{ept}
     \epr{GET}{/v1/User}{Find information about the currently authenticated user.}
@@ -125,7 +125,7 @@ This describes all the User endpoints.
 \end{ept}
 
 \subsection{Week}
-This describes all the Week endpoints.
+This describes all the week endpoints.
 
 \begin{ept}
     \epr{GET}{/v1/User/\{userId\}/week}{}
@@ -138,8 +138,8 @@ This describes all the Week endpoints.
 
 \end{ept}
 
-\subsection{WeekTemplate}
-This describes all the WeekTemplate endpoints.
+\subsection{Weekly Templates}
+This describes all the weekly template endpoints.
 
 \begin{ept}
     \epr{GET}{/v1/WeekTemplate}{Gets all schedule templates for the currently authenticated user. Available to all users.}
