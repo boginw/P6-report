@@ -16,7 +16,7 @@ These endpoints allow for everything account related, e.g., login and register.
 
     \epr{GET}{/v1/User/\{id\}/Account/password-reset-token}{Allows the user to get a password reset token for a given user}
 
-    \epr{DELETE}{/v1/Account/user/\{userId\}}{}
+    \epr{DELETE}{/v1/Account/user/\{userId\}}{Deletes the user with the given id}
 
 \end{ept}
 
@@ -36,7 +36,7 @@ The endpoints shown below describe how to get and modify information about depar
 
     \epr{POST}{\sout{/v1/Department/\{departmentId\}/resource/\{resourceId\}}}{Add a resource to the given department. After this call, the department owns the resource and it is available to all its members.}
 
-    \epr{PUT}{/v1/Department/\{departmentId\}/name}{}
+    \epr{PUT}{/v1/Department/\{departmentId\}/name}{Changes the name of a department with the given ID}
 
     \epr{DELETE}{/v1/Department/\{departmentId\}}{Endpoint for deleting the GirafRest.Models.Department with the given id}
 
@@ -100,7 +100,7 @@ This describes all the user endpoints.
 
     \epr{GET}{/v1/User/\{id\}}{Find information on the user with the username supplied as a URL query parameter or the current user.}
 
-    \epr{PUT}{/v1/User/\{id\}}{Updates the user with the information in GirafRest.Models.DTOs.GirafUserDTO}
+    \epr{PUT}{/v1/User/\{id\}}{Updates the user with the information in GirafRest.Models.\gls{DTO}s.GirafUser\gls{DTO}}
 
     \epr{GET}{/v1/User/\{id\}/settings}{Get user-settings for the user with the specified Id}
 
@@ -130,9 +130,9 @@ This describes all the user endpoints.
 This describes all the week endpoints.
 
 \begin{ept}
-    \epr{GET}{/v1/User/\{userId\}/week}{}
+    \epr{GET}{/v1/User/\{userId\}/week}{Gets list of week name \gls{DTO}s for all schedules belonging to the user with the provided id}
 
-    \epr{GET}{/v1/User/\{userId\}/week/\{weekYear\}/\{weekNumber\}}{Gets the GirafRest.Models.DTOs.WeekDTO with the specified week number and year for the user with the given id}
+    \epr{GET}{/v1/User/\{userId\}/week/\{weekYear\}/\{weekNumber\}}{Gets the GirafRest.Models.\gls{DTO}s.Week\gls{DTO} with the specified week number and year for the user with the given id}
 
     \epr{PUT}{/v1/User/\{userId\}/week/\{weekYear\}/\{weekNumber\}}{Updates the entire information of the week with the given year and week number.}
 
