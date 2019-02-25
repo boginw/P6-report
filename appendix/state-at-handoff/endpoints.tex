@@ -100,7 +100,7 @@ This describes all the user endpoints.
 
     \epr{GET}{/v1/User/\{id\}}{Find information on the user with the username supplied as a URL query parameter or the current user.}
 
-    \epr{PUT}{/v1/User/\{id\}}{Updates the user with the information in GirafRest.Models.\gls{DTO}s.GirafUser\gls{DTO}}
+    \epr{PUT}{/v1/User/\{id\}}{Updates the user with the information in GirafRest.Models.\gls{dto}s.GirafUser\gls{dto}}
 
     \epr{GET}{/v1/User/\{id\}/settings}{Get user-settings for the user with the specified Id}
 
@@ -130,9 +130,9 @@ This describes all the user endpoints.
 This describes all the week endpoints.
 
 \begin{ept}
-    \epr{GET}{/v1/User/\{userId\}/week}{Gets list of week name \gls{DTO}s for all schedules belonging to the user with the provided id}
+    \epr{GET}{/v1/User/\{userId\}/week}{Gets list of week name \gls{dto}s for all schedules belonging to the user with the provided id}
 
-    \epr{GET}{/v1/User/\{userId\}/week/\{weekYear\}/\{weekNumber\}}{Gets the GirafRest.Models.\gls{DTO}s.Week\gls{DTO} with the specified week number and year for the user with the given id}
+    \epr{GET}{/v1/User/\{userId\}/week/\{weekYear\}/\{weekNumber\}}{Gets the GirafRest.Models.\gls{dto}s.Week\gls{dto} with the specified week number and year for the user with the given id}
 
     \epr{PUT}{/v1/User/\{userId\}/week/\{weekYear\}/\{weekNumber\}}{Updates the entire information of the week with the given year and week number.}
 
