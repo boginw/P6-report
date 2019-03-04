@@ -1,1 +1,44 @@
 \chapter{Sprint 1}
+
+For sprint one the \gls{PO} group choose updating the Weekplanner application as the sprint focus. 
+The \gls{PO} had been in contact with the customers, and they expressed that the most important thing for them is to have a better functioning Weekplanner.
+There are shortcomings functionality wise  in the current application, and lack of stability, there are issues with the user interface being confusing and in some cases inconsistent. The customer also wants offline functionality, primarily for two reasons, they do not have a stable enough wireless coverage, and the are often on trips to places without internet.
+
+\section{Our userstories}
+We took three tasks this sprint.
+\begin{description}
+    \item [\#14] As a citizen I would like the icons to be consistent throughout the system so that I instinctively know their meaning.
+    \item [\#15] As a citizen I would like to be able to choose how many days I see at a time on my weekplanner, so that it fits my personal preference.
+    \item [\#19] As a user I would like the icons to be updated so that they are modern and easy to understand.
+\end{description}
+
+\subsection{Updating the icons}
+Issue \#14 and \#19 are very closely related, and can be solved in tandem. Issue \#14 is that some of the icons in the application are unclear, and have multiple meanings depending on where in the application they are used. The users have expressed a concern regarding the simplicity and intuitiveness of the application, and would prefer if the application was intuitive enough so that training is unnecessary.
+As a part of this task all icons and their use will have to be mapped, to see which ones make sense, and as far as possible only have one meaning. As for issue \#19 it makes sense to do simultaneously, as while we map the icons and their meanings, updating them alongside reduces some redundant work. 
+
+After looking through the application we made the following \autoref{tab:oldIconMap} of the icons and their corresponding function.
+
+\begin{table}[ht]
+    \begin{tabular}{m{1.5cm} | m{3.5cm} | m{3.5cm} | m{3.5cm} }
+        Icon & 1st meaning & 2nd meaning & New Meaning \\ \hline
+
+        \includegraphics[width=0.1\textwidth]{figures/smallTestIcon.png} & Opens settings  & info about a citizen & \\
+        \hline
+
+        \includegraphics[width=0.1\textwidth]{figures/smallTestIcon.png} & Opens Guardian profile  &  \\
+        \hline
+
+    \end{tabular}
+    \caption{Mapping over icons and their functionality}
+    \label{tab:oldIconMap} 
+\end{table}
+
+\section{Changing how many days the Weekplanner shows}\label{sec:weekPlannerDaysToShow}
+
+Issue \#15 expresses a user need for being able to change how many days the Weekplanner shows at a time. This is a need expressed by some citizen, they can feel a bit overwhelmed by all the tasks, so they would like to be able to show fewer days, or even just one.
+Initially we thought this would be a trivial task, because we believed it would be some minor \gls{XAML} changes, but after looking at the code and discussing the assignment with the \gls{PO} group it turned out that this was not the case. We discovered that the way the current weekplans are stored, are in separate unconnected plans, meaning that a weekplan has no connection to another weekplan. This means that the Weekplanner has to show data from to weeks, it has no way of knowing which weekplan comes after the current.
+To solve this we have to find an alternative way of storing the plans, possible in a more calendar like way.
+
+\section{Results}
+
+\section{Retrospect}
