@@ -14,24 +14,72 @@ We took three tasks this sprint.
 
 \subsection{Updating the icons}
 Issue \#14 and \#19 are very closely related, and can be solved in tandem. Issue \#14 is that some of the icons in the application are unclear, and have multiple meanings depending on where in the application they are used. The users have expressed a concern regarding the simplicity and intuitiveness of the application, and would prefer if the application was intuitive enough so that training is unnecessary.
-As a part of this task all icons and their use will have to be mapped, to see which ones make sense, and as far as possible only have one meaning. As for issue \#19 it makes sense to do simultaneously, as while we map the icons and their meanings, updating them alongside reduces some redundant work. 
+As a part of this task all icons and their use will have to be mapped, to see which icons make sense, and as far as possible only have one meaning. As for issue \#19 it makes sense to do simultaneously, as while we map the icons and their meanings, updating them alongside reduces some redundant work. 
 
-After looking through the application we made the following \autoref{tab:oldIconMap} of the icons and their corresponding function.
+The \gls{PO} group made a design guide in cooperation with the customers, where the following icons in \autoref{tab:IconsDesignGuide} is the new standard.
+
+\newcommand{\img}[2]{\includegraphics[width=0.05\textwidth]{#1} & #2 & - \\ \hline}
 
 \begin{table}[ht]
-    \begin{tabular}{m{1.5cm} | m{3.5cm} | m{3.5cm} | m{3.5cm} }
-        Icon & 1st meaning & 2nd meaning & New Meaning \\ \hline
+    \begin{tabular}{m{1cm} | m{5cm} | m{5cm} }
+        Icon & Description & Usage \\ \hline
 
-        \includegraphics[width=0.1\textwidth]{figures/smallTestIcon.png} & Opens settings  & info about a citizen & \\
-        \hline
+        \img{figures/icons/IconAdd.png}{Adds an instance of an object}
 
-        \includegraphics[width=0.1\textwidth]{figures/smallTestIcon.png} & Opens Guardian profile  &  \\
-        \hline
+        \img{figures/icons/IconAddTimer.png}{Adds a timer to an object }
+
+        \img{figures/icons/IconBack.png}{Returns to the previous page}
+
+        \img{figures/icons/IconBrugermenu.png}{Opens a side menu}
+
+        \img{figures/icons/IconCamera.png}{Opens a camera action }
+
+        \img{figures/icons/IconCancel.png}{Cancels the action the user is doing}
+
+        \img{figures/icons/IconChangeToCitizen.png}{Changes from guardian mode to citizen mode}
+
+        \img{figures/icons/IconChangeToGuardian.png}{Changes from citizen mode to guardian mode }
+
+        \img{figures/icons/IconAccept.png}{Can be used to accept or complete a task}
+
+        \img{figures/icons/IconCopy.png}{Copies an instance of an object}
+
+        \img{figures/icons/IconDelete.png}{Deletes a selected object}
+
+        \img{figures/icons/IconEdit.png}{Edit a given obeject }
+
+        \img{figures/icons/IconHelp.png}{Opens a help menu}
+
+        \img{figures/icons/IconHome.png}{Returns to he overview of the weekplan}
+
+        % TBA \img{figures/icons/IconLogin.png}{Adds a timer to an object }
+
+        \img{figures/icons/IconLogout.png}{Signs the current user out}
+
+        \img{figures/icons/IconProfile.png}{Shows the current user's profile}
+
+        \img{figures/icons/IconProfileSettings.png}{Goes to a user's profile settings}
+
+        \img{figures/icons/IconRedo.png}{Redo an action}
+
+        \img{figures/icons/IconUndo.png}{Undo an action}
+
+        \img{figures/icons/IconSave.png}{Saves changes}
+
+        \img{figures/icons/IconSearch.png}{Searches based on a some criteria}
+
+        \img{figures/icons/IconSettings.png}{Opens the settings menu}
+
+        % TBA \img{figures/icons/IconSynced.png}{Indicates thate the current object is syncronized}
+
+        % TBA \img{figures/icons/IconNotSynced.png}{Indicates that the current object is not syncronized}
 
     \end{tabular}
     \caption{Mapping over icons and their functionality}
-    \label{tab:oldIconMap} 
+    \label{tab:IconsDesignGuide} 
 \end{table}
+
+
 
 \section{Changing how many days the Weekplanner shows}\label{sec:weekPlannerDaysToShow}
 
