@@ -167,5 +167,28 @@
 	pdfstartview=FitH%
 }
 
+\usepackage{ltablex, booktabs, makecell}
+\usepackage{multirow}
+\usepackage{environ}
+\usepackage{ulem}
+
+\renewcommand\tabularxcolumn[1]{m{#1}}
+\renewcommand\theadfont{\itshape\normalsize}
+\newcommand{\epr}[3]{%
+  \multirow{3}{*}{#1} & \vspace{0.5em} \texttt{#2} \\ & \dotfill \\ & #3 \vspace{0.5em} \\ \hline
+}
+
+
+\NewEnviron{ept}{
+  \noindent\begin{tabularx}{1\textwidth}{ l X }
+    \toprule[\heavyrulewidth]\toprule[\heavyrulewidth]
+    \textbf{Method} & \textbf{Endpoint / Description} \\
+    \hline
+    \endhead
+    \BODY
+    \bottomrule[\heavyrulewidth]
+  \end{tabularx}
+}
+
 \usepackage[acronym]{glossaries}
 \makeglossaries

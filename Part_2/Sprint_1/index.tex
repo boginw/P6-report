@@ -1,8 +1,12 @@
 \chapter{Sprint 1}
 
-For sprint one the \gls{PO} group choose updating the Weekplanner application as the sprint focus. 
+
 The \gls{PO} had been in contact with the customers, and they expressed that the most important thing for them is to have a better functioning Weekplanner.
 There are shortcomings functionality wise  in the current application, and lack of stability, there are issues with the user interface being confusing and in some cases inconsistent. The customer also wants offline functionality, primarily for two reasons, they do not have a stable enough wireless coverage, and the are often on trips to places without internet.
+
+\input{Part_2/Sprint_1/OriginalPurpose.tex}
+
+The sprint started out with a collective sprint planning with all the development groups  present. The \gls{PO} group chose updating the Weekplanner application as the sprint focus, based on the information from the customers. Then the \gls{PO} presented the userstories in prioritized order, then gave the groups time to discuss the different stories internally. After discussing to stories the groups then had three votes, all the groups then voted on the stories they wanted, and if there were too many groups requesting the same userstory then some negotiation will be needed in order to make a fair allocation of assignments. The voting was intended as a way for all the groups to get a fair chance of getting the assignemnts they wanted, instead of first come first served approach.\newline
 
 \section{Our userstories}
 We took three tasks this sprint.
@@ -23,3 +27,8 @@ The \gls{PO} group made a design guide in cooperation with the customers, the as
 Issue \#15 expresses a user need for being able to change how many days the Weekplanner shows at a time. This is a need expressed by some citizen, they can feel a bit overwhelmed by all the tasks, so they would like to be able to show fewer days, or even just one.
 Initially we thought this would be a trivial task, because we believed it would be some minor \gls{XAML} changes, but after looking at the code and discussing the assignment with the \gls{PO} group it turned out that this was not the case. We discovered that the way the current weekplans are stored, are in separate unconnected plans, meaning that a weekplan has no connection to another weekplan. This means that the Weekplanner has to show data from to weeks, it has no way of knowing which weekplan comes after the current.
 To solve this we have to find an alternative way of storing the plans, possible in a more calendar like way.
+
+\input{Part_2/Sprint_1/FlutterMove.tex}
+\input{Part_2/Sprint_1/SprintReview.tex}
+\input{Part_2/Sprint_1/SOSRetrospective.tex}
+\input{Part_2/Sprint_1/G11Retrospective.tex}
