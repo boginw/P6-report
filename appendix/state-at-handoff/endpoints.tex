@@ -1,0 +1,157 @@
+\section{Endpoints}\label{app:state-at-handoff:endpoints}
+
+This section describes the different endpoint accessible on the \gls{api}, at the time of handoff. The endpoint descriptions are also available in the source code. It should be noted that strikethrough, denotes that the endpoint is deprecated.
+
+\subsection{Account}
+These endpoints allow for everything account related, e.g., login and register.
+
+\begin{ept}
+    \epr{POST}{/v1/Account/login}{This endpoint allows the user to sign in to his/her account by providing a valid username and password.}
+
+    \epr{POST}{/v1/Account/register}{Register a new user in the REST-API}
+
+    \epr{PUT}{/v1/User/\{id\}/Account/password}{Allows the user to change his password if they know their old password.}
+
+    \epr{POST}{/v1/User/\{id\}/Account/password}{Allows a user to set a new password if they forgot theirs.}
+
+    \epr{GET}{/v1/User/\{id\}/Account/password-reset-token}{Allows the user to get a password reset token for a given user}
+
+    \epr{DELETE}{/v1/Account/user/\{userId\}}{Deletes the user with the given id}
+
+\end{ept}
+
+\subsection{Department}
+The endpoints shown below describe how to get and modify information about departments. 
+
+\begin{ept}
+    \epr{GET}{/v1/Department}{Get request for getting all the department names.}
+
+    \epr{POST}{/v1/Department}{Create a new department. it's only necessary to supply the departments name}
+
+    \epr{GET}{/v1/Department/\{id\}}{Get the department with the specified id.}
+
+    \epr{GET}{/v1/Department/\{id\}/citizens}{Gets the citizen names.}
+
+    \epr{POST}{/v1/Department/\{departmentId\}/user/\{userId\}}{Add a user that does not have a department to the given department. Requires role Department, Guardian or SuperUser}
+
+    \epr{POST}{\sout{/v1/Department/\{departmentId\}/resource/\{resourceId\}}}{Add a resource to the given department. After this call, the department owns the resource and it is available to all its members.}
+
+    \epr{PUT}{/v1/Department/\{departmentId\}/name}{Changes the name of a department with the given ID}
+
+    \epr{DELETE}{/v1/Department/\{departmentId\}}{Endpoint for deleting the GirafRest.Models.Department with the given id}
+
+    \epr{DELETE}{\sout{/v1/Department/resource/\{resourceId\}}}{Removes a resource from the users department.}
+
+\end{ept}
+
+\subsection{Error}
+This describes all the error endpoints.
+
+\begin{ept}
+    \epr{GET}{/v1/Error}{All Error requests will redirect to this endpoint}
+
+    \epr{PUT}{/v1/Error}{All Error requests will redirect to this endpoint}
+
+    \epr{POST}{/v1/Error}{All Error requests will redirect to this endpoint}
+
+    \epr{DELETE}{/v1/Error}{All Error requests will redirect to this endpoint}
+
+\end{ept}
+
+\subsection{Pictogram}
+This describes all the pictogram endpoints.
+
+\begin{ept}
+    \epr{GET}{/v1/Pictogram}{Get all public GirafRest.Models.Pictogram pictograms available to the user (i.e., the public pictograms and those owned by the user (PRIVATE) and his department (PROTECTED)).}
+
+    \epr{POST}{/v1/Pictogram}{Create a new GirafRest.Models.Pictogram pictogram.}
+
+    \epr{GET}{/v1/Pictogram/\{id\}}{Read the GirafRest.Models.Pictogram pictogram with the specified id and check if the user is authorized to see it.}
+
+    \epr{PUT}{/v1/Pictogram/\{id\}}{Update info of a GirafRest.Models.Pictogram pictogram.}
+
+    \epr{DELETE}{/v1/Pictogram/\{id\}}{Delete the GirafRest.Models.Pictogram pictogram with the specified id.}
+
+    \epr{GET}{/v1/Pictogram/\{id\}/image}{Read the image of a given pictogram as a sequence of bytes.}
+
+    \epr{PUT}{/v1/Pictogram/\{id\}/image}{Update the image of a GirafRest.Models.Pictogram pictogram with the given Id.}
+
+    \epr{GET}{/v1/Pictogram/\{id\}/image/raw}{Reads the raw pictogram image. You are allowed to read all public pictograms as well as your own pictograms or any pictograms shared within the department}
+
+\end{ept}
+
+\subsection{Status}
+This describes all the status endpoints.
+
+\begin{ept}
+    \epr{GET}{/v1/Status}{End-point for checking if the API is running}
+
+    \epr{GET}{/v1/Status/database}{End-point for checking connection to the database}
+
+    \epr{GET}{/v1/Status/version-info}{Endpoint for getting git version info, i.e. branch and commithash}
+
+\end{ept}
+
+\subsection{User}
+This describes all the user endpoints.
+
+\begin{ept}
+    \epr{GET}{/v1/User}{Find information about the currently authenticated user.}
+
+    \epr{GET}{/v1/User/\{id\}}{Find information on the user with the username supplied as a URL query parameter or the current user.}
+
+    \epr{PUT}{/v1/User/\{id\}}{Updates the user with the information in GirafRest.Models.\gls{dto}s.GirafUser\gls{dto}}
+
+    \epr{GET}{/v1/User/\{id\}/settings}{Get user-settings for the user with the specified Id}
+
+    \epr{PUT}{/v1/User/\{id\}/settings}{Updates the user settings for the user with the provided id}
+
+    \epr{GET}{/v1/User/\{id\}/icon}{Endpoint for getting the UserIcon for a specific User}
+
+    \epr{PUT}{/v1/User/\{id\}/icon}{Sets the user icon of the given user}
+
+    \epr{DELETE}{/v1/User/\{id\}/icon}{Deletes the user icon for a given user}
+
+    \epr{GET}{/v1/User/\{id\}/icon/raw}{Gets the raw user icon for a given user}
+
+    \epr{POST}{\sout{/v1/User/\{id\}/resource}}{Add a ressource to another user that the currently authorised user already owns}
+
+    \epr{DELETE}{\sout{/v1/User/\{id\}/resource}}{Deletes the resource of the user with the given Id}
+
+    \epr{GET}{/v1/User/\{id\}/citizens}{Gets the citizens of the user with the provided id. The supplied user must be a guardian}
+
+    \epr{GET}{/v1/User/\{id\}/guardians}{Gets the guardians for the specific citizen corresponding to the provided id.}
+
+    \epr{POST}{/v1/User/\{id\}/citizens/\{citizenId\}}{Adds relation between the authenticated user (guardian) and an existing citizen.}
+
+\end{ept}
+
+\subsection{Week}
+This describes all the week endpoints.
+
+\begin{ept}
+    \epr{GET}{/v1/User/\{userId\}/week}{Gets list of week name \gls{dto}s for all schedules belonging to the user with the provided id}
+
+    \epr{GET}{/v1/User/\{userId\}/week/\{weekYear\}/\{weekNumber\}}{Gets the GirafRest.Models.\gls{dto}s.Week\gls{dto} with the specified week number and year for the user with the given id}
+
+    \epr{PUT}{/v1/User/\{userId\}/week/\{weekYear\}/\{weekNumber\}}{Updates the entire information of the week with the given year and week number.}
+
+    \epr{DELETE}{/v1/User/\{userId\}/week/\{weekYear\}/\{weekNumber\}}{Deletes all information for the entire week with the given year and week number.}
+
+\end{ept}
+
+\subsection{Weekly Templates}
+This describes all the weekly template endpoints.
+
+\begin{ept}
+    \epr{GET}{/v1/WeekTemplate}{Gets all schedule templates for the currently authenticated user. Available to all users.}
+
+    \epr{POST}{/v1/WeekTemplate}{Creates new week template in the department of the given user. Available to Supers, Departments and Guardians.}
+
+    \epr{GET}{/v1/WeekTemplate/\{id\}}{Gets the week template with the specified id. Available to all users.}
+
+    \epr{PUT}{/v1/WeekTemplate/\{id\}}{Overwrite the information of a week template. Available to all Supers, and to Departments and Guardians of the same department as the template.}
+
+    \epr{DELETE}{/v1/WeekTemplate/\{id\}}{Deletes the template of the given ID. Available to all Supers, and to Departments and Guardians of the same department as the template.}
+
+\end{ept}
