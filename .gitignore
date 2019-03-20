@@ -241,6 +241,3 @@ TSWLatexianTemp*
 
 # generated if using elsarticle.cls
 *.spl
-
-#  file for vs code live share.. I think
-packages-microsoft-prod.deb
