@@ -1,6 +1,6 @@
 \section{Service Migration}
 
-The Giraf project has since 201X hosted its project with Git on their servers. These Git servers did not have the best impression on the Giraf team of 2019 since they would crash on numerous occasions. While deliberating how to stabilize the servers better, we thought we ought to move this out of our hands and move the Giraf project to the Open-Source realm. This section describes how we migrated every Giraf repository and \gls{ci} to GitHub and Azure.
+The Giraf project has since 201X hosted its project with Git on their servers. These Git servers did not have the best impression on the Giraf team of 2019 since they would crash on numerous occasions. Rather than deliberating how to stabilize the servers better, we thought we ought to move this out of our hands and move the Giraf project to the Open-Source realm. This section describes how we migrated every Giraf repository and \gls{ci} to GitHub and Azure.
 
 \subsection{Git}
 
@@ -20,7 +20,7 @@ git push --mirror github
 
 The hosted GitLab also provided the \gls{ci} for the different repositories, and with the switch from GitLab, we must find a suitable replacement.
 
-While there are plenty of \gls{ci} services available, we did not want to pay out of our own pockets to use them. The university would probably pay for these services it if we asked, but with the hassle of the bureaucracy with asking, we decided to limit our search to free \gls{ci} services. There are plenty of \gls{ci} services that are free for Open-Source projects but must have some restrictions.
+While there are plenty of \gls{ci} services available, we did not want to pay out of our own pockets to use them. The university would probably pay for these services if we asked, but since we find \gls{ci} as being an integral part of the workflow, we found it risky to spend time going through the bureaucracy of asking the university, and therefore we decided to limit our search to free \gls{ci} services. We recommend reconsidering this decision at a later time, as even though there are plenty of \gls{ci} services that are free for Open-Source projects, some have some restrictions when not paying.
 
 Furthermore, we potentially needed the ability to deliver iOS applications, which requires MacOS, so our \gls{ci} service must support running MacOS. 
 
