@@ -1,0 +1,43 @@
+\section{BLoC Pattern}
+
+\subsection{Story behind}
+BLoC stands for Business Logic Component and is a pattern that aims to isolate all
+business logic away from UI code. The pattern was formulated by Paolo Soares and
+Cong Hui, boths working on the Google AdWords platform. The story behind the birth
+of the BLoC pattern is that at the Google AdWords team they have two applications the
+web-application which is written in Dart-lang using AngularDart and a mobile-application
+using Dart-lang and Flutter. The issue was that before Flutter existed they developed
+their mobile-applications in native languages, meaning two code bases for mobile-application
+and one code base for web-application. The maintaining of three code bases became an
+almost impossible task and every change had to be repeated three times in three
+different languages.
+
+When Flutter was released Paolo Soares and Cong Hui saw the possibility to merge the
+mobile-applications into one code base and thereby achieving only one language for the
+development. They also initially thought that they would be able to reuse all the dart
+written business logic from the web-application and thereby very rapidly develop the
+mobile application. Trying to do so highlighted a very big issue in their web-application
+which was that the business logic where mixed in with the UI logic.
+
+[Show diagram of mixed business logic and UI logic]
+
+So, if they wanted to re-use the business logic from the web-application they had to
+first clean up the entiere application to clearly seperate business and UI logic. But
+not only should it be seperated, but the business logic should also be platform independent
+meaning that it should be useable with out any modifications on both the web-application
+and the mobile-application. The pattern they ended up with as a solution for this was
+named BLoC (Business Logic Component).
+
+[Show diagram of seperated business logic and UI logic]
+
+The pattern alone does not ensure that business and UI logic are not mixed, so along
+side the pattern they conformed a list of non-negotianal rules that is to be upholded
+by all developers, no exceptions.
+
+\subsection{What is a BLoC}
+A BLoC i simply a class that utilizes streams for communication, this is because
+not all platforms are reactive in nature, Flutter is a good example of this, while
+AngularDart supports two-way databinding out of the box, Flutter needs to either specificly
+do a entire state update or listning to a stream to get changes reactively. Therefore
+a BLoC must be implemented such that all inputs are sinks and outputs are streams.
+
