@@ -1,0 +1,44 @@
+\section{Service Migration}
+
+The Giraf project has since 201X hosted its project with Git on their servers. These Git servers did not have the best impression on the Giraf team of 2019 since they would crash on numerous occasions. While deliberating how to stabilize the servers better, we thought we ought to move this out of our hands and move the Giraf project to the Open-Source realm. This section describes how we migrated every Giraf repository and \gls{ci} to GitHub and Azure.
+
+\subsection{Git}
+
+It was brought to our attention at the very start of the semester, that a self-hosted GitLab server hosted the current repositories. This server would crash numerously, even though the server was not short of resources, with two 2.5 GHz cores and 4GB RAM. Without looking too much more into why the server was not responding, we decided quite early on to move all Giraf repositories to a hosted solution. 
+
+The only replacement candidate was GitHub. Since GitHub provides free private repositories to students, we think most students are familiar with their services, and as such, we concluded that this would be the best choice for the project.
+
+To perform the actual migration we used the three commands as seen in \autoref{lst:gitMigrate}. The first command tracks all branches in the current repository, the second adds a new remote to the repository called `github,` and the third command pushes everything to GitHub.
+
+\begin{lstlisting}[language=bash,label={lst:gitMigrate},caption={Git Migration code}]
+for remote in `git branch -r`; do git branch --track $remote; done
+git remote add github $1
+git push --mirror github
+\end{lstlisting}
+
+\section{Continous Integration}
+
+The hosted GitLab also provided the \gls{ci} for the different repositories, and with the switch from GitLab, we must find a suitable replacement.
+
+While there are plenty of \gls{ci} services available, we did not want to pay out of our own pockets to use them. The university would probably pay for these services it if we asked, but with the hassle of the bureaucracy with asking, we decided to limit our search to free \gls{ci} services. There are plenty of \gls{ci} services that are free for Open-Source projects but must have some restrictions.
+
+Furthermore, we potentially needed the ability to deliver iOS applications, which requires MacOS, so our \gls{ci} service must support running MacOS. 
+
+Lastly, we needed a \gls{ci} that had plenty of build minutes, and concurrent builds, as there was expected many commits each day on the different repositories.
+
+On \autoref{tbl:ci_comparison} we list the different \gls{ci} services that were considered in the search. We chose to go with Azure, as the table clearly shows Azure as the best fit for our needs.
+
+\noindent\begin{longtable}[]{@{}lrrrl@{}}
+    \caption{\gls{ci} comparisos}
+    \label{tbl:ci_comparison}\\
+    \toprule
+    Service & Price & ~Build Minutes & Concurrency & ~Mac\tabularnewline
+    \midrule
+    \endhead
+    GitLab & 19\$/user & 10,000 & NA & ~No\tabularnewline
+    CircleCI & 0 & 1,000 & 1 & ~Yes, for \$129/mo\tabularnewline
+    AppVeyor & 0 & ~ NA & NA & No\tabularnewline
+    TracisCI & ~ 0 & ~ NA & ~ NA & ~No ~\tabularnewline
+    Azure & 0 & ~ Unlimited & ~10 & Yes\tabularnewline
+    \bottomrule
+\end{longtable}
