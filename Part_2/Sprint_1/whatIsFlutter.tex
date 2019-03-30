@@ -3,8 +3,16 @@
 %To start with describe the high-level concept of Flutter. 
 %Thereafter, a description of the low-level implementation and features of Flutter could be useful.
 
-Flutter is a mobile \gls{ui} framework made by google for developing android and ios devices\todo{ref here}. Flutter uses the dart programming language to write the applications in, then Flutter translates the dart code into native code, for both android and ios, by Flutter. This allows the programs to run without the overhead of having to run through a bridge \todo{ref here}, making it easier to make a well running application. 
+Flutter is a mobile \gls{ui} framework made by google for developing android and ios devices\cite{flutterFAQ}. Flutter uses the dart programming language to write the applications in, then Flutter translates the dart code into native arm code, for both android and ios, by Flutter, this this means that code runs directly on a device.
 When developing Flutter has a "hot reload" functionally allowing for code changes to be reflected on a device or emulator without having to recompile the application first.
 
-In Flutter all UI elements are a widget, this means that everything from a  button, to a  whole screen, which consists of multiple widgets, is a widget in it self. This gives flexibility and reusability in how widgets can be built. When working with widgets an important concept in Flutter is stateless widgets and stateful widgets. Stateless widgets are widgets that does not need to change, this could be  e.g a static description text, or a logo. Stateful widgets are useful when the widgets state needs to change in one form or the other.  An example of a stateful wdiget can be a text input area, where the \gls{ui} needs to reflect what is typed. Stateful widgets then helps Flutter to decide which widgets to redraw in the \gls{ui}.
+In Flutter all UI elements are a widget, this means that everything from a  button, to a  whole screen, which consists of multiple widgets, is a widget in it self. This gives flexibility and reusability in how widgets can be built. When working with widgets an important concept in Flutter is stateless widgets and stateful widgets. Stateless widgets are widgets that does not need to change, this could be  e.g a static description text, or a logo. Stateful widgets are useful when the widgets state needs to change in one form or the other.  An example of a stateful widget can be a text input area, where the \gls{ui} needs to reflect what is typed. Stateful widgets then helps Flutter to decide which widgets to redraw in the \gls{ui}.
+If functionality is need which is not a part of the standard Flutter libraries, plugins can be made. In Flutter a plugin is a package which contains three tings.
 
+\begin{itemize}
+    \item  Dart Api code
+    \item  Android specific code
+    \item  iOS specific code
+\end{itemize}
+
+A plugin then allows to write dart code, and then define what iOS and android code corresponds to that. This allows for keeping all the application code in the dart language, and when extending Flutter new functionalities, the plugin tells Flutter how to implement the new functionality on each platform.
