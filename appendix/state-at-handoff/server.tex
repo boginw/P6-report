@@ -2,7 +2,7 @@
 
 The server setup is containerized, using docker, as much as possible. Last year they started the transition of making the containers running in a cluster. For this they used Kubernetes. At the point of handoff, only the Gitlab workers run as pots inside Kubernetes.
 
-The Kubeneters setup is one master and three nodes. Besides that, there are three non-clustered servers. On \autoref{fig:app:state-at-handoff:server} one can see the complete overview of the servers and which services they run.
+The Kubeneters is setup with one master node and three other nodes. Besides that, there are three non-clustered servers. \autoref{fig:app:state-at-handoff:server} shows the complete overview of the servers and which services they run.
 
 The server hosting it self is handled by the Aalborg University IT Service Department, where every server is a virtualization using vSphere.
 
