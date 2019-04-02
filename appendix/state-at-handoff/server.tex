@@ -1,6 +1,8 @@
 \section{Server}\label{app:state-at-handoff:server}
 
-The server setup is containerized, using docker, as much as possible. Last year they started the transition of making the containers running in a cluster. For this they used Kubernetes. At the point of handoff, only the Gitlab workers run as pots inside Kubernetes.
+The server is set up using Docker, and the content is divided into containers whenever possible. 
+Last year they started to make the containers run in clusters. 
+To do this they used Kubernetes. In the stat of the semester, only the Gitlab workers run as pots inside Kubernetes.
 
 The Kubeneters is setup with one master node and three other nodes. Besides that, there are three non-clustered servers. \autoref{fig:app:state-at-handoff:server} shows the complete overview of the servers and which services they run.
 
