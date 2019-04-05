@@ -3,3 +3,28 @@
 %   Defined purpose
 % Our original job
 %   Short about our stories
+Before the first sprint the \gls{po} had been in contact with the customers, and they expressed that the most important thing for them is to have a better functioning Weekplanner.
+There are shortcomings functionality wise in the current application, and lack of stability, there are issues with the user interface being confusing and in some cases inconsistent. The customer also wants offline functionality, primarily for two reasons, they do not have a stable enough wireless coverage, and they are also often on trips to places without internet.
+\\
+The sprint started with a joint sprint planning with all the development groups present. The \gls{po} group chose to update the Weekplanner application as the sprint focus, based on the information from the customers. Then the \gls{po} presented the user-stories in prioritized order, then gave the groups time to discuss the different stories internally. After discussing the stories the groups then had three votes, all the groups then voted on the stories they wanted, and if there were too many groups requesting the same user story, then some negotiation was needed in order to make a fair allocation of assignments. The voting was intended as a way for all the groups to get a fair chance of getting the assignments they wanted, instead of first come first served approach.\newline
+
+\section{Our userstories}
+We took three tasks this sprint.
+\begin{description}
+    \item [\#14] As a citizen I would like the icons to be consistent throughout the system so that I instinctively know their meaning.
+    \item [\#15] As a citizen I would like to be able to choose how many days I see at a time on my weekplanner, so that it fits my personal preference.
+    \item [\#19] As a user I would like the icons to be updated so that they are modern and easy to understand.
+\end{description}
+
+\subsection{Updating the icons}
+Issue \#14 and \#19 are very closely related and can be solved in tandem. Issue \#14 is that some of the icons in the application are unclear, and have multiple meanings depending on where in the application they are used. The users have expressed concern regarding the simplicity and intuitiveness of the application and would prefer if the application was intuitive enough so that training is unnecessary.
+As a part of this task all icons and their use will have to be mapped, to see which icons make sense, and as far as possible only have one meaning. As for issue \#19 it makes sense to do simultaneously, as while we map the icons and their meanings, updating them alongside reduces some redundant work. 
+
+The \gls{po} group made a design guide in cooperation with the customers. The assignment will then be to make the weekplanner application respect this design guide.
+
+\section{Changing how many days the Weekplanner shows}\label{sec:weekPlannerDaysToShow}
+
+Issue \#15 expresses a user need for being able to change how many days the Weekplanner shows at a time. This ability is a need expressed by some citizen, as they can feel a bit overwhelmed by all the tasks, so they would like to be able to show fewer days, or even just one.
+Initially, we thought this would be a trivial task because we believed it would be some minor \gls{xaml} changes, but after looking at the code and discussing the assignment with the \gls{po} group, it turned out that this was not the case. We discovered that the way the current weekplans are stored, are in separate, unconnected plans, meaning that a weekplan has no connection to another weekplan. This non-connection means that if the Weekplanner has to show data from two weeks, it has no way of knowing which weekplan comes after the current.
+To solve this we have to find an alternative way of storing the plans, possible in a more calendar inspired way.
+
