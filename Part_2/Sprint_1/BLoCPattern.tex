@@ -1,43 +1,62 @@
 \section{BLoC Pattern}
 
 \subsection{Story behind}
-BLoC stands for Business Logic Component and is a pattern that aims to isolate all
-business logic away from UI code. The pattern was formulated by Paolo Soares and
-Cong Hui, boths working on the Google AdWords platform. The story behind the birth
-of the BLoC pattern is that at the Google AdWords team they have two applications the
-web-application which is written in Dart-lang using AngularDart and a mobile-application
-using Dart-lang and Flutter. The issue was that before Flutter existed they developed
-their mobile-applications in native languages, meaning two code bases for mobile-application
-and one code base for web-application. The maintaining of three code bases became an
-almost impossible task and every change had to be repeated three times in three
-different languages.
+\gls{bloc} is a pattern that aims to isolate all business logic away from \gls{ui} code. Paolo Soares and Cong Hui formulated the pattern, both working on the Google AdWords platform. Paolo Soares presented the \gls{bloc} pattern at DartConf 2018 with a talk named "Code sharing, better together". The story behind the birth of the \gls{bloc} pattern is that at the Google AdWords team they have two applications the web-application which is written in Dart-lang using AngularDart and a mobile-application using Dart-lang and Flutter. The issue was that before Flutter existed they developed their mobile-applications in native languages, meaning two code bases for mobile-application and one code base for web-application. The maintaining of three code bases became a demanding task, and every change had to be repeated three times in three different languages.
 
-When Flutter was released Paolo Soares and Cong Hui saw the possibility to merge the
-mobile-applications into one code base and thereby achieving only one language for the
-development. They also initially thought that they would be able to reuse all the dart
-written business logic from the web-application and thereby very rapidly develop the
-mobile application. Trying to do so highlighted a very big issue in their web-application
-which was that the business logic where mixed in with the UI logic.
+When Flutter was released Paolo Soares, and Cong Hui saw the possibility to merge the mobile-applications into one code base and thereby to achieve only one language for the development. They also initially thought that they would be able to reuse all the dart written business logic from the web-application and thereby very rapidly develop the mobile application. Trying to do so highlighted a considerable issue in their web-application which was that the business logic where mixed in with the \gls{ui} logic.
 
-[Show diagram of mixed business logic and UI logic]
+So, if they wanted to re-use the business logic from the web-application they had first to clean up the entire application to separate business and \gls{ui} logic, but not only should it be separated, but the business logic should also be platform independent meaning that it should be useable without any modifications on both the web-application and the mobile-application. The pattern they ended up with as a solution for this was named \gls{bloc}.
 
-So, if they wanted to re-use the business logic from the web-application they had to
-first clean up the entiere application to clearly seperate business and UI logic. But
-not only should it be seperated, but the business logic should also be platform independent
-meaning that it should be useable with out any modifications on both the web-application
-and the mobile-application. The pattern they ended up with as a solution for this was
-named BLoC (Business Logic Component).
-
-[Show diagram of seperated business logic and UI logic]
-
-The pattern alone does not ensure that business and UI logic are not mixed, so along
-side the pattern they conformed a list of non-negotianal rules that is to be upholded
-by all developers, no exceptions.
+The pattern alone does not ensure non-mixed business and \gls{ui} logic, so alongside the pattern, they created a list of non-negotiable rules that is to be upheld by all developers, no exceptions.
 
 \subsection{What is a BLoC}
-A BLoC i simply a class that utilizes streams for communication, this is because
-not all platforms are reactive in nature, Flutter is a good example of this, while
-AngularDart supports two-way databinding out of the box, Flutter needs to either specificly
-do a entire state update or listning to a stream to get changes reactively. Therefore
-a BLoC must be implemented such that all inputs are sinks and outputs are streams.
+The \gls{bloc} pattern is merely a pattern that enforces all business logic to lay outside the \gls{ui} components and communicate via streams. The communication of a \gls{bloc} is heavily inspired by the Observer pattern and Iterator Pattern and thereby bares many similarities with the ReactiveX API. In fact, in the Giraf project, the \gls{bloc} pattern is implemented using the ReactiveX API via a package called rxDart. The ReactiveX API describe them self as "ReactiveX is a combination of the best ideas from the Observer pattern, the Iterator pattern, and functional programming" \citep{ReactiveXWebsite}.
+
+\subsection{Rules of BLoC Pattern}
+In the talk from DartConf 2018, Paolo Soares suggested a set of rules or best practices that developers should uphold when using the \gls{bloc} pattern. In the Giraf project, we have chosen to alter the rules a bit, more on that later. However, firstly let us introduce the rules suggested by Paolo Soares:
+
+\subsubsection{BLoC Design Guidelines}
+\begin{itemize}
+  \item Inputs and outputs are simple Streams/Sinks only
+  \item Dependencies must be injectable and platform agnostic
+  \item No platform branching allowed
+  \item Implementation can be whatever you want if you follow the previous rules
+\end{itemize}
+
+The first rule states that any communication between the \gls{ui} and a \gls{bloc} must be through Sinks or Streams, so when the \gls{ui} should send data to the \gls{bloc} it should be a sink, and when a \gls{bloc} should send data to the \gls{ui} it should be a stream.
+
+The second rule states that all dependency of a \gls{bloc} must be injectable; this is a crucial step in reaching platform independence and does not require much explanation.
+
+The third rule states that one is not allowed to branch depending on the platform, meaning the business logic should not change just because the platform changes. What the rule is effectively stating is that inside a \gls{bloc} there should not be e.x., an if-statement checking if the platform is iOS and do some computation on behave of that.
+
+The last and fourth rule can be a bit hard to understand, but what it states is that one can implement the \gls{bloc} pattern however they like, i.e., like in the Giraf Project using rxDart and thereby reactive programming.
+
+\subsubsection{UI Design Guidelines}
+\begin{itemize}
+  \item Each "Complex enough" component has a corresponding \gls{bloc}
+  \item Components should send inputs "as is"
+  \item Components should show outputs as close as possible to "as is"
+  \item All branching should be based on simple \gls{bloc} Boolean outputs
+\end{itemize}
+
+The first rule states that if the \gls{ui} component is complex enough it should have its own \gls{bloc}, thereby also stating that \gls{ui} components should share \glspl{bloc} if they are non-complex.
+
+The second rule states that if the \gls{ui} needs to send data to the \gls{bloc}, i.e., User inputs, the \gls{ui} component is not allowed to do any computation on the inputs before sending it to the \gls{bloc}; this is a step to ensure decoupling between the \gls{ui} and Business logic.
+
+The third rule is the same as the second rule but in the other direction. So the output from a \gls{bloc} should not be changed inside the \gls{ui} component, this again is to ensure that all business logic stays inside the \gls{bloc}.
+
+The fourth rule states that all if statements inside the \gls{ui} component should only depend on one boolean stream from the \gls{bloc}, this again is to decouple the \gls{ui} component from the business logic, since branching in the \gls{ui} most likely are based on some business logic.
+
+\subsection{BLoC Design Guidelines of the Giraf Project}
+As mentioned earlier the Giraf Project have altered the rules of the \gls{bloc} pattern a bit. The reason for this is that in the Giraf Project we are not using the code in other platforms than the Flutter Framework, therefore to make the use of \glspl{bloc} a bit more intuitive and flexible for the developers we have constructed the following design guideline:
+
+\subsubsection{Giraf Project BLoC Pattern Guidelines}
+\begin{itemize}
+  \item Rather many small non-complex \glspl{bloc} than few large complex \glspl{bloc}
+  \item Start by creating a \gls{bloc} per \gls{ui} Screen, then after implementing the functionality consider to refactor to shared \glspl{bloc}
+  \item Inputs to \glspl{bloc} should be either Sinks or function calls with parameters
+  \item \glspl{bloc} should be instantiated via the dependency injector/ Thereby all dependencies should also be injectable
+  \item \glspl{bloc} are to be implemented using the rxDart library
+\end{itemize}
+
 
