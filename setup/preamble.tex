@@ -94,6 +94,8 @@
 \titleformat*{\subsubsection}{\normalfont\normalsize\bfseries}
 %\titleformat*{\paragraph}{\normalfont\normalsize\bfseries}
 %\titleformat*{\subparagraph}{\normalfont\normalsize\bfseries}
+\setlength{\parskip}{\baselineskip}%
+\setlength{\parindent}{0pt}%
 
 % Clear empty pages between chapters
 \let\origdoublepage\cleardoublepage
@@ -188,6 +190,20 @@
     \BODY
     \bottomrule[\heavyrulewidth]
   \end{tabularx}
+}
+
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue},
+  numbers=left,
+  stepnumber=1,
+  numbersep=8pt,
+  showstringspaces=false,
+  breaklines=true,
+  frame=top,
+  frame=bottom,
 }
 
 \usepackage[acronym]{glossaries}
