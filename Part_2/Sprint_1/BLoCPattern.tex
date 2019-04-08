@@ -9,7 +9,7 @@ So, if they wanted to re-use the business logic from the web-application they ha
 
 The pattern alone does not ensure separated business and \gls{ui} logic, so they created a list of rules that has to be upheld by all developers that uses the pattern without exceptions.
 
-\subsection{What is a BLoC}
+\subsection{What is BLoC}
 The \gls{bloc} pattern is merely a pattern that enforces all business logic to lay outside the \gls{ui} components and communicate via streams. The communication of a \gls{bloc} is heavily inspired by the Observer pattern and Iterator Pattern and thereby bares many similarities with the ReactiveX API. In fact, in the Giraf project, the \gls{bloc} pattern is implemented using the ReactiveX API via a package called rxDart. The ReactiveX API describe them self as "ReactiveX is a combination of the best ideas from the Observer pattern, the Iterator pattern, and functional programming" \cite{ReactiveXWebsite}.
 
 \subsection{Rules of BLoC Pattern}
