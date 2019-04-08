@@ -1,14 +1,10 @@
 \section{Cross teams process}
-The definition of the deveoplment process of \gls{G19} resulted in a manual\cite{processManual} written by \gls{SMT}. The manual defines the practices and process we agreed should be followed by the \glspl{devTeam}. All the decisions following sections, are defined in said manual.
+The definition of the development process of \gls{G19} resulted in a manual\cite{processManual} written by the \gls{SMT}. The manual defines the practices and process we agreed should be followed by the \glspl{devTeam}. The previously mentioned manual contains all the decisions in the following sections.
 
-The GIRAF coordinator arranged a presentation by Anton Christensen, a student of \gls{G18}.
-Christensen described how his year had worked in teams that focused on one part of the system. 
-He described that this way of dividing the work made the developers very dependent on each other, and this had been an issue for the groups. 
-We decided to use another method, where the teams are \Glspl{fullStack}, which means, that the teams work on the complete vertical slice of a user story rather than just on a single layer. 
+The GIRAF coordinator arranged a presentation by Anton Christensen, a student of \gls{G18}. Christensen described how his year had worked in teams that focused on one part of the system. He described that this way of dividing the work made the developers very dependent on each other, and this had been an issue for the groups. We decided to use another method, where the teams are \Glspl{fullStack}, which means, that the teams work on the complete vertical slice of a user story rather than just on a single layer.
 
 \subsection{Process activities}
-There are three different \glspl{skillGroup}, namely frontend, backend, and server. These groups make it possible for all \glspl{devTeam} to gain knowledge in the specific areas of the system.
-In the \gls{SOS} process, the activities resemble the normal each group represents a team member in the normal Scrum process.
+There are three different \glspl{skillGroup}, namely frontend, backend, and server. These groups make it possible for all \glspl{devTeam} to gain knowledge in the specific areas of the system. In the \gls{SOS} process, the activities resemble the normal each group represents a team member in the normal Scrum process.
 
 Using the \gls{SOS} process, we can think of each \gls{devTeam} as being a person in regular Scrum. Internally, each \gls{devTeam} has its own process. 
 There are four sprints planned, and in the following is described the activities in each sprint:
@@ -23,9 +19,10 @@ There are four sprints planned, and in the following is described the activities
     \item Release Party
 \end{itemize}
 
-The SOS process is graphically represented in \autoref{fig:SOSProcess}. Here, the circles represent an activity. They are placed in chronological order on the line, with the ones on the loop repeating. The stickmen represents a group member with a role. The "any member" role represents all of the group members. If when one stickman is placed in an activity, it means that one person from the group has to attend. 
+\autoref{fig:SOSProcess} represents the SOS process. Placed in chronological order, each circle represents an activity, with the ones on the loop repeating. The stickmen represent a group member with a role. The "any member" role represents all of the group members. 
+Placing a stickman in an activity means that one person from the group has to attend that activity. 
 
-One of each \gls{skillGroup} character are placed in the \gls{skillGroup} meeting activity. This means that they attend the \gls{skillGroup} meetings as representatives of their \glspl{devTeam}.
+One of each \gls{skillGroup} character is placed in the \gls{skillGroup} meeting activity. This means that they attend the \gls{skillGroup} meetings as representatives of their \glspl{devTeam}.
 If an activity does not contain a stickman, it is attended by every member of the teams.
 
 \begin{figure}[h]
@@ -66,10 +63,10 @@ In the previously mentioned process manual, some standards and practices, which 
     \item Code review
 \end{itemize}
 
-The coding standards involves naming conventions, descriptions and a few other aspects. This is done so the code is easier to read for people that need to get familiar with the system, mainly the following years \glspl{devTeam}, because we found it hard to get to know the system when it was made by a lot of different people, with a lot of different coding standards.
+The coding standards involve naming conventions, descriptions and a few other aspects. This is done so the code is easier to read for people that need to get familiar with the system, mainly the following years \glspl{devTeam}, because we found it hard to get to know the system when it was made by a lot of different people, with a lot of different coding standards.
 
-Last year, the project and repository was moved to GitLab that takes care of the version control. In the beginning of this semester our team moved it to Github. This is documented in  \autoref{sec:GitAndCI}. The workflow of the project is done using GitFlow Workflow. In the manual is described the rules for using branches. 
-The point of the code review is to make sure that all code committed by the \glspl{devTeam} follows the coding standards. When a Team try to merge code into production, two people from different groups have to review it. They have to go through a checklist, to see if everything is alright. 
+Last year, the project and repository were moved to GitLab that takes care of the version control. At the beginning of this semester, our team moved it to Github. This is documented in  \autoref{sec:GitAndCI}. The workflow of the project is done using GitFlow Workflow. In the manual is described the rules for using branches. 
+The point of the code review is to make sure that all code committed by the \glspl{devTeam} follows the coding standards. When a Team tries to merge code into production, two people from different groups have to review it. They have to go through a checklist, to see if everything is all right. 
 
 Another decision made is, that the \glspl{devTeam} should document the implemented components, their responsibility and how it interacts with other components. This documentation should be stored in the wiki repository on the GIRAF Github page. The wiki should ultimately contain all information needed to get to know the different components in the system.  
 
