@@ -7,7 +7,7 @@ When Flutter was released Paolo Soares, and Cong Hui saw the possibility to merg
 
 So, if they wanted to re-use the business logic from the web-application they had first to clean up the entire application to separate business and \gls{ui} logic, but not only should it be separated, but the business logic should also be platform independent meaning that it should be useable without any modifications on both the web-application and the mobile-application. The pattern they ended up with as a solution for this was named \gls{bloc}.
 
-The pattern alone does not ensure non-mixed business and \gls{ui} logic, so alongside the pattern, they created a list of non-negotiable rules that is to be upheld by all developers, no exceptions.
+The pattern alone does not ensure separated business and \gls{ui} logic, so they created a list of rules that has to be upheld by all developers that uses the pattern without exceptions.
 
 \subsection{What is a BLoC}
 The \gls{bloc} pattern is merely a pattern that enforces all business logic to lay outside the \gls{ui} components and communicate via streams. The communication of a \gls{bloc} is heavily inspired by the Observer pattern and Iterator Pattern and thereby bares many similarities with the ReactiveX API. In fact, in the Giraf project, the \gls{bloc} pattern is implemented using the ReactiveX API via a package called rxDart. The ReactiveX API describe them self as "ReactiveX is a combination of the best ideas from the Observer pattern, the Iterator pattern, and functional programming" \cite{ReactiveXWebsite}.
