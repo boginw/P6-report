@@ -12,7 +12,7 @@ The pattern alone does not ensure separated business and \gls{ui} logic, so they
 \subsection{What is BLoC}
 The \gls{bloc} pattern is merely a pattern that enforces all business logic to lay outside the \gls{ui} components and communicate via streams. The communication of a \gls{bloc} is heavily inspired by the Observer pattern and Iterator Pattern and thereby bares many similarities with the ReactiveX API. In fact, in the Giraf project, the \gls{bloc} pattern is implemented using the ReactiveX API via a package called rxDart. The ReactiveX API describe them self as "ReactiveX is a combination of the best ideas from the Observer pattern, the Iterator pattern, and functional programming" \cite{ReactiveXWebsite}.
 
-\subsection{Rules of BLoC Pattern}
+\subsection{BLoC Pattern Rules}
 In the talk from DartConf 2018, Paolo Soares suggested a set of rules or best practices that developers should uphold when using the \gls{bloc} pattern. In the Giraf project, we have chosen to alter the rules a bit, more on that later. However, firstly let us introduce the rules suggested by Paolo Soares:
 
 \subsubsection{BLoC Design Guidelines}
