@@ -1,6 +1,6 @@
 \section{BLoC Pattern}
 
-\subsection{Story behind}
+\subsection{Background}
 \gls{bloc} is a pattern that aims to isolate all business logic away from \gls{ui} code. Paolo Soares and Cong Hui formulated the pattern, both working on the Google AdWords platform. Paolo Soares presented the \gls{bloc} pattern at DartConf 2018 with a talk named "Code sharing, better together". The story behind the birth of the \gls{bloc} pattern is that at the Google AdWords team they have two applications the web-application which is written in Dart-lang using AngularDart and a mobile-application using Dart-lang and Flutter. The issue was that before Flutter existed they developed their mobile-applications in native languages, meaning two code bases for mobile-application and one code base for web-application. The maintaining of three code bases became a demanding task, and every change had to be repeated three times in three different languages.
 
 When Flutter was released Paolo Soares, and Cong Hui saw the possibility to merge the mobile-applications into one code base and thereby to achieve only one language for the development. They also initially thought that they would be able to reuse all the dart written business logic from the web-application and thereby very rapidly develop the mobile application. Trying to do so highlighted a considerable issue in their web-application which was that the business logic where mixed in with the \gls{ui} logic.
