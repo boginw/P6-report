@@ -1,0 +1,238 @@
+\chapter{Xamarin Problems} \label{app:xamarin-probelms}
+
+This document will describe why a switch of framework should be considered, and what work lies ahead if a switch is chosen. Keep in mind, that the author's bias towards switching.
+
+\section{Problems with current solution}
+
+Right of the bat, I assume that most of the readers, who run Linux, started by following JetBrain's \href{https://rider-support.jetbrains.com/hc/en-us/articles/360000557259}{How to develop Xamarin.Android applications on Linux with Rider} guide, and were dissapointed to learn that this guide does not lead to a successful compilation of the WeekPlanner app. And as can also be learned by said guide:
+
+\begin{quote}
+    Please note that Xamarin.Android on Linux is officially unsupported
+\end{quote}
+
+This unfortunate fact, means that approximately a quarter of the developers cannot get started developing without additional hassle.
+
+Without looking at alternative solutions, but using the \href{https://github.com/aau-giraf/xamarin-android/blob/master/Dockerfile}{Dockerfile}, created from last-semester's Docker Image, the following problems were
+identified.
+
+\begin{itemize}
+    \item Old version of DotNetCore
+    \item Non-obvious Xamarin.Android download
+    \item Non-standard installation nuget
+    \item Complex folder moving and copying
+\end{itemize}
+
+It should be noted, that one \emph{can} get compilation to work on
+Linux, albeit a hassle. Additional problems occur thereafter, when the
+developer tries to compile the Web-Api which no longer works. Following
+last-semester's implementation, Linux users, must choose if they want
+Web-Api or WeekPlanner to compile.
+
+It should again be noted that one \emph{can} get compilation of the
+application and Web-Api to work, by using an IDE that supports multiple
+DotNetCore versions.
+
+In my opinion, there are too many loops to go through to achieve an
+environment that can compile everything, and if we are to ease the pain
+of the comming semester something needs to be done.
+
+\subsection{Additional Problems}
+
+A newly discovered issue lies within the generated code
+\href{https://github.com/aau-giraf/weekplanner/tree/master/IO.Swagger}{IO.Swagger}.
+IO.Swagger works when downloaded from the repository, but in trying to
+regenereate IO.Swagger from a specification file, or from
+\texttt{update\_swagger.sh}, results in multiple errors. These errors
+are tightly coupled with the Weekplanner project, and as so, are
+probably easy fixes.
+
+\section{Solutions}
+
+Some effort has been put in creating an install script (see
+\href{https://hackmd.io/_gtHEeO6Q36ww-oANJrJaw}{this}), which can be
+extended to get Web-Api to also work. The downside of this solution, is
+that the script needs to be maintained, and updating it \emph{might}
+result in someone needing to reinstall his/hers OS inorder to get it to
+work.
+
+Alternatively, a Dockerised solution can be used, but this solution has
+to be created, and set up in a way, that makes compilation, debugging,
+and deployment as easy as with other OSes. I personally don't see this
+being done in the near future, as this aswell requires major work.
+
+Finally, the nuclear option, switch framework. If we were to switch to
+an alternative framework, which supports Windows, MacOS, and Linux, then
+everyone will be happy, and there should be no reasonable reason for
+future semesters to switch.
+
+\section{Advantages to switching}
+
+There are also many minor advantages of switching, i.e live reloading,
+but constraining it to the crux of the problem, the following advantages
+were found.
+
+The main issue, that is to be solved by switching framework, is
+cross-platform support. It should not be a hassle for any contributor to
+get started. In switching to \href{https://flutter.dev/}{Flutter}, this
+can be achieved.
+
+Contrary to the current tests, of which there are few, and even fewer
+that work, Flutter comes packaged with a testing environment.
+
+Flutter also allows for fixing the fundamental error in the current
+structure, of using generated code. The error does not lie in using
+generated code, as this can be great when done right, but in the trust
+that the generator, or the format it understands, will be supported for
+the comming semesters.
+
+\section{Disadvantages to switching}
+
+The biggest disadvantage is reimplentation, as all current code needs to
+be ported. Fortunately, this is not too much.
+
+Another disadvantage, if Flutter is chosen as the alternative, is the
+paradigm of Flutter. Flutter is OOP but relies on the understanding of
+state- or state-less widgets.
+
+Regarding architecture support of Flutter,
+\href{https://github.com/flutter/flutter/issues/14925}{it does not
+support 32 bit}, which might be a problem, for people with very old
+computers.
+
+\section{FAQ}
+
+\begin{quote}
+Why not just switch to Windows?
+\end{quote}
+
+There are two parts to this answer: 1. Due to the question, I assume
+that you run Windows. Would you think it is fair to ask of me in an
+alternate setting to switch to Linux? 2. There are many different
+reasons people run Linux, one of them is because of Hardware. Not all
+computers \textbf{can} run Windows.
+
+\begin{quote}
+If we choose to switch, then a LOT of work will go to re-implement
+something that already is done. Isn't this a major waste of time?
+\end{quote}
+
+There are two sides to this answer. Currently, the app is shit. There is
+MAJOR work ahead, to even just get it stable. It is fortunate that the
+functionality of the app is very limited, so it is not unreasonable that
+the rewrite can be done in a timely manner.
+
+\begin{quote}
+But if it \emph{can} work on Linux, why then change?
+\end{quote}
+
+The point is not that it cannot be made to work, the point is how many
+hoops we have to jump through in order to get it to work. Not everyone
+running Linux is a super-nerd that is comfortable playing around with
+the terminal and so on. I think it is unreasonable to make them go
+through these hoops.
+
+\begin{quote}
+Can't the Linux people just work on something else than front-end?
+\end{quote}
+
+Yes, but that is not a solution. This excludes 1/4 of the people from
+working front-end, which seems really unfair.
+
+\begin{quote}
+What about dual-booting Windows?
+\end{quote}
+
+By the same argument for why not run Windows full-time, this is not a
+viable argument. But also, one might not have disk space to create a
+partition for Windows.
+
+\begin{quote}
+What is to stop future semesters from switching again, and effectively
+nullify our work?
+\end{quote}
+
+Look at this way; there are many here who hate C\# and DotNet, but none
+of them suggest switching the framework of the Web-Api. That's because
+there is no reasonable reason to do so. It is supported on all
+platforms, and runs perfectly fine everywhere. The same cannot be said
+of the app, but if it were, I believe that by the same reasoning, future
+semester would not switch either.
+
+\begin{quote}
+If we switch then there is nothing to write about in the report because
+everyone needs to work on front-end
+\end{quote}
+
+Since our focus this semester was to get the app stable, there should
+probably not be too much work in back-end, and server is limited
+anyways. And given that there are major problems with the generated
+Swagger API, we're in for a major rewrite anyways. Switch or not, I see
+most people working in front-end regardless.
+
+\section{Conclusion}
+
+Given the unsupporting nature of Xamarin, a switch is inevitable, it is
+only a question of when. I propose ripping the bandaid off, and build a
+core, that can be extended by everyone.
+
+\section{Switching}
+
+In case that a switch is decided, then there is some work ahead. To
+understand what is to be done, the following two sections will describe
+what pages exist currently, and related functionality.
+
+\section{Pages to be implemented}
+
+There are 11/14 pages that need to be re-implemented, in the table
+below, the 14 pages are listed and their purpose described.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Page name & Description\tabularnewline
+\midrule
+\endhead
+ActivityPage & Info page for Activity\tabularnewline
+ChoiceBoardPage ~ & Page for choosing between activities\tabularnewline
+ChooseCitizenPage & Vælg Borger\tabularnewline
+ChooseTemplatePage & Choose Week Template to use/edit\tabularnewline
+CitizenSchedulesPage & Vælg Skema\tabularnewline
+CustomNavigationPage & Wrapper to achieve navigation\tabularnewline
+LoginPage & Page for logging a user in\tabularnewline
+MasterPage & NA\tabularnewline
+NewSchedulePage & Tilføj en ny ugepplan\tabularnewline
+PictogramSearchPage & Where you search for Pictogram\tabularnewline
+SavePromptPage & (Not Used)\tabularnewline
+SettingsPage & Page where all settings are listed\tabularnewline
+TestingPage & Page for testing views (trivial)\tabularnewline
+WeekPlannerPage & Crux of the app, the week overview\tabularnewline
+WeekPlannerTemplatePage & Create/Edit Week template\tabularnewline
+\bottomrule
+\end{longtable}
+
+\section{Other functionality}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Category & Description\tabularnewline
+\midrule
+\endhead
+ApplicationObjects & Dependency Injection\tabularnewline
+Behaviors & Describe how views can change, e.g select\tabularnewline
+Controls & To be used by views\tabularnewline
+Converters & To be used by views\tabularnewline
+Helpers & Colleciton of functions grouped into classes\tabularnewline
+Models & Simple objects that should mainly hold data\tabularnewline
+Services & Login, Navigation, Request, and Settings\tabularnewline
+Themes & Alternative visible stuff\tabularnewline
+Validations & Validation for forms\tabularnewline
+ViewModels & Code for the visual stuff\tabularnewline
+Views & Visible stuff\tabularnewline
+\bottomrule
+\end{longtable}
+
+\section{Re-implementation plan}
+
+\begin{itemize}
+    \item Core Implementation of the Application in Flutter
+    \item Coding standards
+\end{itemize}

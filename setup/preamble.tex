@@ -62,6 +62,9 @@
 % The framed package is used in the example environment
 \usepackage{framed}
 
+
+\usepackage{csquotes}
+
 \usepackage{float}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Mathematics
@@ -88,11 +91,11 @@
   ]{geometry}
 % Modify how \chapter, \section, etc. look
 % The titlesec package is very configureable
-\usepackage{titlesec}
-\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
-\titleformat*{\section}{\normalfont\Large\bfseries}
-\titleformat*{\subsection}{\normalfont\large\bfseries}
-\titleformat*{\subsubsection}{\normalfont\normalsize\bfseries}
+%\usepackage{titlesec}
+%\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+%\titleformat*{\section}{\normalfont\Large\bfseries}
+%\titleformat*{\subsection}{\normalfont\large\bfseries}
+%\titleformat*{\subsubsection}{\normalfont\normalsize\bfseries}
 %\titleformat*{\paragraph}{\normalfont\normalsize\bfseries}
 %\titleformat*{\subparagraph}{\normalfont\normalsize\bfseries}
 \setlength{\parskip}{\baselineskip}%
@@ -157,7 +160,7 @@
 % last packages
 \usepackage{hyperref}
 \hypersetup{%
-	pdfpagelabels=true,%
+	%pdfpagelabels=true,%
 	plainpages=false,%
 	pdfauthor={Author(s)},%
 	pdftitle={Title},%
