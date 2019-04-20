@@ -1,25 +1,22 @@
 \subsection{What is Flutter}
 
-%To start with describe the high-level concept of Flutter. 
-%Thereafter, a description of the low-level implementation and features of Flutter could be useful.
+Flutter is a mobile \gls{ui} framework made by Google for developing Android and iOS devices\cite{flutterFAQ}. Instead of writing in both Java and Objective-C in Android and iOS respectively, Flutter makes use of the programming language Dart. Flutter translates the Dart code into native ARM code, for both Android and iOS, which makes it possible to write a single app for both platforms. 
 
-Flutter is a mobile \gls{ui} framework made by Google for developing Android and iOS devices\cite{flutterFAQ}. In Flutter applications  are written in a programming language called Dart. Flutter translates the Dart code into native arm code, for both Android and iOS. When developing, Flutter has a "hot reload" functionally allowing for code changes to be reflected on a device or emulator without having to recompile the application first.
-
-In Flutter all UI elements are a widget, this means that everything from a  button, to a  whole screen, which consists of multiple widgets, is a widget in it self. This gives flexibility and reusability in how widgets can be built. When working with widgets an important concept in Flutter is stateless widgets and stateful widgets. Stateless widgets are widgets that does not need to change, this could be  e.g a static description text, or a logo. Stateful widgets are useful when the widgets state needs to change in one form or the other.  An example of a stateful widget can be a text input area, where the \gls{ui} needs to reflect what is typed. Stateful widgets then helps Flutter to decide which widgets to redraw in the \gls{ui}.
+In Flutter all UI elements are widgets and consist of other widgets, which means that everything from a  button, to a  whole screen, is a widget in itself. Because widgets can consist of other widgets, we get a compositional structure referred to as the \textit{widget tree}. On \autoref{fig:WidgetTree} we see an example \textit{widget tree}. There are two types of widgets in Flutter, stateless and stateful. These types, aptly, distinguish between widgets which can or cannot hold a state.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/WidgetTree.png}
-    \caption{Example of how widgets can be combined to a \textit{widget tree}. Each box is a widget, note that even text is a widget}
+    \begin{tikzpicture}
+        \Tree[.\text{Material App} Title [.Container [.Button Text ] Text ]]
+    \end{tikzpicture}
+    \caption{Example of how widgets can be combined to a \textit{widget tree}}
     \label{fig:WidgetTree}
 \end{figure}
 
-If functionality is need which is not a part of the standard Flutter libraries, a plugin can be made \cite{docker_plugins}. In Flutter a plugin is a package which contains three tings.
+Like a function produces the same output with the same input, a stateless widget's rendered output should be the same given the same input. Examples of stateless widgets include static texts, images, grids, and so on. 
 
-\begin{itemize}
-    \item  Dart Api code
-    \item  Android specific code
-    \item  iOS specific code
-\end{itemize}
+Stateful widgets, fittingly, keep state and use their it in while rendering. Think of an input field, where on each press on the keyboard requires the widget to rerender with the new input. Examples of stateful widgets include input fields, switches, scroll-views, and so on.
 
-A plugin then allows to write new Dart functionalities, and then define what an iOS and Android implementation of the Dart code looks like on each respective platform. This allows for keeping all the application code in Dart code, and when extending Flutter  with new functionalities, the plugin tells Flutter how to implement the new functionality on each platform, so the Dart code is free of platform specific implementation code.
+Flutter provides a plugin based communication medium, called platform-channels, for communication between Dart and its host platform\cite{flutter_plugins}. Using these channels enables platform-specific code, which Dart in itself cannot utilize. The channels are used to extend Flutter's capabilities with platform-specific features, like sensor readings, accessing contacts, and so on.
+
+To summarize, Flutter is a platform-indifferent framework, for writing native applications using the Dart programming language. Flutter is based on widgets and can be extended with native functionality using platform-channels.
