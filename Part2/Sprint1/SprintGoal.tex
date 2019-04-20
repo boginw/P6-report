@@ -1,8 +1,8 @@
 \section{Sprint Goal}
 
-Each sprint has a corresponding set of goals. Before the sprint, the \gls{PO} had been in contact with the customers who expressed that the most important thing for them was to have a more stable Weekplanner.
+Each sprint has a corresponding set of goals. Before the sprint, the \gls{PO} group had been in contact with the customers who ranked a more stable Weekplanner the most crucial thing for them.
 
-There are shortcomings functionality wise in the current application, and lack of stability, there are issues with the user interface being confusing and in some cases inconsistent. The customer also wants offline functionality, primarily for two reasons, they do not have a stable enough wireless coverage, and they are also often on trips to places without internet.
+There are shortcomings, functionality wise, in the current application, and lack of stability, there are issues with the user interface being confusing and in some cases inconsistent. The customer also wanted offline functionality, primarily for two reasons, they do not have a stable enough wireless coverage, and they are also often on trips to places without internet.
 
 The sprint started with a joint sprint planning with all the development groups present. The \gls{PO} group chose to update the Weekplanner application as the sprint focus, based on the information from the customers. Then the \gls{PO} presented the user-stories in prioritized order, then gave the groups time to discuss the different stories internally. After discussing the stories the groups then had three votes, all the groups then voted on the stories they wanted, and if there were too many groups requesting the same user story, then some negotiation was needed in order to make a fair allocation of assignments. The voting was intended as a way for all the groups to get a fair chance of getting the assignments they wanted, instead of first come first served approach.
 
@@ -28,4 +28,4 @@ Issue \#15 expresses a user need for being able to change how many days the Week
 
 Initially, we thought this would be a trivial task because we believed it would be some minor \gls{xaml} changes, but after looking at the code and discussing the assignment with the \gls{PO} group, it turned out that this was not the case. 
 
-The weeks are stored separately with the tuple week-year and week-number. In this way, it is effortless to fetch a single week-plan, but fetching the next $n$ days into the might multiple calls, depending on the day of the week. To solve this issue, we had to find an alternative way of storing the plans, possibly in a more calendar inspired way.
+The weeks are stored separately with the tuple week-year and week-number. In this way, it is effortless to fetch a single week-plan, but fetching the next $n$ days might multiple calls, depending on the day of the week. To solve this issue, we had to find an alternative way of storing the plans, possibly in a more calendar inspired way.

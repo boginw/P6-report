@@ -2,7 +2,7 @@
 
 Flutter is a mobile \gls{ui} framework made by Google for developing Android and iOS devices\cite{flutterFAQ}. Instead of writing in both Java and Objective-C in Android and iOS respectively, Flutter makes use of the programming language Dart. Flutter translates the Dart code into native ARM code, for both Android and iOS, which makes it possible to write a single app for both platforms. 
 
-In Flutter all UI elements are widgets and consist of other widgets, which means that everything from a  button, to a  whole screen, is a widget in itself. Because widgets can consist of other widgets, we get a compositional structure referred to as the \textit{widget tree}. On \autoref{fig:WidgetTree} we see an example \textit{widget tree}. There are two types of widgets in Flutter, stateless and stateful. These types, aptly, distinguish between widgets which can or cannot hold a state.
+In Flutter all \gls{ui} elements are widgets and consist of other widgets, which means that everything from a  button, to a  whole screen, is a widget in itself. Because widgets can consist of other widgets, we get a compositional structure referred to as the \textit{widget tree}. On \autoref{fig:WidgetTree} we see an example of such a \textit{widget tree}.
 
 \begin{figure}[h]
     \centering
@@ -13,7 +13,9 @@ In Flutter all UI elements are widgets and consist of other widgets, which means
     \label{fig:WidgetTree}
 \end{figure}
 
-Like a function produces the same output with the same input, a stateless widget's rendered output should be the same given the same input. Examples of stateless widgets include static texts, images, grids, and so on. 
+Unlike most \gls{ui} frameworks, Flutter distinguishes between widgets with a state and widgets without a state. These widgets, aptly named stateful and stateless widgets, are unlike the \gls{oo} way, and as such, getting used to this structure can be difficult for people coming from a strict \gls{oo} background.
+
+Like a function always produces the same output with the same input, a stateless widget's rendered output should be the same given the same input. Examples of stateless widgets include static texts, images, grids, and so on. 
 
 Stateful widgets, fittingly, keep state and use their it in while rendering. Think of an input field, where on each press on the keyboard requires the widget to rerender with the new input. Examples of stateful widgets include input fields, switches, scroll-views, and so on.
 
