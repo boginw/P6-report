@@ -1,0 +1,17 @@
+\section{Static program analysis}
+
+Countrary to dyanmic program analysis, static analysis is the analysis of the program source code, rather than the execution of the program\cite{wichmann_industrial_1995}. Static program analysis can enable automatic checking for cosmetic, layout, or formatting issues, along with detecting use of blacklisted language constructs, flow-control analysis, assignment issues, and so on\cite{wichmann_industrial_1995}. 
+
+Eventhough a programming language might be lenient towards some constructs, that does not mean, that such constructs are not dangorous. Take Fortran for instance, which allows for implicit declarations, that is, if the compiler encounters a name without a declaration, it declares it, which can lead to undetected program errors\cite{wichmann_industrial_1995}. A tool to list implicitly declared variables would be useful in such instance.
+
+When a new person is added to a team, their first pull requests might be littered with code that does not follow the team's coding-style, and rather than wasting the other team-members' time, an authomatic analysis can fail the build in case the coding-style was not followed. This tool can also assist existing team-members as argued by \cite{bessey_few_2010} in the following quite:
+
+\begin{quote}
+    If programmers must obey a rule hundreds of times, then without an automatic safety net they cannot avoid mistakes.\cite{bessey_few_2010}
+\end{quote}
+
+The abovementioned features are often enabled through predefined static program analysis rules\cite{bessey_few_2010}. The 
+Most programming langauges offer a static program analysis tool, and with Dart we get linter\cite{dart_linter_2019}. We chose to use Dart linter with the week planner project, and together with the scrum group we defined the rules applied to the Weekplanner project (see \autoref{app:linter-rules}).
+
+When the rules where applied to the Weekplanner project we found 2.133 violations, which were all fixed by us. 
+
