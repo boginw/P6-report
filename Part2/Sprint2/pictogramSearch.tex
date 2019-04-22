@@ -27,7 +27,7 @@ We can now give the same example as before with a user searching for "cat." Firs
 \subsection{BLoC implementations}
 We introduced two new \glspl{bloc} for the feature. The first \gls{bloc} is for the searching and the second is for fetching the image data. The reason for this split is that many features of the application need to show pictograms, and with the split, we can utilize the image fetching ability in multiple places. The searching \gls{bloc} has debouncing implemented, which ensures that no other developers have to worry about handling the debounce when implementing a pictogram search feature.
 
-Both \glspl{bloc} where tested via unit tests. The tests where quite trivial, at the point of writing the tests are:
+We tested both \glspl{bloc} with unit tests. The tests were quite trivial, at the point of writing the tests are:
 
 \begin{itemize}
   \item A test that ensures that the Searching \gls{bloc} is actually able to search using the correct API endpoint.
