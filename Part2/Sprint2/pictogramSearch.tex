@@ -49,7 +49,8 @@ Although according to the feature description provided by the \gls{PO} group, th
 To alleviate the \gls{api} even further, we recommend the \gls{api} return the full images in the first request. Additionally, we recommend that the use of a repository pattern to locally cache all fetched images, such that if an image exists in the cache, then it never needs to be fetched again in the runtime of the application. Implementing the repository for pictogram images would not only benefit the search feature but would severely benefit the entire application, since every feature that needs to show pictograms would utilize caching.
 
 \subsection{Known issues with the current implementation}
-In the current implementation there is a known issue, the issue resolves the \gls{ui} screen. The issue is reported as issue \#98. Following are the describtion of the issue:
+In the current implementation, there is a known issue, with the \gls{ui} screen. We reported the issue with the following description:
+
 \begin{lstlisting}
 Describe the bug:
 When searching for a pictogram in the pictogram search screen, one can on occasion meet the bug, that crushes all results into a single column and flashes rapidly.
