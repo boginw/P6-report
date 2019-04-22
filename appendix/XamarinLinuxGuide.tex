@@ -1,0 +1,242 @@
+\chapter{Xamarin Linux Guide} \label{app:xamarin-linux}
+
+\textbf{TODO}: ensure congruency between manual setup and install script
+
+This documents outlines how to setup your environment such that you can
+compile the \href{https://github.com/aau-giraf/weekplanner}{WeekPlanner}
+app. To compile, you have four different options:
+
+\begin{itemize}
+    \item Using a Virtual Machine,
+    \item using Docker,
+    \item setting it up, manually,
+    \item or using the install script.
+\end{itemize}
+
+Each of these options will be discussed in the following sections.
+
+\section{Virtual Machine}
+
+To make things easy for everyone, a Virtual Machine is provided. It is
+not recommended to use it if not necessary, as it is usually much slower
+to do so. But in case you need to, you can download it
+\href{https://drive.google.com/file/d/1fxhboUHWcESF-H_CMSkNJFypwQi8fvjI/view?usp=sharing}{here}.
+Below are the credentials to the machine.
+
+\begin{lstlisting}
+username: aau
+password: giraf
+\end{lstlisting}
+
+\section{Docker}
+
+Just as the Virtual Machine, the Docker image comes preinstalled with
+all the necessary dependancies to compile the project. Of course, to use
+Docker you must first ensure that you have installed it. Given that you
+have already installed Docker, \lstinline{cd} into your
+project directory root, and execute the following, and a brand-new APK
+file will appear.
+
+\begin{lstlisting}[language=bash]
+docker run -v "$(pwd):/weekplanner" -it aaugiraf/xamarin-android
+\end{lstlisting}
+
+If you want to ``ssh'' into the machine, you can attach to the
+container's shell by executing the following:
+
+\begin{lstlisting}[language=bash]
+docker run -v "$(pwd):/weekplanner" -it aaugiraf/xamarin-android /bin/bash
+\end{lstlisting}
+
+For more information regarding the container, look
+\href{https://cloud.docker.com/u/aaugiraf/repository/docker/aaugiraf/xamarin-android/general}{here}.
+
+\section{Manually Setup}
+
+To get started we first need root access, this is achieved by running:
+
+\begin{lstlisting}[language=bash]
+$ sudo su
+\end{lstlisting}
+
+Next, we choose which versions of the different things we're going to
+use. We define the following variables for easy reference.
+
+\begin{lstlisting}[language=bash]
+DOTNET_SDK_VERSION=2.1.200
+XAMARIN_VERSION=8.3.99.189
+ANDROID_SDK_TOOLS_VERSION=3859397
+\end{lstlisting}
+
+Following this, we will install the general dependencies for Giraf's
+Weekplanner.
+
+\begin{lstlisting}[language=bash]
+$ apt-get update
+$ apt-get -y install \
+             unzip \
+             openjdk-8-jdk \ # only necessary if not already installed
+             libzip4 \
+             apt-transport-https \
+             curl \
+             gnupg
+\end{lstlisting}
+
+\subsection{Install Mono}
+
+Installing mono requires adding to the sources list, this is done in the
+following bash code:
+
+\begin{lstlisting}[language=bash]
+$ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+$ echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | tee /etc/apt/sources.list.d/mono-official-stable.list
+$ apt-get update
+$ apt-get install -y mono-devel
+\end{lstlisting}
+
+\subsection{Installing Android SDK}
+
+To compile to Android, we need the Android SDK. The following will
+download the SDK tools and SDK manager.
+
+\begin{lstlisting}[language=bash]
+$ curl https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS_VERSION}.zip -o sdk-tools.zip
+$ mkdir /android
+$ unzip sdk-tools.zip -d /android
+$ rm -rf sdk-tools.zip
+$ rm -rf /android/licenses
+\end{lstlisting}
+
+We need to agree to some licenses, the following will update the Android
+SDK manager, and agree to any licenses.
+
+\begin{lstlisting}[language=bash]
+$ yes | /android/tools/bin/sdkmanager --update --licenses
+$ yes | /android/tools/bin/sdkmanager "platforms;android-26" "build-tools;27.0.3"
+$ yes | /android/tools/bin/sdkmanager --update
+\end{lstlisting}
+
+Finally, we fetch the NDK-bundle and change the permission of the
+\lstinline{/android/} directory to something more
+accessable.
+
+\begin{lstlisting}[language=bash]
+$ /android/tools/bin/sdkmanager "ndk-bundle"
+$ chmod -R 777 /android/
+\end{lstlisting}
+
+\subsection{Installing Xamarin}
+
+Next, we need Xamarin.Android, which can be fetched directly from
+Microsoft.
+
+\begin{lstlisting}[language=bash]
+$ curl https://xamjenkinsartifact.blob.core.windows.net/xamarin-android/xamarin-android/xamarin.android-oss_${XAMARIN_VERSION}.orig.tar.bz2 -o xamarin.tar.bz2
+$ tar xvjf xamarin.tar.bz2
+$ mv xamarin.android-oss_* /android/xamarin
+$ rm -rf xamarin.tar.bz2
+\end{lstlisting}
+
+\subsection{Installing DotNet}
+
+\begin{lstlisting}[language=bash]
+$ curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+$ mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+$ sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list'
+$ apt-get update
+$ apt-get install -y dotnet-sdk-${DOTNET_SDK_VERSION}
+\end{lstlisting}
+
+\begin{lstlisting}[language=bash]
+$ curl https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -o /nuget.exe
+$ cp -r /android/xamarin/bin/Release/lib/xamarin.android/* /usr/lib/mono/
+$ mkdir -p /usr/lib/mono/xamarin-android/bin/
+$ cp -r /android/xamarin/bin/Release/lib/xamarin.android/xbuild/* /usr/share/dotnet/sdk/${DOTNET_SDK_VERSION}
+\end{lstlisting}
+
+\subsection{Full script}
+
+The below script was tested on a blank installation of Ubuntu 18.04.2,
+and ran successfully.
+
+\begin{lstlisting}[language=bash]
+#!/bin/bash
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit 1
+fi
+
+DOTNET_SDK_VERSION=2.1.200
+XAMARIN_VERSION=8.3.99.189
+ANDROID_SDK_TOOLS_VERSION=3859397
+
+apt-get update
+apt-get -y install unzip openjdk-8-jdk libzip4 apt-transport-https curl gnupg
+
+# Set default java version to Java 8
+update-java-alternatives --set java-1.8.0-openjdk-amd64
+
+# Ignore saying yes to stuff
+DEBIAN_FRONTEND=noninteractive
+
+# Mono
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | tee /etc/apt/sources.list.d/mono-official-stable.list
+apt-get update
+apt-get install -y mono-devel mono-complete
+
+# Android
+curl https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS_VERSION}.zip -o sdk-tools.zip
+mkdir /android
+unzip sdk-tools.zip -d /android
+rm -rf sdk-tools.zip
+rm -rf /android/licenses
+yes | /android/tools/bin/sdkmanager --update --licenses
+yes | /android/tools/bin/sdkmanager "platforms;android-26" "build-tools;27.0.3"
+yes | /android/tools/bin/sdkmanager --update
+/android/tools/bin/sdkmanager "ndk-bundle"
+chmod -R 777 /android/
+
+# Xamarin
+curl https://xamjenkinsartifact.blob.core.windows.net/xamarin-android/xamarin-android/xamarin.android-oss_${XAMARIN_VERSION}.orig.tar.bz2 -o xamarin.tar.bz2
+tar xvjf xamarin.tar.bz2
+mv xamarin.android-oss_* /android/xamarin
+rm -rf xamarin.tar.bz2
+
+# Dotnet
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list'
+apt-get update
+apt-get install -y dotnet-sdk-${DOTNET_SDK_VERSION}
+
+printf "\nexport ANDROID_SDK_PATH=/android/" >> /etc/environment
+printf "\nexport DOTNET_CLI_TELEMETRY_OPTOUT=1" >> /etc/environment
+printf "\nexport MSBuildSDKsPath=/usr/share/dotnet/sdk/${DOTNET_SDK_VERSION}" >> /etc/environment
+
+curl https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -o /nuget.exe
+cp -r /android/xamarin/bin/Release/lib/xamarin.android/* /usr/lib/mono/
+mkdir -p /usr/lib/mono/xamarin-android/bin/
+cp -r /android/xamarin/bin/Release/lib/xamarin.android/xbuild/* /usr/share/dotnet/sdk/${DOTNET_SDK_VERSION}
+\end{lstlisting}
+
+\section{Common problems}
+
+\subsection{Error \#1}
+
+\begin{lstlisting}[language=bash]
+System.TypeInitializationException: The type initializer for 'System.Console' threw an exception. ---> System.TypeInitializationException: The type initializer for 'System.ConsoleDriver' threw an exception. ---> System.Exception: Magic number is wrong: 542
+\end{lstlisting}
+
+\begin{lstlisting}[language=bash]
+TERM=xterm
+\end{lstlisting}
+
+\subsection{Error \#2}
+
+NET Framework 4.5
+
+\begin{lstlisting}
+printf "\nexport FrameworkPathOverride=/usr/lib/mono/4.5/" >> /etc/environment
+\end{lstlisting}
+
