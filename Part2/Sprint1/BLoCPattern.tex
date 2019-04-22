@@ -75,7 +75,7 @@ The Flutter framework is not opinionated towards which architecture should be us
   \item The pattern should allow for a intuitive file structure.
 \end{itemize}
 
-Doing some empirical experiments in building with the different patterns and reading different developers experience with the different patterns we came to the conclusion that the \gls{bloc} pattern offered the most freedom while still isolating the business logic and \gls{ui} logic. The \gls{bloc} pattern also allow for all the other goals. This discovery in combination with the fact we only had 3 days to complete the rebuild, we decided on using the \gls{bloc} pattern.
+Doing some empirical experiments in building with the different patterns and reading different developers experience with the different patterns we came to the conclusion that the \gls{bloc} pattern offered the most freedom while still isolating the business logic and \gls{ui} logic. The \gls{bloc} pattern also allow for all the other goals. Because of this and the fact that we only had 3 days to complete the rebuild, we decided to use the \gls{bloc} pattern.
 
 When implementing the \gls{bloc} pattern, some reasearch went into discovering how experienced developers did it, remember that the rules of \gls{bloc} pattern states that it can be implemented in any way you like. When looking at the community around the \gls{bloc} pattern inside flutter it became clear that rxDart was a community favorite library for \gls{bloc} implementation. Therefore we decided to follow the community, since we believe it allow for easier development since there exists many great resources on how to use it and also it will most likely not be aboneded any time soon.
 
