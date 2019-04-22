@@ -3,7 +3,8 @@
 The focus in both this semester and last year on the GIRAF project was on the Weekplanner application. The following section describes the application.
 
 \subsection{Purpose}
-Many people with autism need structure. It is important to find a way to communicate what they should expect during the day. This can prove challenging, especially when they are placed high on the autism spectrum, or have limited verbal communication.\\
+Many people with autism need structure. It is important to find a way to communicate what they should expect during the day. This can prove challenging, especially when they are placed high on the autism spectrum, or have limited verbal communication.
+
 One way to communicate, that is often used, is with visual support\cite{VisualSupport}. There is a broad range of ways to do this. One way is with the help of pictures. Each picure represents an activity.
 
 \begin{figure}[H]
@@ -14,15 +15,19 @@ One way to communicate, that is often used, is with visual support\cite{VisualSu
     \label{fig:WeekPlan}
 \end{figure}
 
-As seen on \autoref{fig:WeekPlan}, the activities can be structured in days. Each day has a series of activities, and each activitie is represented by a picture.\\
+As seen on \autoref{fig:WeekPlan}, the activities can be structured in days. Each day has a series of activities, and each activitie is represented by a picture.
 Though this is a common method of structuring activities, it has some problems. First of all, it is unflexible. It can not be carried around and the amount of activities can't exceed the size of the board. Second, it is difficult to add new pictures and insert one. 
-Therefore, many institutes want a digital version of this, which is why the GIRAF project build the Weekplanner application.\\
+Therefore, many institutes want a digital version of this, which is why the GIRAF project build the Weekplanner application.
 
 \subsection{Features}
-There are two types of users, guardian and citizen. The weekplans are connected to a citizen, but they cannot log into the system themselfs. Guardians can log into the system, and get a list of citizens they are working with. When they choose a citizen, all the weekplans that citizen has are shown.\\
-Here the guardian can edit the weekplan, or change to citizen mode. In citizen mode, the different activities can be marked as done, but a citizen cannot change the weekplan or navigate the application. From citizen mode, the system can be changed back to guardian mode.\\
-The following describes only the screens that was implemented in the beginning of the semester. When this section was written, we had shifted the framework of the application\ref{sec:MovingTheFrontend}. We also moved the servers to another location.\\
-This ment that the application on Google Play could not login. It was not possible to build the application later, so we could not get pictures of the actual application. The pictures in this section is from the prototypes made by \gls{POT}.\\ 
+There are two types of users, guardian and citizen. The weekplans are connected to a citizen, but they cannot log into the system themselfs. Guardians can log into the system, and get a list of citizens they are working with. When they choose a citizen, all the weekplans that citizen has are shown.
+
+Here the guardian can edit the weekplan, or change to citizen mode. In citizen mode, the different activities can be marked as done, but a citizen cannot change the weekplan or navigate the application. From citizen mode, the system can be changed back to guardian mode.
+
+The following describes only the screens that was implemented in the beginning of the semester. When this section was written, we had shifted the framework of the application\ref{sec:MovingTheFrontend}. We also moved the servers to another location.
+
+This ment that the application on Google Play could not login. It was not possible to build the application later, so we could not get pictures of the actual application. The pictures in this section is from the prototypes made by \gls{POT}.
+
 
 The screens are:
 \begin{itemize}
@@ -71,8 +76,8 @@ Here the guardian get a list of every citizen connected to him. The guardian can
     \label{fig:ChooseWeekProt}
 \end{figure}
 
-For each weekplan connected to the choosen citizen, a picture of the weekplan with it's name is shown. There is also a button for adding a new weekplan to the citizen.\\
-The guardian is directed to the weekplan screen after choosing a plan.\\
+For each weekplan connected to the choosen citizen, a picture of the weekplan with it's name is shown. There is also a button for adding a new weekplan to the citizen.
+The guardian is directed to the weekplan screen after choosing a plan.
 
 \subsection*{Weekplan Screen}
 There are two types of weekplan screens, the citizen screen, \ref{fig:WeekplanCitProt}, and the guardian screen, \ref{fig:WeekplanGuarProt}. 
@@ -94,7 +99,7 @@ There are two types of weekplan screens, the citizen screen, \ref{fig:WeekplanCi
     \label{fig:WeekplanCitProt}
 \end{figure}
 
-In both screens you can see the activities planned for the day, but when an activities is clicked on, on the citizen screen, they are marked as done, while they can be edited on the guardian screen. The guardian screen is also the only screen where you can add activities.
+In both screens you can see the activities planned for the day, but when an activity is clicked on, on the citizen screen, they are marked as done, while they can be edited on the guardian screen. The guardian screen is also the only screen where you can add activities.
 
 The features working on the start of the semester is the following:
 \begin{itemize}
