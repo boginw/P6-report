@@ -66,7 +66,7 @@ The third rule is much like the second but concerns output instead of input. The
 The fourth rule states that all business logic dependent if-statements inside the \gls{ui} component should only depend on one boolean stream from the \gls{bloc}, this again is to decouple the \gls{ui} component from the business logic, since branching on business logic in the \gls{ui} most likely would hard couple \gls{ui} and business logic.
 
 \subsection{BLoC Implementation in the Giraf Project}
-As mentioned the \gls{bloc} pattern is used in the Giraf Project, a number of considerations where taken in implementing the pattern. The first considerations where why should we use the \gls{bloc} pattern. This was chosen since the flutter framework is not opinionated towards one architecture over another, therefore a clear architecture needs to be declared for the development, a number of different patterns where researched including the MVVM and MVC. To better judge the useability of a pattern a set of goals where discussed, the point being that the pattern of chose should reach as many goals as possible. The goals where:
+The Flutter framework is not opinionated towards which architecture should be used so we had to decide for ourselves. We chose the \gls{bloc} pattern after considering other patterns like MVVM and MVC. In order to compare the different patterns, we made some goals we wanted the pattern to fulfil. This enabled us to compare the different patterns to each other and find the one that best fitted our needs. The goals were:
 
 \begin{itemize}
   \item Business logic should be re-useable by all widgets
