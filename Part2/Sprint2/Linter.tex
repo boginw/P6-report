@@ -14,7 +14,7 @@ Another great feature of most static program analysis is the analysis of coding 
 
 Enabling the abovementioned rules is often through predefined static program analysis rules\cite{bessey_few_2010}. These rules can be anything from requiring semi-colons at the end of each line to advanced analysis of a variables assignment history to ensure initialization before use.
 
-After with a meeting with \gls{sdrc} where we were recommended to use static program analysis, we found it clear, that static program analysis was a tool that would benefit the project, and decided to implement this tool into the Weekplanner's continuous integration workflow.
+After a meeting with \gls{sdrc} where we were recommended to use static program analysis, we found it clear, that static program analysis was a tool that would benefit the project, and decided to implement this tool into the Weekplanner's continuous integration workflow.
 
 Most programming languages offer a static program analysis tool, and Dart is no different. The Dart language provides the Dart \textit{linter}\cite{dart_linter_2019}. We chose to use Dart linter with the Weekplanner project, and together with the scrum group we defined the rules applied to the Weekplanner project (see \autoref{app:linter-rules}). With these rules applied to the Weekplanner project, we found 2.133 violations, which were all fixed by us. 
 
