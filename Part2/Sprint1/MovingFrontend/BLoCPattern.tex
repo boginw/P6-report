@@ -6,7 +6,7 @@
 \section{BLoC Pattern}
 When we moved the application to Flutter, we chose to structure the code with the \gls{bloc} pattern. The following chapter describes this pattern.
 
-The name \gls{bloc} is used for two things, the \gls{bloc} pattern and classes called \glspl{bloc}. To avoid confusion we always write \gls{bloc} pattern when we refer to the pattern. In all other cases we refer to the classes. 
+The name \gls{bloc} is used for two things, the \gls{bloc} pattern and classes called \glspl{bloc}. To avoid confusion we always write \gls{bloc} pattern when we refer to the pattern. In all other cases we refer to the classes.
 
 \subsection{Background}
 \gls{bloc} is a pattern that aims to isolate all business logic from \gls{ui} code \cite{blocPattern}. Paolo Soares designed the pattern while he worked on the Google platform; AdWords \cite[30 sec]{blocPattern}. Paolo Soares presented the \gls{bloc} pattern at DartConf 2018 in a speach called "Code sharing, better together" \cite{blocPattern}.
@@ -19,14 +19,14 @@ When Flutter was released Paolo Soares, saw the possibility to merge the mobile-
 In order to re-use the business logic from the web-application they needed to separate business and \gls{ui} logic. The business logic had to be platform independent, meaning useable on both the web-application and the mobile-application without any modifications\cite[2 min 12 sec]{blocPattern}. This resulted in a pattern named \gls{bloc}.
 
 \subsection{What is BLoC} \label{subsec:what_is_bloc}
-To understand the \gls{bloc} pattern one first needs to understand what a \gls{bloc} is. A \gls{bloc} is a simple class that only takes sinks as input and exposes streams as output \cite[21 min 25 sec]{blocPattern}. All business logic should be inside a \gls{bloc}. The intuition is that \glspl{bloc} are the building blocks of the application \cite[21 min 25 sec]{blocPattern}. Another key requirement of a \gls{bloc} is that all depedencies should be injected \cite[22 min 55 sec]{blocPattern}, so if an api is needed it should be injected in the constructor of the \gls{bloc}. This allows the web-platform to use a JSON-API and the mobile-platform to use a BINARY-API and other simmilar situations, while all platforms still uses the same \glspl{bloc} without any modifications. An application thereby consist of many \glspl{bloc} with different responsibilities. The \glspl{bloc} can then be used by the UI components of all platforms.
+To understand the \gls{bloc} pattern one first needs to understand what a \gls{bloc} is. A \gls{bloc} is a simple class that only takes sinks as input and exposes streams as output \cite[21 min 25 sec]{blocPattern}. All business logic should be inside a \gls{bloc}. The intuition is that \glspl{bloc} are the building blocks of the application \cite[21 min 25 sec]{blocPattern}. Another key requirement of a \gls{bloc} is that all depedencies should be injected \cite[22 min 55 sec]{blocPattern}, so if an api is needed it should be injected in the constructor of the \gls{bloc}. This allows the web-platform to use a JSON-API and the mobile-platform to use a BINARY-API and other simmilar situations, while all platforms still uses the same \glspl{bloc} without any modifications. An application thereby consist of many \glspl{bloc} with different responsibilities. The \glspl{bloc} can then be used by the \gls{ui} components of all platforms.
 
 \subsubsection{Sinks and streams}
-A \gls{bloc} can only communicate via sinks or streams\ref{subsec:what_is_bloc}. Both sinks and streams work as streams, but a sink is an input stream while a stream is for outputs. 
+A \gls{bloc} can only communicate via sinks or streams\ref{subsec:what_is_bloc}. Both sinks and streams work as streams, but a sink is an input stream while a stream is for outputs.
 
 A stream is an asynchronous sequence of data, similar to an asynchronous Iterable, but instead of the subscriber requesting the next item, the stream will emit as soon as a new item is ready \cite{dartStreams}. This means that a \gls{bloc} recieves data from the \gls{ui} via a sink and emits data via the stream, both asynchronous. Both the \gls{ui} component and the \glspl{bloc} will react instantaneously when ever new data is recieved.
 
-This uncovers a requirement of the UI component, which is state management. The UI should not be required to rely on state building, since the \gls{bloc} streams are asynchronous, which is why the UI components has to be able to handle streams \cite[4 min 40 sec \& 14min 00 sec]{blocPattern}.
+This uncovers a requirement of the \gls{ui} component, which is state management. The \gls{ui} should not be required to rely on state building, since the \gls{bloc} streams are asynchronous, which is why the \gls{ui} components has to be able to handle streams \cite[4 min 40 sec \& 14min 00 sec]{blocPattern}.
 
 \subsection{Rules of BLoC Pattern}
 \begin{figure}[h]
@@ -36,9 +36,9 @@ This uncovers a requirement of the UI component, which is state management. The 
     \label{fig:blocPattern}
 \end{figure}
 
-The \gls{bloc} pattern can be boiled down to a set of rules and one practice. The practice is that the business and UI logic should be clearly separated, with all the business logic inside a specific \glspl{bloc}. An application should have multiple \glspl{bloc}. The decision of how to divide the business logic into multiple \glspl{bloc} is a judgement call. As Paolo Soares puts it "each complex enough component has its own BLoC" \cite[24 min 15 sec]{blocPattern}. The rules of the \gls{bloc} pattern are listed in the following text as presented by Paolo Soares \cite[22 min 25 sec]{blocPattern}.
+The \gls{bloc} pattern can be boiled down to a set of rules and one practice. The practice is that the business and \gls{ui} logic should be clearly separated, with all the business logic inside a specific \glspl{bloc}. An application should have multiple \glspl{bloc}. The decision of how to divide the business logic into multiple \glspl{bloc} is a judgement call. As Paolo Soares puts it "each complex enough component has its own BLoC" \cite[24 min 15 sec]{blocPattern}. The rules of the \gls{bloc} pattern are listed in the following text as presented by Paolo Soares \cite[22 min 25 sec]{blocPattern}.
 
-There are some guidelines for the design of \glspl{bloc} that have to be upheld when the \gls{bloc} pattern is used. 
+There are some guidelines for the design of \glspl{bloc} that have to be upheld when the \gls{bloc} pattern is used.
 \begin{itemize}
   \item Inputs and outputs are simple Streams/Sinks only
   \item Dependencies must be injectable and platform agnostic
@@ -55,7 +55,7 @@ The third rule states that it is not allowed to branch depending on the platform
 
 The last rule states that the \gls{bloc} pattern can be implemented however the developer finds appropriate, as long as the other rules are upheld. Therefore the pattern is flexible and can be used in many different cases.
 
-The following rules should be followed during the design of the \gls{UI}. 
+The following rules should be followed during the design of the \gls{ui}.
 \begin{itemize}
   \item Each "Complex enough" component has a corresponding \gls{bloc}
   \item Components should send inputs "as is"
