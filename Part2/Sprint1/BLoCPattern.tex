@@ -61,7 +61,7 @@ The first rule states that if the \gls{ui} component is complex enough it should
 
 The second rule states that if the \gls{ui} needs to send data to the \gls{bloc}, i.e., User inputs, the \gls{ui} component is not allowed to do any computation on the inputs before sending it to the \gls{bloc}; this is a step to ensure decoupling between the \gls{ui} and Business logic.
 
-The third rule is the same as the second rule but in the other direction. So the output from a \gls{bloc} should not be changed inside the \gls{ui} component, this again is to ensure that all business logic stays inside the \gls{bloc}.
+The third rule is much like the second but concerns output instead of input. The output from a \gls{bloc} should not be changed inside the \gls{ui} component, this again is to ensure that all business logic stays inside the \gls{bloc}.
 
 The fourth rule states that all business logic dependent if-statements inside the \gls{ui} component should only depend on one boolean stream from the \gls{bloc}, this again is to decouple the \gls{ui} component from the business logic, since branching on business logic in the \gls{ui} most likely would hard couple \gls{ui} and business logic.
 
