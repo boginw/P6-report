@@ -36,7 +36,7 @@ We tested both \glspl{bloc} with unit tests. The tests were quite trivial, at th
   \item A test that ensures that the Image \gls{bloc} is disposable.
 \end{itemize}
 
-It is difficult to argue that the abovementioned list of tests is sufficient. The reason for the lack of tests is due to pressure from other groups as this specific feature blocked the development of other features. We recommend implementing the tests in the following list. 
+It is difficult to argue that the abovementioned list of tests is sufficient. The reason for the lack of tests is due to pressure from other groups as this specific feature blocked the development of other features. We recommend implementing the tests in the following list.
 
 \begin{itemize}
   \item A test that ensures that the Searching \gls{bloc} debounce the input.
@@ -44,7 +44,7 @@ It is difficult to argue that the abovementioned list of tests is sufficient. Th
 \end{itemize}
 
 \subsection{Recommended improvements to the feature}
-Although according to the feature description provided by the \gls{PO} group, the implementation of the feature is considered sufficient, we did identify some additional improvements that should be implemented to optimize the feature further. 
+Although according to the feature description provided by the \gls{PO} group, the implementation of the feature is considered sufficient, we did identify some additional improvements that should be implemented to optimize the feature further.
 
 To alleviate the \gls{api} even further, we recommend the \gls{api} return the full images in the first request. Additionally, we recommend that the use of a repository pattern to locally cache all fetched images, such that if an image exists in the cache, then it never needs to be fetched again in the runtime of the application. Implementing the repository for pictogram images would not only benefit the search feature but would severely benefit the entire application, since every feature that needs to show pictograms would utilize caching.
 
@@ -52,27 +52,15 @@ To alleviate the \gls{api} even further, we recommend the \gls{api} return the f
 In the current implementation, there is a known issue, with the \gls{ui} screen. We reported the issue with the following description:
 
 \begin{quote}
-Describe the bug:
-When searching for a pictogram in the pictogram search screen, one can on occasion meet the bug, that crushes all results into a single column and flashes rapidly.
+\textbf{Describe the bug:} When searching for a pictogram in the pictogram search screen, one can on occasion meet the bug, that crushes all results into a single column and flashes rapidly.
 
-To Reproduce:
-Steps to reproduce the behavior:
-- Go to PictogramSearch
-- Search for something
-- Search for something else
-- Try to scroll a bit
-- Repeat this, and eventually, the fault will show Expected behavior
-- No flashing and single column
-
-Actual behavior
-Flashing and single column
-
-Screenshots:
-video
-
-Environment (please complete the following information):
-OS: Android
-Emulator: No
-Phone: Samsung Galaxy Tab 2
-APK Version: 0
+\textbf{Steps to reproduce the behavior:}
+\begin{itemize}
+  \item Go to PictogramSearch
+  \item Search for something
+  \item Search for something else
+  \item Try to scroll a bit
+  \item Repeat this, and eventually, the fault will show Expected behavior
+  \item No flashing and single column
+\end{itemize}
 \end{quote}
