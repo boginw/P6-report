@@ -111,7 +111,7 @@ The BehaviorSubject behaves similar to the PublishSubject, but with one exceptio
     \caption{A illustration of the behavior of a ReplaySubject}
     \label{fig:ReplaySubject}
 \end{figure}
-The ReplaySubject behaves similar to the BehaviorSubject, but instead of only capturing the latest item, it captures all items and emits them when ever a new observer subscribes \cite{ReplaySubject}. Unlike the BehaviorSubject, the ReplaySubject can not be seeded with an initial value. The behaviour of a ReplaySubject across time is shown in \autoref{fig:ReplaySubject}
+The ReplaySubject behaves similar to the BehaviorSubject, but instead of only capturing the latest item, it captures all items and emits them whenever a new observer subscribes \cite{ReplaySubject}. Unlike the BehaviorSubject, the ReplaySubject can not be seeded with an initial value. The behaviour of a ReplaySubject across time is shown in \autoref{fig:ReplaySubject}
 
 \subsection{BLoC Design Guidelines of the Giraf Project}
 The Giraf Project have altered the rules of the \gls{bloc} pattern a bit. The reason for this is that in the Giraf Project we are not using the code in other platforms than the Flutter Framework, therefore to make the use of \glspl{bloc} a bit more intuitive and flexible for the developers we have constructed the following design guideline:
