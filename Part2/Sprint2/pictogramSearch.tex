@@ -5,7 +5,7 @@ We initially developed the pictogram search feature as part of the workshop afte
 
 During the live coding session, we discovered some additional details about the feature. First, we discovered that the \gls{api} only allows for searching in a paginated form, meaning that the results will always be in the form of a limited number and paged. Second, we discovered that the results from the search do not contain the images them self. Instead, the results contain a list of objects of the form seen in \autoref{lst:search-result-object}.
 
-\begin{lstlisting}
+\begin{lstlisting}[label={lst:search-result-object},caption={Search result object}]
 {
     "id": <Number>,
     "lastEdit": <DateTimeStamp>,
