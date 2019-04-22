@@ -79,7 +79,7 @@ Doing some empirical experiments in building with the different patterns and rea
 
 Because there is a large degree of freedom, we had to find out how we should use the pattern in the project. We did some research on how people in the \gls{bloc} community used it. We found that rxDart was a favourite library for \gls{bloc} implementation. In our experience it can be a good idea to follow the community since there exists many great resources on how to use it and popular libraries are less likely to be abandoned. Therefore we decided to use this library.
 
-\subsubsection{What is rxDart}
+\subsubsection{rxDart}
 "RxDart is a reactive functional programming library for Google Dart, based on ReactiveX." \cite{rxDart}. It utilizes the native stream support of the Dart Language, to add the missing functionalities of ReactiveX \cite{rxDart}. To better understand how it helps in implementing the \gls{bloc} pattern we will provide a short explanation of what ReactiveX is and describe the key features from the rxDart library that are used in the Giraf Project.
 
 ReactiveX is a library in which one can use observable sequences to create asynchronous and event-based programs, "It extends the observer pattern to support sequences of data and/or events and adds operators that allow you to compose sequences together declaratively while abstracting away concerns about things like low-level threading, synchronization, thread-safety, concurrent data structures, and non-blocking I/O." \cite{ReactiveXWebsite}.
