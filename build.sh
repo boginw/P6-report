@@ -1,2 +1,3 @@
-./latex.sh /bin/sh -c "pdflatex master.tex && makeglossaries master && pdflatex master.tex"
+./latex.sh /bin/sh -c "pdflatex master.tex && makeglossaries master && bibtex master && pdflatex master.tex"
 
+./clean.sh
