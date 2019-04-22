@@ -40,7 +40,7 @@ The \gls{bloc} pattern can be boiled down to a set of rules and one practice. Th
   \item Implementation can be whatever you want if you follow the previous rules
 \end{itemize}
 
-The first rule states that any communication between the \gls{ui} and a \gls{bloc} must be through Sinks or Streams, so when the \gls{ui} should send data to the \gls{bloc} it should be a sink, and when a \gls{bloc} should send data to the \gls{ui} it should be a stream.
+The first rule states that any communication between the \gls{ui} and a \gls{bloc} must be through Sinks and Streams, so when the \gls{ui} should send data to the \gls{bloc} it should use a sink, and when a \gls{bloc} sends data to the \gls{ui} it should use a stream.
 
 The second rule states that all dependency of a \gls{bloc} must be injectable; this is a crucial step in reaching platform independence since it is then possible on platfrom level to inject the correct dependencies.
 
