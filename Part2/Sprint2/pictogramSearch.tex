@@ -3,7 +3,7 @@ The \gls{PO} group requested a feature with the following description: "As a gua
 
 We initially developed the pictogram search feature as part of the workshop after the move to Flutter (see \autoref{sec:moving-to-flutter}). The implementation at that point suffered under the circumstance of being developed in a live coding presentation, and as such, it was decided to start anew with the implementation in sprint 2.
 
-Doing the live coding session some details about the feature was discovered. Firstly it was discovered that the web-api only allows for searching in paginated form, meaning that the results will always be inform of a limited number and paged. Another discovery was that the results from the search do not contain the images them self, it contains a list of the following object.
+During the live coding session, we discovered some additional details about the feature. First, we discovered that the \gls{api} only allows for searching in a paginated form, meaning that the results will always be in the form of a limited number and paged. Second, we discovered that the results from the search do not contain the images them self. Instead, the results contain a list of objects of the form seen in \autoref{lst:search-result-object}.
 
 \begin{lstlisting}
 {
