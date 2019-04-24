@@ -1,0 +1,66 @@
+\section{Pictogram Search}
+The \gls{PO} group requested a feature with the following description: "As a guardian, I would like to be able to search for pictograms when adding a new activity so that I can find a pictogram that suits the activity." A discussion with the \gls{PO} group lead to a new requirement for the feature. The searching feature should be reactive, that is, when a user types into the search field, the list of results should react immediately, rather than wait for the user to submit the search query.
+
+We initially developed the pictogram search feature as part of the workshop after the move to Flutter (see \autoref{sec:moving-to-flutter}). The implementation at that point suffered under the circumstance of being developed in a live coding presentation, and as such, it was decided to start anew with the implementation in sprint 2.
+
+During the live coding session, we discovered some additional details about the feature. First, we discovered that the \gls{api} only allows for searching in a paginated form, meaning that the results will always be in the form of a limited number and paged. Second, we discovered that the results from the search do not contain the images them self. Instead, the results contain a list of objects of the form seen in \autoref{lst:search-result-object}.
+
+\begin{lstlisting}[label={lst:search-result-object},caption={Search result object}]
+{
+    "id": <Number>,
+    "lastEdit": <DateTimeStamp>,
+    "title": <String>,
+    "accessLevel": <Number>,
+    "imageHash": <String>,
+    "imageUrl": <String>
+}
+\end{lstlisting}
+
+The abovementioned object has a member called "imageUrl." This member contains the \gls{url} where we can find the image for a given pictogram. Loading a pictogram requires authentication since some pictograms require special access to view them as they can contain personalized content. If we expect ten pictogram images from a given search, then the requests to the \gls{api}, after loading all images, total to 11 requests, where ten are for the images, and a single is for the actual search.
+
+Since the feature included making the search reactive, the number of requests is sure to be quite large. As the user types a single letter at a time, a search for "cat" therefore includes three initial requests, one for "c," and one for "ca," and finally one for "cat." For each of these requests, the images from the result should load. Assuming ten results per requests yields 33 requests for a short word such as "cat." Additionally, as the requests are asynchronous, guaranteeing the correct order of the results is also tricky. Without such a guarantee, a search for "cat," could end up showing the results for "ca."
+
+Using a debouncing technique can reduce the number of requests significantly. In electronics, debouncing ensures that when a connection switches polarity, some time needs to pass before it can switch again, thereby removing the bouncing of polarity. In our case, the bouncing comes from the typing of a user. To debounce a user's input, we keep a timer, which ensures that before sending any request to the \gls{api}, the input field has to be untouched for 0.2 sec or we cancel the previous requests. The timer helps to ensure a more correct behavior and alleviates some of the stress of the \gls{api}.
+
+We can now give the same example as before with a user searching for "cat." First, the user types "c," and the \gls{bloc} sets the timer for 0.2 seconds and if that timer runs out the request will be sent to the \gls{api}. However, if the user then within the 0.2 seconds types "a" the timer is reset to 0.2 seconds. Finally, the user then types "t," and again the timer is reset and after 0.2 seconds. Keep in mind, that we only send a request when the timer reaches zero. This technique reduces the total number of request from 33 to 11.
+
+\subsection{BLoC implementations}
+We introduced two new \glspl{bloc} for the feature. The first \gls{bloc} is for the searching and the second is for fetching the image data. The reason for this split is that many features of the application need to show pictograms, and with the split, we can utilize the image fetching ability in multiple places. The searching \gls{bloc} has debouncing implemented, which ensures that no other developers have to worry about handling the debounce when implementing a pictogram search feature.
+
+We tested both \glspl{bloc} with unit tests. The tests were quite trivial, at the point of writing the tests are:
+
+\begin{itemize}
+  \item A test that ensures that the Searching \gls{bloc} can search using the correct API endpoint.
+  \item A test that ensures that the Searching \gls{bloc} is disposable.
+  \item A test that ensures that the image fetching \gls{bloc} can fetch and load the image data using the correct API endpoint.
+  \item A test that ensures that the Image \gls{bloc} is disposable.
+\end{itemize}
+
+It is difficult to argue that the abovementioned list of tests is sufficient. The reason for the lack of tests is due to pressure from other groups as this specific feature blocked the development of other features. We recommend implementing the tests in the following list.
+
+\begin{itemize}
+  \item A test that ensures that the Searching \gls{bloc} debounce the input.
+  \item A test that ensures that the Searching \gls{bloc} (and also the image \gls{bloc}) behaves correctly when an error occurs.
+\end{itemize}
+
+\subsection{Recommended improvements to the feature}
+Although according to the feature description provided by the \gls{PO} group, the implementation of the feature is considered sufficient, we did identify some additional improvements that should be implemented to optimize the feature further.
+
+To alleviate the \gls{api} even further, we recommend the \gls{api} return the full images in the first request. Additionally, we recommend that the use of a repository pattern to locally cache all fetched images, such that if an image exists in the cache, then it never needs to be fetched again in the runtime of the application. Implementing the repository for pictogram images would not only benefit the search feature but would severely benefit the entire application, since every feature that needs to show pictograms would utilize caching.
+
+\subsection{Known issues with the current implementation}
+In the current implementation, there is a known issue, with the \gls{ui} screen. We reported the issue with the following description:
+
+\begin{quote}
+\textbf{Describe the bug:} When searching for a pictogram in the pictogram search screen, one can on occasion meet the bug, that crushes all results into a single column and flashes rapidly.
+
+\textbf{Steps to reproduce the behavior:}
+\begin{itemize}
+  \item Go to PictogramSearch
+  \item Search for something
+  \item Search for something else
+  \item Try to scroll a bit
+  \item Repeat this, and eventually, the fault will show Expected behavior
+  \item No flashing and single column
+\end{itemize}
+\end{quote}
