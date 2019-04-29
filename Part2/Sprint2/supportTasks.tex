@@ -1,21 +1,22 @@
 \section{Support Tasks}
-After the developers of \gls{G19} started to use the flutter core, several bugs, and shortcomings became known. We predicted that some issue would arise as the core was developed over one weekend and by a limited number of people. Therefore at the beginning of sprint two, many resources from our group were put into ironing out these bugs and shortcomings, such that the developers could finish their tasks. The complete list of core bugs/shortcomings during sprint two where:
+We predicted that some issues would arise from the \gls{fecore} as it had only been in development for a few days and by a limited number of people. Our prediction became true after the developers of \gls{G19} started to use the \gls{fecore}, several bugs, and shortcomings became known. We, therefore, at the beginning of sprint two, put many resources from our group into ironing out these bugs and shortcomings, such that the developers could finish their tasks. The complete list of \gls{fecore} issues during sprint two were:
 
 \begin{itemize}
-  \item Missing ability to send data from one screen to another.
-  \item An issue with instantiating \glspl{bloc} that had dependencies
-  \item Issues with the API-module after the implementation of the linter.
-  \item Issue with login/logout behavior.
-  \item Missing continuous integration.
+  \item Missing ability to send data between screens,
+  \item An issue with instantiating \glspl{bloc} which had dependencies,
+  \item Issues with the \gls{fapi} with the implementation of the static program analysis tool (see \autoref{sec:linter}),
+  \item Issues with login- and logout-behavior,
+  \item And missing continuous integration.
 \end{itemize}
 
 \subsection{Notes from the fixes}
-Fairly quickly it became an issue that one screen was not able to share its data with another screen. In the sense that e.x. The "choose a citizen"-screen should be able to send the citizen data model to the next screen. Several different techniques could solve this issue, one could be a large application BLoC to facilitate such data, but such a method felt unintuitive when working with flutter.
 
-Instead flutters routing api exposes a possibility for sending data along with routing. However, because the core had introduced a custom routing system that was designed to handle everything from instantiating \glspl{bloc} to authentication, the native router system could not be used; therefore we chose to remove the custom router and implement a dependency injector to handle the instantiation of not only \glspl{bloc} but also all other dependencies.
+It fairly quickly became an issue that one screen was not able to share its data with another screen. For example, the screen for choosing a citizen should be able to send the citizen data model to the next screen. Several different techniques could solve this issue. One of the considered techniques was to use an application \gls{bloc} to as the communication gateway, but such a method felt unintuitive when working with Flutter. 
 
-The dependency injector then allowed the developers to use the native routing system and thereby allowing for passing data from one screen to another. It also dealt with the issue of instantiating \glspl{bloc} since the developers now can register in the dependency injector wether a \gls{bloc} should be a singleton or instantiated every time it is requested.
+Instead of the \gls{bloc} technique, we ended up using was Flutter's routing API as this solves the issue with minimal effort. However, because the \gls{fecore} had introduced a custom routing system that was designed to handle everything from instantiating \glspl{bloc} to authentication, the native router system could not be used. We, therefore, chose to remove the custom router and implement a dependency injector to handle the instantiation of not only \glspl{bloc} but also all other dependencies.
+
+The dependency injector allows the developers to use the built-in routing system which allows for passing data from one screen to another. The developers need only register the dependencies, and can even register dependencies as singletons.
 
 Another benefit of this approach was the mitigation of the issue resolving login/logout since the new implementation of the authentication system did not suffer from the same bug as the old one.
 
-The rest of the issues where trivial, since the issue regarding the API-module, turned out to be a human error in rewriting the code to honor the linter while the missing continuous integration is implemented using Azure Pipelines.
+The rest of the issues where trivial; the issue regarding the API-module, turned out to be a human error in rewriting the code to honor the linter while the missing continuous integration is implemented using Azure Pipelines.
