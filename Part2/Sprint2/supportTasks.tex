@@ -11,12 +11,12 @@ We predicted that some issues would arise from the \gls{fecore} as it had only b
 
 \subsection{Notes from the fixes}
 
-It fairly quickly became an issue that one screen was not able to share its data with another screen. For example, the screen for choosing a citizen should be able to send the citizen data model to the next screen. Several different techniques could solve this issue. One of the considered techniques was to use an application \gls{bloc} to as the communication gateway, but such a method felt unintuitive when working with Flutter. 
+It fairly quickly became an issue that one screen was not able to share its data with another screen. For example, the screen for choosing a citizen should be able to send the citizen data model to the next screen. Several different techniques could solve this issue. One of the considered techniques was to use an application \gls{bloc} to as the communication gateway, but such a method felt unintuitive when working with Flutter.
 
 Instead of the \gls{bloc} technique, we ended up using was Flutter's routing API as this solves the issue with minimal effort. However, because the \gls{fecore} had introduced a custom routing system that was designed to handle everything from instantiating \glspl{bloc} to authentication, the native router system could not be used. We, therefore, chose to remove the custom router and implement a dependency injector to handle the instantiation of not only \glspl{bloc} but also all other dependencies.
 
 The dependency injector allows the developers to use the built-in routing system which allows for passing data from one screen to another. The developers need only register the dependencies, and can even register dependencies as singletons.
 
-Another benefit of this approach was the mitigation of the issue resolving login/logout since the new implementation of the authentication system did not suffer from the same bug as the old one.
+Another benefit of the new routing approach, was the mitigation of the issue resolving login/logout, the issue in short was that doing a logout resulted in a infinite loop of routing between the login-screen and the weekplan-screen, since the new implementation of the authentication system did not suffer from the same routing bug as the old one.
 
 The rest of the issues where trivial; the issue regarding the API-module, turned out to be a human error in rewriting the code to honor the linter while the missing continuous integration is implemented using Azure Pipelines.
