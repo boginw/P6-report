@@ -2,7 +2,13 @@
 The definition of the development process of \gls{G19} resulted in a manual\cite{processManual} written by the \gls{SMT}. The manual defines the practices and process we agreed should be followed by the \glspl{devTeam}. The previously mentioned manual contains all the decisions in the following sections.
 
 The GIRAF coordinator arranged a presentation by Anton Christensen, a student of \gls{G18}. Christensen described how his year had worked in teams that focused on one part of the system. He described that this way of dividing the work made the developers very dependent on each other, and this had been an issue for the groups. We decided to use another method, where the teams are \Glspl{fullStack}, which means, that the teams work on the complete vertical slice of a user story rather than just on a single layer.
-
+\begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figures/MetaGroupsFigure.pdf}
+        \end{center}
+        \caption{A illustration of how the full stack teams and meta groups are constructed}
+        \label{fig:MetaGroupsFigure}
+\end{figure}
 \subsection{Process activities}
 There are three different \glspl{skillGroup}, namely frontend, backend, and server. These groups make it possible for all \glspl{devTeam} to gain knowledge in the specific areas of the system. In the \gls{SOS} process, the activities resemble the normal scrom process where each group represents a team member in the normal Scrum process.
 
@@ -62,7 +68,7 @@ In the previously mentioned process manual, some standards and practices, which 
 
 The coding standards involve naming conventions, descriptions and a few other aspects. This is done so the code is easier to read for people that need to get familiar with the system, mainly the future \glspl{devTeam}, because we found it hard to get to know the system when it was made by a lot of different people, with a lot of different coding standards.
 
-Last year, the project and repository were moved to GitLab that takes care of the version control. At the beginning of this semester, our team moved it to Github. This is documented in \autoref{sec:GitAndCI}. The workflow of the project is done using GitFlow Workflow. The manual describes the rules for using branches. The point of the code review is to make sure that all code committed by the \glspl{devTeam} follow the coding standards. When a Team tries to merge code into production, two people from different groups have to review it. They have to go through a checklist, to see if everything is all right.
+Last year, the project and repository were moved to GitLab that takes care of the version control. At the beginning of this semester, our team moved it to Github. This is documented in \autoref{sec:GitAndCI}. The workflow of the project is done using GitFlow Workflow. The manual describes the rules for using branches. The point of the code review is to make sure that all code committed by the \glspl{devTeam} follow the coding standards. When a Team tries to merge code into production, two people from different groups have to review it. They have to go through a checklist (see \autoref{app:code-review-checklist}), to see if everything is all right.
 
 Another decision made is, that the \glspl{devTeam} should document the implemented components, their responsibility and how it interacts with other components. This documentation should be stored in the wiki repository on the GIRAF Github page. The wiki should ultimately contain all information needed to get to know the different components in the system.
 
