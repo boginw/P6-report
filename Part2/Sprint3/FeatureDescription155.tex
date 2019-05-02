@@ -1,0 +1,10 @@
+\section{Feature 155}
+Feature 155 is a user story that states: As a guardian I would like to see the icons of a citizen on the choose citizen screen so that I can quickly identify them. 
+
+This user story would result in avatars on the choose citizen page, instead of the standard background that was currently there.
+
+We identifed that the standard background was loaded from an asset folder. We found out that the \gls{fapi} already had a function to retrive an avatar from a citizen with a given id.
+
+After we had changed the image source we found that all the entries in the database had a null value. Also, we could not get the \gls{api} to give us the images when we tried to enter some in the database.%Var det det der skete Morten? 
+
+\gle{POT} estimated that the effort it would likely take to get the server deliver the images was higher than the importance of the avatars. They told us to stop working on the feature, and therefore it is not implemented. 
