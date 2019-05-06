@@ -1,6 +1,10 @@
 \chapter{GIRAF Outline}
 
-GIRAF is a tablet environment developed to ease communication between \glspl{guardian} and \glspl{citizen} with little or no verbal communication. Software students develop the project as a part of their bachelor project. The students work in small teams and coordinate the work between teams. The project is in collaboration with the following institutes \cite{GirafWebsite}, that acts as customers in the development process.
+The project we worked on this semester was the GIRAF project. The following section describes what the project is, as well as the state at handover.
+
+People with an \gls{asd} can have difficulties with communication. GIRAF is a tablet environment developed to ease communication between people with an \gls{asd} and the people who take care of them. In this report we refer to them as \glspl{citizen} and \glspl{guardian}.
+
+Software students develop GIRAF as their bachelor project. The students work in small teams and coordinate the work between teams. The students collaborate with the following institutions \cite{GirafWebsite}, that act as customers in the development process.
 
 \begin{itemize}
     \item Børnehaven Birken (Kindergarten) \cite{bhBirken}
@@ -10,18 +14,26 @@ GIRAF is a tablet environment developed to ease communication between \glspl{gua
     \item Center for Autism and ADHD \cite{center_for_autism}
 \end{itemize}
 
-The project started in 2011, and each year, the students continue where the last year students left off.
+The project started in 2011 and each year the students continue where the previous years students left off.
 
-This semester started with the decision to, like previous years, run the project with the \gls{Scrum_principles}. One group was appointed \gls{PO} team and another was appointed \gls{SMT}. The \gls{PO} team had the responsibility of talking to the customer and making the product backlog. The \gls{SMT} had the responsibility of deciding and facilitate how the collaboration in the project should run, and which guidelines the groups had to follow.
+This semester started with the decision to, like previous years, run the project with the \gls{Scrum_principles}. One group was appointed \gls{PO} team and another was appointed \gls{SMT}. The \gls{PO} team is responsible for customer communication and the product backlog. The \gls{SMT} decides how the process is defined, and make guidelines for the \glspl{devTeam}.
 
 \section{Current state of GIRAF}
 
-When we started the semester, the work done by previous teams was handed over to us. In this section, we describe some of the elements of the material we got as they looked at the time of handover.
+We got the work from previous teams in the beginning for the semester. This section describes the product at this stage, and explains the elements that is important to follow the rest of the report.
 
-The GIRAF project has produced many different apps over the years. Most of the apps are not working, because the \glspl{devTeam} in 2017 changed the backend. They only had time to update one application to reflect the new backend, and therefore only one is working. This application is called Weekplanner\ref{sec:TheWeekplannerApplication}.
+Earlier, the GIRAF project contained several applications. These shared the same backend. The \glspl{devTeam} in 2017 changed the system backend\cite{SW608F18} and left all applications unusable, because the \gls{api} they used was no longer accessible and the new \gls{api} was not backwards compatible. They rebuild a application called the Weekplanner, but did not have time to get the other applications to work. 
 
-Because the weekplanner application is the only application that have been updated in the last couple of years, and the costumers pointed this out as the most important one, we decided to limit our development to the Weekplanner app this year.
+Since then the Weekplanner is the only application that have been worked on, and also the one the costumers showed by far the most interest. We decided to limit our development to the weekplanner. 
 
-The Weekplanner app is using the Xamarin framework and can run on both Android and IOS devices.
+The \glspl{devTeam} moved the frontend of the Weekplanner to the Xamarin framework. This makes it possible to compile to both Android and IOS devices.
 
 The backend is a .NET Core 2 project that uses traditional MVC and supports all the capabilities of the current Weekplanner app. It exposes a REST-inspired API to the front end.
+\begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{figures/RestAPIFigure.pdf}
+        \end{center}
+        \caption{Illustration of the .NET Core 2 project and how it exposes a RESTful API}
+        \label{fig:RestAPIFigure}
+\end{figure}
+
