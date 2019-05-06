@@ -241,4 +241,9 @@ TSWLatexianTemp*
 
 # generated if using elsarticle.cls
 *.spl
+
+# Ignoring IntelliJ specific files
 .idea/
+
+# MacOS ignores
+**/.DS_Store
