@@ -5,14 +5,16 @@
     \caption{A illustration of the final result after implementing feature 132}
     \label{fig:feature132}
 \end{figure}
+
 The feature was described as "As a user, I would like to be able to switch between guardian and citizen mode so that I can only access the parts of the system that I should be able to" alongside the description \gls{PO} had set two requirements:
 
 \begin{itemize}
   \item The system stores whether the user is currently in citizen or guardian mode
   \item A guardian can see the add new activities function, but a citizen cannot
 \end{itemize}
+in \autoref{fig:feature132} the approved product demo i shown.
 
-The development of the feature was ongoing for most of the sprint, and the feature finished too late to get into the Sprint 3 release. This was because three other user stories bloced the development, as we could not finish the user story before features like the new activities butten were available.
+The development of the feature was ongoing for most of the sprint, and the feature finished too late to get into the Sprint 3 release. This was because three other user stories bloced the development, as we could not finish the user story before features like the new activities button were available.
 
 We started by adding a stream to the Weekplan \gls{bloc} that contain information about whether the current mode is citizen or guardian mode. We used the stream in a Streambuilder in the Weekplan screen, and made the button visibility dependent on the state emitted from the stream.
 
