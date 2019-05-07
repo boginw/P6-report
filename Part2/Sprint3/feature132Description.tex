@@ -19,6 +19,6 @@ We added an icon to the app bar. In guardian mode it is a "change to citizen" ic
 
 There were already a dialog box asking for af password appearing when the change to guardian icon was clicked. There was no mention of an "are you sure" dialog box when changing to citizen in the user story, but we thought that is would be an improvement to the feature, so we implemented it after asking for permission from \gls{PO} .
 
-While we developed the feature, other guardian-only-functionality were introduced into the product, and our feature had to handle the availability of those functionalities also. Accommodating the new functionalities lead us to believe that placing the responsibility of managing whether a user is guardian or citizen did not belong to the weekplan \gls{bloc} but rather the authentication \gls{bloc}. Therefore we moved it and again used the Flutter stream-builder widget to handle the rendering of the screen.
+During the developed of the feature, we became aware of additional mode dependent functionality on other screens than the weekplanner.  We moved the responsibility of the mode control to the authentication \gls{bloc} to accommodate the new functionalities. This makes it possible to get mode information on all screens, and made no difference in how we used the mode control. 
 
 All in all, the implementation allows developers to use a stream builder widget and in there do an if-else statement to handle functionality for the citizen mode and guardian mode, which offers a clean and comprehensive way to handle the restriction of features.
