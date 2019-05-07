@@ -6,6 +6,8 @@ The feature was described as "As a user, I would like to be able to switch betwe
   \item A guardian can see the add new activities function, but a citizen cannot
 \end{itemize}
 
+The development of the feature was ongoing for most of the sprint, and the feature finished too late to get into the Sprint 3 release. This was because three other user stories bloced the development, as we could not finish the user story before features like the new activities butten were available. 
+
 We started by adding a stream to the Weekplan \gls{bloc} that contain information about whether the current mode is citizen or guardian mode. We used the stream in a Streambuilder in the Weekplan screen, and made the button visibility dependent on the state emitted from the stream.
 
 We added an icon to the app bar. In guardian mode it is a "change to citizen" icon, and in citizen mode it is a "change to guardian" icon. The user can change mode by clicking on the proper icon.
