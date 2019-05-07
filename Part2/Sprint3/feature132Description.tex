@@ -6,7 +6,9 @@ The feature was described as "As a user, I would like to be able to switch betwe
   \item A guardian can see the add new activities function, but a citizen cannot
 \end{itemize}
 
-This feature was first to implement by introducing a new stream to the weekplan \gls{bloc} which we then could use a stream builder in the \gls{ui} to determine how the screen should render out, i.e., having the guardian functionality or citizen functionality.
+We started by adding a stream to the Weekplan \gls{bloc} that contain information about whether the current mode is citizen or guardian mode. We used the stream in a Streambuilder in the Weekplan screen, and made the button visibility dependent on the state emitted from the stream.
+
+We added an icon to the app bar. In guardian mode it is a "change to citizen" icon, and in citizen mode it is a "change to guardian" icon. The user can change mode by clicking on the proper icon.
 
 \begin{figure}[h]
     \centering
