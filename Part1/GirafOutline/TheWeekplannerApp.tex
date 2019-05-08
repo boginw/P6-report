@@ -1,11 +1,11 @@
 \section{The Weekplanner Application}\label{sec:TheWeekplannerApplication}
 
-The focus in both this semester and last year on the GIRAF project was on the Weekplanner application. The following section describes the application.
+The report document a lot of work on the Weekplanner application. The following section describe the key elements of the Weekplanner so it is easier to follow the nature of the work.
 
 \subsection{Purpose}
-Many people with autism need structure. It is important to find a way to communicate what they should expect during the day. This can prove challenging, especially when they are placed high on the autism spectrum, or have limited verbal communication.
+Many people with an \gls{asd} need structure to function. Some \glspl{citizen} need visual presentation\cite{VisualSupport} of their schema because of limited verbal communication skills for example. 
 
-One way to communicate, that is often used, is with visual support\cite{VisualSupport}. There is a broad range of ways to do this. One way is with the help of pictures. Each picure represents an activity.
+There is a broad range of visual support tools for representing the schemas. One way is with the help of pictures. Each picture represent an activity.
 
 \begin{figure}[H]
     \begin{center}
@@ -15,14 +15,14 @@ One way to communicate, that is often used, is with visual support\cite{VisualSu
     \label{fig:WeekPlan}
 \end{figure}
 
-As seen on \autoref{fig:WeekPlan}, the activities can be structured in days. Each day has a series of activities, and each activitie is represented by a picture.
-Though this is a common method of structuring activities, it has some problems. First of all, it is unflexible. It can not be carried around and the amount of activities can't exceed the size of the board. Second, it is difficult to add new pictures and insert one. 
-Therefore, many institutes want a digital version of this, which is why the GIRAF project build the Weekplanner application.
+As illustrated on \autoref{fig:WeekPlan}, the activities is structured in days. Each day has a series of activities, and each activity is represented by a picture.
+This is a common method of structuring activities but it has some problems. First it is inflexible. The schema cannot be moved around easily and the amount of activities cannot exceed the size of the board. Second, it is difficult to add new pictures and insert a picture in a day. 
+Therefore, the costumers requested a digital version, so the GIRAF project build the Weekplanner application.
 
 \subsection{Features}
-There are two types of users, guardian and citizen. The weekplans are connected to a citizen, but they cannot log into the system themselfs. Guardians can log into the system, and get a list of citizens they are working with. When they choose a citizen, all the weekplans that citizen has are shown.
+There are two types of users, \gls{guardian} and \gls{citizen}. The schemas, called week plans, are connected to a \gls{citizen}. The \glspl{citizen} cannot log into the system. Guardians log into the system and get a list of citizens they are working with. When a \gls{citizen} is chosen all his week plans are shown, and a specific week plan can be chosen. 
 
-Here the guardian can edit the weekplan, or change to citizen mode. In citizen mode, the different activities can be marked as done, but a citizen cannot change the weekplan or navigate the application. From citizen mode, the system can be changed back to guardian mode.
+The guardian can edit the week plan or change to citizen mode. In citizen mode the different activities can be marked as done, but a citizen cannot change the weekplan or navigate the application. From citizen mode, the system can be changed back to guardian mode.
 
 The following describes only the screens that was implemented in the beginning of the semester. When this section was written, we had shifted the framework of the application\ref{sec:MovingTheFrontend}. We also moved the servers to another location.
 
@@ -112,4 +112,4 @@ The features working on the start of the semester is the following:
     \item Switch to guardian mode
 \end{itemize}
 
-The features are the basic features of the application. Some other features are planned in the future. 
+Other features are planned for later development.
