@@ -1,5 +1,5 @@
 \section{Bug fix for citizen mode}
-In sprint 3 the functionality to edit a week plan was introduced, the implementation also introduced a bug, that could allow citizens to edit a week plan. The bug report was:
+In sprint 3 the functionality to edit a week plan was introduced. There were a bug in the implementation allowed citizens to edit a week plan. The bug report was:
 
 \begin{quote}
   \textbf{Describe the bug:} When you tap the edit button to enter mark mode and you switch to citizen mode, then mark mode is still active.
@@ -19,4 +19,4 @@ In sprint 3 the functionality to edit a week plan was introduced, the implementa
   Mark mode is still active after switching to citizen mode.
 \end{quote}
 
-Analyzing the bug quickly showed the issue. It turned out that when the original authors of the "mark mode" implemented the functionality, the switch to citizen mode was not merged into the codebase and because of this they did not have the neccessary functionalities to restrict access. The bug was mitigated by introducing StreamBuilders that listens for wether the application is in guardian or citizen mode. If the application is in citizen mode the StreamBuilder will disable all functionalities of the mark mode and hide all the \gls{ui} widgets relevant to the mark mode.
+We found out that the reason for the bug was that the citizen mode was not a part of the codebase when the "mark mode" functionality was implemented. This ment that the mode subject was not available, and the developers could not restrict access. The bug was mitigated by introducing StreamBuilders that listens for wether the application is in guardian or citizen mode. If the application is in citizen mode the StreamBuilder will disable all functionalities of the mark mode and hide the \gls{ui} widgets relevant to the mark mode.
