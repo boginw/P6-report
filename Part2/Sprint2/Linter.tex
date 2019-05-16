@@ -16,6 +16,22 @@ Enabling the abovementioned rules is often through predefined static program ana
 
 After a meeting with \gls{sdrc} where we were recommended to use static program analysis, we found it clear, that static program analysis was a tool that would benefit the project, and decided to implement this tool into the Weekplanner's continuous integration workflow.
 
-Most programming languages offer a static program analysis tool, and Dart is no different. The Dart language provides the Dart \textit{linter}\cite{dart_linter_2019}. We chose to use Dart linter with the Weekplanner project, and together with the scrum group we defined the rules applied to the Weekplanner project (see \autoref{app:linter-rules}). With these rules applied to the Weekplanner project, we found 2.133 violations, which were all fixed by us. 
+Most programming languages offer a static program analysis tool, and Dart is no different. The Dart language provides the Dart \textit{linter}\cite{dart_linter_2019}. We chose to use Dart linter with the Weekplanner project, and together with the scrum group we defined the rules applied to the Weekplanner project (see \autoref{app:linter-rules}). With these rules applied to the Weekplanner project, we found 2.133 violations, which were all fixed by us. \autoref{lst:linter-error-examples1}, \autoref{lst:linter-error-examples2}, and \autoref{lst:linter-error-examples3} show examples of such violations.
+
+\begin{lstlisting}[label={lst:linter-error-examples1},caption={Missing type for parameter},language=java]
+authBloc.loggedIn.listen((v) {...});
+authBloc.loggedIn.listen((bool v) {...});
+\end{lstlisting}
+
+\begin{lstlisting}[label={lst:linter-error-examples2},caption={Missing type for array and array elements},language=java]
+List<List<Widget>> widgets = [[...]];
+List<List<Widget>> widgets = <List<Widget>>[<Widget>[...]];
+\end{lstlisting}
+
+\begin{lstlisting}[label={lst:linter-error-examples3},caption={Avoid using \textit{this} keyword if not necessary},language=java]
+this.example = 1;
+example = 1;
+\end{lstlisting}
+
 
 The continuous integration now requires, along with tests, that the static program analysis passes all rules, which has caught several mistakes by developers since its implementation.
