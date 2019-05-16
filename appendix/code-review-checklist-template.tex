@@ -1,0 +1,54 @@
+\chapter{Template for Code Review Checklist} \label{app:code-review-checklist}
+
+This is the standard checklist \gls{G19} use for code review.
+
+\textbf{TEAMTAG} you have been assigned this. Here's your checklist. I
+marked \textbf{PERSONTAG} as the reviewer, but you might change it as you
+like. Please use the following checklist. Feel free to check it off as
+you go along.
+
+\section{Code Design}
+\begin{itemize}
+\item Is the code in the right place? (Both in terms of folder
+ structure and class structure)
+\item Could this code, to the best of your knowledge, have reused
+ existing code?
+\item Is the code over-engineered? Examples of over-engineering:
+ Implemented behavior for future problems
+\item Does it introduce functionality that is not necessary for
+ solving the problem?
+\end{itemize}
+
+\section{Code Readability and Maintainability}
+\begin{itemize}
+\item Are names meaningful and self-documenting?
+\item Is it understandable, by reading the code, what it does?
+\item Is the code simple and readable? i.e. it contains no "hack",
+ or obscure solution.
+\item Is it understandable, by reading the tests, what they do?
+\item Do the tests cover sensible cases? Both happy paths and
+ exception paths?
+\item Do the tests cover the full functionality? i.e., will the
+ tests fail if some of the requested functionality is missing?
+\item Are error messages in the code understandable?
+\item Are confusing sections of code covered by comments?
+\end{itemize}
+
+\section{Functionality}
+For this part, open the app, and test:
+
+\begin{itemize}
+\item Are the features that the code claims to implement, actually
+ implemented?
+\item Does it look like the code has bugs?
+\item Are all new screens reachable through in-app navigation?
+\end{itemize}
+
+\section{Points for Discussion and Reflection}
+\begin{itemize}
+\item Are UI messages, that the user might meet, actually helpful?
+\item Are there errors that are bad practice? Like, hard-coding a
+ test database connection?
+\item Is there well written code in this? Remember to tell the
+ developer!
+\end{itemize}
