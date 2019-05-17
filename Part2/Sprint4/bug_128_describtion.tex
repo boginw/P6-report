@@ -1,0 +1,16 @@
+\section{Bug fix for switch to gaurdian remembers password}
+During release preparation of sprint 3 it was discovered that when in citizen mode, switching to gaurdian mode would remember the password. Which effectively made it possible for citizens to login as gaurdians. The bug report was:
+
+\begin{quote}
+  \textbf{Describe the bug:} When changing from citizen to guardian, the password is saved in the input field
+
+  \textbf{Is your feature request related to a problem? Please describe:} This is related to \#56 (https://github.com/aau-giraf/weekplanner/issues/56) since the password should not be saved.
+
+  \textbf{Describe the solution you'd like: } I'd like a solution where the password isn't saved or auto-filled the second time the dialog box is shown.
+\end{quote}
+
+The bug was a easy one to fix, but might require a little bit of explaination. The password field was implemented using a TextEditingController. The TextEditingController allows us to get the input of the password field when the submit-button is clicked. One could say that the TextEditingController holds the state of the password field.
+
+The developer that implemented the dialog box, initialized the TextEditingController inside the initialization of the screens topbar. This means that a new controller is only created when the topbar is created, from that point the controller will exists as long as the topbar. This also means that the state of the password field would be presisted as long as the topbar of the screen. This is why the input in the password field is remembered.
+
+To mitigated the bloc, we moved the initialization of the TextEditingController to be inside the click-event closure of the "Switch to Gaurdian mode"-icon, this means that a new controller will be instatiated everytime the icon is clicked, which ensures that the controller can only 'remember' the state of the password field as long as the click-event closure is still active.
