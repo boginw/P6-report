@@ -1,26 +1,26 @@
 \section{Server Improvements}
 
-The following section describes a collaboration between group SW602F19, group SW609F19, group SW611F19, and group SW612F19, and as such, will appear in all of the groups' reports as is written here.
+The following section describes a collaboration between group SW602F19, SW609F19, SW611F19, and SW612F19, and as such, will appear in all of the groups' reports as is written here.
 
 With both a new ability for the frontend to search for Pictograms and a monitoring tool for the servers, we noticed transfers of several gigabytes between the database and the backend every time the frontend searched. Performing several searches in a short timespan was guaranteed to crash the backend or the database.
 
-A more in-depth inspection found that the database stored all the pictogram-images, which requires the database to extract vast amounts of binary-image-data for each pictogram related query. Furthermore, the backend ensured that all pictograms loaded, be Base64 encoded on load, which meant that all pictograms traveling through the backend, had to go through relatively large processing.
+A more in-depth inspection found that the database stored all the pictogram-images, which requires the database to extract vast amounts of binary-image-data for each pictogram related query. Furthermore, the backend ensured that all pictograms loaded should be Base64 encoded on load, which meant that all pictograms traveling through the backend, had to go through relatively large processing.
 
 We decided to extract the pictograms from the database and instead store them as files on disk, which relieved the database of the large transfers. The extraction itself was not enough to stop the crashing of the backend, as the pictograms were still being Base64 encoded. We decided to remove the image property from the pictogram \gls{dto}, as it contained the Base64 encoded image, thereby halting all encoding.
 
-The solution showed a massive improvement in both the amount of data transferred and response time as seen on \autoref{tab:newapi}
+The solution showed a massive improvement in both the amount of data transferred and response time as seen on \autoref{tab:newApi}
 
 \begin{table}[H]
     \centering
     \begin{tabular}{|l|r|r|}
     \hline
                     & Data transferred  & Response time \\ \hline
-        Old         & 14.020 MB         & 1.482 ms      \\ \hline 
+        Old         & 14\,020 MB         & 1\,482 ms      \\ \hline 
         New         & 60 MB             & 30 ms         \\ \hline
-        Improvement & 23.400\%          & 4.900\%       \\ \hline
+        Improvement & 23\,400\%          & 4\,900\%       \\ \hline
     \end{tabular}
     \caption{\gls{api} timings before and after changes}
-    \label{tab:newapi}
+    \label{tab:newApi}
 \end{table}
 
 The most significant improvement was extracting the pictogram images from the database onto a network file share, which relieved the database immensely. This improvement has other advantages than just being faster; it also puts less load on the database, allowing the database to handle more simultaneous connections and it massively reduced the size of the database, making it much easier to search in.
