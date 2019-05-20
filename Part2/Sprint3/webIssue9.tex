@@ -1,8 +1,13 @@
-\section{New Endpoint} \label{sec:webIssue9}
+\section{API issue 9: New Endpoint} \label{sec:webIssue9}
 
-One of the task in sprint 3 was to implement or modify an endpoint for retriving all the weekdays of a citizen. Currently there is an endpoint for retriving all the names of the weekplans belonging to a citizen. this means that in order to get the object representation of a weekplan, it was necessary to iterate over all the names, and make a new request to the api for each name in order to get the whole weekplan object, instead of having an endpoint which can do this in a single request. 
-The task in it self is rather trivial, but there are some interesting considerations to be made before implementing it. The previous Giraf project teams implemented a \gls{RESTApi} which is an \gls{API} design pattern 
+One of the task in sprint 3 was to implement or modify an endpoint for retriving all the weekdays of a citizen. The problem with the existing endpoint is if one wants to retriving the weekplans, it that the en only returns all the names of the weekplans belonging to a citizen instead of the actual weekplans. This means that in order to get the a weekplan object, it was necessary to iterate over all the weekplan names, and make a new request to the api for each name to get the whole weekplan object, instead of having an endpoint which can do this in a single request. 
+The task in it self is rather trivial, but there are some interesting considerations to be made before implementing it. The previous Giraf project teams implemented a REST Api which is an \gls{api} design pattern so the new endpoint should preferably not break the REST principles. Though the \gls{api} did not follow REST completely in this endpoint, as the endpoint return different objects types depending on which HTTP request was made. 
 
-edit Endpoint
-3 ways
-restfull
+We considered the following three ways of solving this issue:
+\begin{itemize}
+\item The quickest solution is to just adjust the endpoint to return the correct object, this would also remove the need for a new endpoint. But this change would result in all the frontend code relying on this endpoint would break until a group adopted the frontend to the change.
+\item Another way is to make a new endpoint for implementing this change. This would not break the the frontend, but it would deviate from the way we have made the endpoints for the other resources. As they normally only 5 actions per resource: \textit{index, show, create, update, delete}, but this change would make a 6'th necessary.
+\item The last option was to update the current endpoint, but instead of overriding it we created a new version of the endpoint, so that the old one still existed along with the new version. This way one can stay true to the REST convention, and still not break the frontend temporely.
+\end{itemize}
+
+We chose the last option as it seemed like the option with the least downsides, and the solution would still comply wit the REST principles. It does add an overhead of when handling different versions of the endpoints, which the frontend was not fully equipped for this.
