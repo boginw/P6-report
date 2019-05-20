@@ -10,4 +10,4 @@ We considered the following three ways of solving this issue:
 \item The last option was to update the current endpoint, but instead of overriding it we created a new version of the endpoint, so that the old one still existed along with the new version. This way one can stay true to the REST convention, and still not break the frontend temporely.
 \end{itemize}
 
-We chose the last option as it seemed like the option with the least downsides, and the solution would still comply wit the REST principles. It does add an overhead of when handling different versions of the endpoints, which the frontend was not fully equipped for this.
+We chose the last option as it seemed like the option with the least downsides, and the solution would still comply wit the REST principles. It does add an overhead when handling different versions of the endpoints, which the frontend was not fully equipped for this.
