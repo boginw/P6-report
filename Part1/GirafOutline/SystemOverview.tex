@@ -34,12 +34,10 @@ The database is a MySQL database. It is build with the structure shown in \ref{f
 
 \begin{figure}[ht]
     \centering
-    \caption{Diagram of \gls{er} diagram at the time of handoff}
+    \caption{Diagram of \gls{er} diagram at the time of handoff. Solid lines represent weak relations, doted lines represent strong relations, attributes with bold text are primary keys.}
     \includegraphics[width=1\textwidth]{figures/db_ho.png}
     \label{fig:state-at-handoff:db}
 \end{figure}
-
-\todo{Hvad er de stiblede linjer}
 
 All the server content is hosted in Docker, a operating-system level virtualization. The content is divided into containers whenever possible. 
 
