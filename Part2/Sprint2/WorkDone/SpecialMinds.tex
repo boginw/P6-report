@@ -1,6 +1,6 @@
 \section{Extracting the \gls{fapi}}
 
-A representant of the organization Special Minds called for a meeting with us regarding the Giraf initiative. Special Minds is an organization which specializes in utilizing the talents of people on the autism spectrum. The organization showed some interest in allocating some resources to the Giraf initiative. We had some discussion about reviving some of the old Giraf applications, written in Java for Android, but to support multiplatform support, rewrite them in Flutter. To minimize duplicate code, we agreed to extract our current \gls{fapi} to a separate GIT repository.
+A representant of the organization Special Minds called for a meeting with us regarding the \gls{giraf} initiative. Special Minds is an organization which specializes in utilizing the talents of people on the autism spectrum. The organization showed some interest in allocating some resources to the \gls{giraf} initiative. We had some discussion about reviving some of the old \gls{giraf} applications, written in Java for Android, but to support multiplatform support, rewrite them in Flutter. To minimize duplicate code, we agreed to extract our current \gls{fapi} to a separate GIT repository.
 
 At this time the \gls{fapi} only referred to the collection of classes that made the correct \gls{http} requests to the backend. This notion was extended to include all of the models of the backend, our \gls{http} library, and our persistence library as the \gls{fapi} depends on these parts.
 
@@ -11,4 +11,4 @@ The backend tended to crash on numerous occasions. Termination of open requests 
 
 As the backend did not use standard \gls{http} status codes and did not return a status code in the five-hundreds on error, the \gls{fapi} assumed everything went fine for these requests, which is not the correct behavior. Rather than fixing this issue in the backend, we added a new exception type (\textit{ApiException}). The \gls{fapi} can then throw this exception every time the backend returns an error, even though the status code might be 200 OK. The exception class contains the relevant information from the error returned from the backend.
 
-With the \gls{fapi} in a repository of its own, and with these fixes, the rest of the applications of the Giraf initiative can now be implemented using the same core with the same \gls{api} for communication with the backend.
+With the \gls{fapi} in a repository of its own, and with these fixes, the rest of the applications of the \gls{giraf} initiative can now be implemented using the same core with the same \gls{api} for communication with the backend.

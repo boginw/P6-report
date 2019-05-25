@@ -1,8 +1,10 @@
-The project we worked on this semester was the GIRAF project. The following section describes what the project is, as well as the state at handover.
+\chapter{GIRAF Outline}
 
-People with an \gls{asd} can have difficulties with communication. GIRAF is a tablet environment developed to ease communication between people with an \gls{asd} and the people who take care of them. In this report we refer to them as \glspl{citizen} and \glspl{guardian}.
+The project we worked on this semester was the \gls{giraf} project. The following section describes what the project is, as well as the state at handover.
 
-Software students from Aalborg University develops GIRAF as their bachelor project. The students work in small teams and coordinate the work between teams. The students collaborate with the following institutions \cite{GirafWebsite}, that act as customers in the development process.
+People with an \gls{asd} can have difficulties with communication. \gls{giraf} is a tablet environment developed to ease communication between people with an \gls{asd} and the people who take care of them. In this report we refer to them as \glspl{citizen} and \glspl{guardian} respectively.
+
+Some software students from Aalborg University develop \gls{giraf} for their bachelor project. These students work in small teams and coordinate the work between teams. The students collaborate with the following institutions \cite{GirafWebsite}, who act as customers in the development process.
 
 \begin{itemize}
     \item Børnehaven Birken (Kindergarten) \cite{bhBirken}
@@ -12,20 +14,18 @@ Software students from Aalborg University develops GIRAF as their bachelor proje
     \item Center for Autism and ADHD \cite{center_for_autism}
 \end{itemize}
 
-The project started in 2011 and each year the students continue where the previous years students left off.
+The project started in 2011, and each year, the students continue where the previous year's students left off. 
 
-This semester started with the decision to, like previous years, run the project with the \gls{Scrum_principles}. One group was appointed \gls{PO} team and another was appointed \gls{SMT}. The \gls{PO} team is responsible for customer communication and the product backlog. The \gls{SMT} decides how the process is defined, and make guidelines for the \glspl{devTeam}.
+We started this semester, like previous years have, by deciding to use the \gls{Scrum_principles}. One team got assigned the role of the \gls{PO}  while another got assigned the role of \gls{SMT}. The \gls{PO} team is responsible for the product backlog and customer communication. The \gls{SMT} decides how the process is defined, and make guidelines for the \glspl{devTeam}.
 
-\section{Current state of GIRAF}
+\section{The Current state of GIRAF}
 
-We got the work from previous teams in the beginning for the semester. This section describes the product at this stage, and explains the elements that is important to follow the rest of the report.
+The \gls{giraf} project has had multiple applications under its belt, which all shared the same backend. In 2017 the \glspl{devTeam} decided to upgrade the backend and disregard backward-compatibility \cite{SW608F18}, which left all existing applications unusable. All except one, the Weekplanner, which, fortunately, the glspl{devTeam} had rebuilt to be compatible with the upgraded backend.
 
-Earlier, the GIRAF project contained several applications. These shared the same backend. The \glspl{devTeam} in 2017 changed the system backend\cite{SW608F18} and left all applications unusable, because the \gls{api} they used was no longer accessible and the new \gls{api} was not backwards compatible. They rebuild a application called the Weekplanner, but did not have time to get the other applications to work. 
+Since 2017, of all the applications in the \gls{giraf} project, only the Weekplanner has been updated, and as such, is the only application of any interest to the customers. We decided to limit our development to the Weekplanner. 
 
-Since then the Weekplanner is the only application that have been worked on, and also the one the costumers showed most interest in. We decided to limit our development to the weekplanner. 
+The backend is a .NET Core 2 project that uses traditional MVC and supports all the capabilities of the current Weekplanner app. It exposes a REST-inspired API. \autoref{fig:RestAPIFigure} shows how the Weekplanner application can communicate with the backend.
 
-
-The backend is a .NET Core 2 project that uses traditional MVC and supports all the capabilities of the current Weekplanner app. It exposes a REST-inspired API to the front end.
 \begin{figure}[H]
         \begin{center}
             \includegraphics[width=0.95\textwidth]{figures/RestAPIFigure.pdf}

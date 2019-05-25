@@ -1,7 +1,7 @@
 \section{Cross team process}\label{sec:crossTeam}
 The definition of the development process of \gls{G19} resulted in a manual\cite{processManual} written by the \gls{SMT}. The manual defines the practices and process we agreed should be followed by the \glspl{devTeam}. The previously mentioned manual contains all the decisions in the following sections.
 
-The GIRAF coordinator arranged a presentation by Anton Christensen, a student of \gls{G18}. Christensen described how his year had worked in teams that focused on one part of the system. He described that this way of dividing the work made the developers very dependent on each other, and this had been an issue for the groups. We decided to use another method, where the teams are \Glspl{fullStack}, which means, that the teams work on the complete vertical slice of a user story rather than just on a single layer.
+The \gls{giraf} coordinator arranged a presentation by Anton Christensen, a student of \gls{G18}. Christensen described how his year had worked in teams that focused on one part of the system. He described that this way of dividing the work made the developers very dependent on each other, and this had been an issue for the groups. We decided to use another method, where the teams are \Glspl{fullStack}, which means, that the teams work on the complete vertical slice of a user story rather than just on a single layer.
 \begin{figure}[H]
         \begin{center}
             \includegraphics[width=0.95\textwidth]{figures/MetaGroupsFigure.pdf}
@@ -53,7 +53,7 @@ The \Gls{skillGroup} meetings are held to ensure that the members of each \gls{s
 
 In the \gls{SOSSprintRetrospective} the development process is evaluated. Here, all group members are to participate. Before the meeting, the groups should reflect on how they feel the \gls{SOS} process has been. A small group is formed containing approximately one member from each group. The members discuss how they interpret their group's findings. This group collects the feedback of each group, and the ideas are voted on.
 
-Finally, the Release Party. The Release Party is the last thing in each Sprint. The purpose here is to enhance the \glspl{devTeam} feeling of ownership of the GIRAF project and to enhance communication between the \glspl{devTeam}. If the different groups want to, they can present the work they have done during the Sprint.
+Finally, the Release Party. The Release Party is the last thing in each Sprint. The purpose here is to enhance the \glspl{devTeam} feeling of ownership of the \gls{giraf} project and to enhance communication between the \glspl{devTeam}. If the different groups want to, they can present the work they have done during the Sprint.
 
 \subsection{Practices and standards}
 
@@ -70,7 +70,7 @@ The coding standards involve naming conventions, descriptions and a few other as
 
 Last year, the project and repository were moved to GitLab that takes care of the version control. At the beginning of this semester, our team moved it to Github. This is documented in \autoref{sec:GitAndCI}. The workflow of the project is done using GitFlow Workflow. The manual describes the rules for using branches. The point of the code review is to make sure that all code committed by the \glspl{devTeam} follow the coding standards. When a Team tries to merge code into production, two people from different groups have to review it. They have to go through a checklist (see \autoref{app:code-review-checklist}), to see if everything is all right.
 
-Another decision made is, that the \glspl{devTeam} should document the implemented components, their responsibility and how it interacts with other components. This documentation should be stored in the wiki repository on the GIRAF Github page. The wiki should ultimately contain all information needed to get to know the different components in the system.
+Another decision made is, that the \glspl{devTeam} should document the implemented components, their responsibility and how it interacts with other components. This documentation should be stored in the wiki repository on the \gls{giraf} Github page. The wiki should ultimately contain all information needed to get to know the different components in the system.
 
 If a member of a team finds an issue in the program, he can make an issue report. This makes it possible to document errors systematically, without the \glspl{team} having to fix it themselves. If a \gls{team} however finds it important to introduce a new task to the product backlog, the team can issue a task creation request. The \gls{POT} then decides if they find it relevant to have in the product backlog.
 
@@ -89,7 +89,7 @@ The way GitFlow achieve an easier management of large scale projects is in its s
     \item A set of hotfix branches - If a bug is revealed in the current master branch a hotfix branch should be created, this is forked off the master branch and should be merged with both the master and develop branch.
 \end{itemize}
 
-This framework was adopted into the GIRAF Project\cite{ProcessGitFlow}. The biggest differences between the standard GitFlow framework and the GIRAF adaptation are:
+This framework was adopted into the \gls{giraf} Project\cite{ProcessGitFlow}. The biggest differences between the standard GitFlow framework and the \gls{giraf} adaptation are:
 
 \begin{itemize}
     \item A feature branch is to be squashed and merged with the develop branch. This ensures every feature is only one commit in the develop branch.
@@ -101,9 +101,9 @@ This framework was adopted into the GIRAF Project\cite{ProcessGitFlow}. The bigg
         \begin{center}
             \includegraphics[width=0.95\textwidth]{figures/giraf_gitflow_illustration.pdf}
         \end{center}
-        \caption{A illustration of the Giraf adaptation of GitFlow}
+        \caption{A illustration of the \gls{giraf} adaptation of GitFlow}
         \label{fig:girafgitFlowfigure}
 \end{figure}
-\autoref{fig:girafgitFlowfigure} illustrates the Giraf Adaptation of the GitFlow, in the illustration one can see how Feature y is cherry picked and Feature x is not.
+\autoref{fig:girafgitFlowfigure} illustrates the \gls{giraf} Adaptation of the GitFlow, in the illustration one can see how Feature y is cherry picked and Feature x is not.
 
 
