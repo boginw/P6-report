@@ -18,19 +18,6 @@ The project started in 2011, and each year, the students continue where the prev
 
 We started this semester, like previous years have, by deciding to use the \gls{Scrum_principles}. One team got assigned the role of the \gls{PO}  while another got assigned the role of \gls{SMT}. The \gls{PO} team is responsible for the product backlog and customer communication. The \gls{SMT} decides how the process is defined, and make guidelines for the \glspl{devTeam}.
 
-\section{The Current state of GIRAF}
-
 The \gls{giraf} project has had multiple applications under its belt, which all shared the same backend. In 2017 the \glspl{devTeam} decided to upgrade the backend and disregard backward-compatibility \cite{SW608F18}, which left all existing applications unusable. All except one, the Weekplanner, which, fortunately, the glspl{devTeam} had rebuilt to be compatible with the upgraded backend.
 
 Since 2017, of all the applications in the \gls{giraf} project, only the Weekplanner has been updated, and as such, is the only application of any interest to the customers. We decided to limit our development to the Weekplanner. 
-
-The backend is a .NET Core 2 project that uses traditional MVC and supports all the capabilities of the current Weekplanner app. It exposes a REST-inspired API. \autoref{fig:RestAPIFigure} shows how the Weekplanner application can communicate with the backend.
-
-\begin{figure}[H]
-        \begin{center}
-            \includegraphics[width=0.95\textwidth]{figures/RestAPIFigure.pdf}
-        \end{center}
-        \caption{Illustration of the .NET Core 2 project and how it exposes a RESTful API}
-        \label{fig:RestAPIFigure}
-\end{figure}
-
