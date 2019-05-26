@@ -1,115 +1,110 @@
 \section{The Weekplanner Application}\label{sec:TheWeekplannerApplication}
 
-The report document a lot of work on the Weekplanner application. The following section describes the key elements of the Weekplanner so it is easier to follow the nature of the work.
+The following section describes the key elements of the Weekplanner application in an attempt to make the rest of the report clearer, as this report mainly consists of tasks completed on the Weekplanner application.
 
 \subsection{Purpose}
-Many people with an \gls{asd} need structure to function. Some \glspl{citizen} need visual presentation\cite{VisualSupport} of their schema because of limited verbal communication skills for example. 
 
-There is a broad range of visual support tools for representing the schemas. One way is with the help of pictures. Each picture represent an activity.
+Many people with an \gls{asd} need structure to function. Some \glspl{citizen} might need visual presentation\cite{VisualSupport} of their plans due to limited verbal communication skills. Fortunately for these people, there exist is a wide range of visual support tools for representing plans. 
+
+One of these support tools works with the help of pictures where each picture represents an activity in which the \glspl{citizen} should participate. Usually, the \glspl{guardian} organize the activities into days and the days into weeks, and as such, this tool is called the week-plan. We can see an example of such a week-plan in \autoref{fig:WeekPlan}.
 
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.95\textwidth]{figures/WeekPlanEks.png}
     \end{center}
-    \caption{An example of a weekplan.\cite{VisualSupport}}
+    \caption{An example of a week-plan \cite{VisualSupport}.}
     \label{fig:WeekPlan}
 \end{figure}
 
-As illustrated on \autoref{fig:WeekPlan}, the activities is structured in days. Each day has a series of activities, and each activity is represented by a picture.
-This is a common method of structuring activities but it has some problems. First it is inflexible. The schema cannot be moved around easily and the amount of activities cannot exceed the size of the board. Second, it is difficult to add new pictures and insert a picture in a day. 
-The \gls{giraf} costumers requested an application with the same functionality as the original tool, but more flexible to use and edit. This is the Weekplanner application. 
+The \glspl{guardian} often use a board and tape the pictures onto it, which has some inherent problems. Firstly, moving the week-plan around and taking it along where ever the \gls{citizen} might go is immensely impractical. Secondly, the room on the board is limited, which means days can get full, which makes it difficult to add even more pictures to these days. Third, inserting pictures between others requires moving all pictures below the insertion point. Finally, with a limited number of pictures available, it is difficult to represent all the activities needed.  
 
-\subsection{Features}
-There are two types of users, \gls{guardian} and \gls{citizen}. The schemas, called week plans, are connected to a \gls{citizen}. The \glspl{citizen} cannot log into the system. Guardians log into the system and get a list of citizens they are working with. When a \gls{citizen} is chosen all his week plans are shown, and a specific week plan can be chosen. 
+The \gls{giraf} customers requested an application with the same functionality as the original tool, but with more flexibility to use and edit, which is the goal of the Weekplanner application. 
 
-The guardian can edit the week plan or change to citizen mode. In citizen mode the different activities can be marked as done, but a citizen cannot change the weekplan or navigate the application. From citizen mode, the system can be changed back to guardian mode.
+\subsection{Roles and Behaviors}
 
-The following describes only the screens that was implemented in the beginning of the semester. When this section was written we had changed the backend. This made it impossible to gain access to the original application, an we therefore have no screenshots of how et actually looked. Instead we have used the prototypes of the application to illustrate the pages.```
+The week-plans has two types of users, \glspl{guardian} and \glspl{citizen}. Each week-plan is associated with a \gls{citizen}, but only \glspl{guardian}  modified it.
 
-This ment that the application on Google Play could not login. It was not possible to build the application later, so we could not get pictures of the actual application. The pictures in this section is from the prototypes made by \gls{POT}.
+\subsubsection{Guardians}
 
+\Glspl{guardian} are meant to control how the week-plans are laid out. \Glspl{guardian} can log into the system where they can get a list of \glspl{citizen} with whom they are working. When a \gls{guardian} chooses a \gls{citizen}, all of that \gls{citizen}'s week-plans are listed. The \gls{guardian} can then choose a specific week-plan which navigates to the chosen week-plan. The \gls{guardian} can then make changes to the week-plan or hand the week-plan over to the \gls{citizen} by switching to a more restrictive mode called \gls{citizen} mode.
 
-The screens are:
+\subsubsection{Citizens}
+
+The \glspl{citizen} cannot log into the system. Instead, the \glspl{guardian} hand them the device after citizen mode is activated.
+
+In citizen mode, \glspl{citizen} can mark the different activities as completed, but a citizen cannot change the week-plan or navigate the application. From citizen mode, a \gls{guardian} can switch the system back to guardian mode by providing a password.
+
+\subsection{Application Screens}
+
+The following section provides an overview of the different screens in the Weekplanner application as it were at the start of the semester. These screens are:
+
 \begin{itemize}
-    \item Login
-    \item Select citizen 
-    \item Select Weekplan 
-    \item Weekplan
-    \item Find Pictogram
+    \item The \textit{Login screen},
+    \item the \textit{Select Citizen screen}, 
+    \item the \textit{Select Weekplan screen}, 
+    \item the \textit{Weekplan screen},
+    \item and the \textit{Find Pictogram screen}
 \end{itemize}
 
-Here follows descriptions of each screen. The pictures are prototypes made for the costumers by \gls{POT}. 
+\subsubsection{The Login Screen}
 
-\subsubsection*{Login Screen}
-The login screen is similar to a standard login screen. The prototype can be seen in \ref{fig:LoginProt}
+The \textit{Login screen} offers the ability to type in a username and a password, which can authenticate the user and then navigate to the \textit{Select Citizen screen}. We can see the layout in \autoref{fig:LoginProt}.
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.95\textwidth]{figures/Prototypes/LoginScreenPrototype.png}
+        \includegraphics[width=0.7\textwidth]{figures/Prototypes/LoginScreenPrototype.png}
     \end{center}
-    \caption{The prototype for the login screen}
+    \caption{The \textit{Login screen}}
     \label{fig:LoginProt}
 \end{figure}
-The application navigates to the Select Citizen screen after login. 
 
-\subsubsection*{Select citizen screen}
-The select citizen screen is shown in \ref{fig:ChooseCitProt}
+\subsubsection{The Select Citizen Screen}
+
+On this screen, the \gls{guardian} sees a list of the citizens under their care. When a \gls{guardian} wants to view a specific \gls{citizen}'s week-plan, they must first choose that \gls{citizen} from the list, which will bring up the available week-plans for that \gls{citizen} in the \textit{Select Week-plan screen}. We can see the layout in \autoref{fig:ChooseCitProt}.
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.95\textwidth]{figures/Prototypes/ChooseCitizenPrototype.png}
+        \includegraphics[width=0.7\textwidth]{figures/Prototypes/ChooseCitizenPrototype.png}
     \end{center}
-    \caption{The prototype for the select citizen screen}
+    \caption{The \textit{Select Citizen screen}}
     \label{fig:ChooseCitProt}
 \end{figure}
 
-Here the guardian get a list of every citizen connected to him. The guardian can click on a citizen and then be directed to the Select Weekplan screen. 
+\subsubsection{The Select Week-plan Screen}
 
-\subsection*{Select Weekplan Screen}
+The \gls{guardian} can see a list of all week-plans belonging to the chosen \gls{citizen}. From here, the \gls{guardian} can select the desired week-plan. On the screen, there also is the ability to create a new week-plan for the citizen. We can see the layout in \autoref{fig:ChooseWeekProt}.
 
-\ref{fig:ChooseWeekProt} shows how the choose weekplan screen should look.
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.95\textwidth]{figures/Prototypes/SelectWeekplanPrototype.png}
+        \includegraphics[width=0.7\textwidth]{figures/Prototypes/SelectWeekplanPrototype.png}
     \end{center}
-    \caption{The prototype for the select weekplan screen}
+    \caption{The \textit{Select Week-plan screen}}
     \label{fig:ChooseWeekProt}
 \end{figure}
 
-For each weekplan connected to the choosen citizen, a picture of the weekplan with it's name is shown. There is also a button for adding a new weekplan to the citizen.
-The guardian is directed to the weekplan screen after choosing a plan.
+\subsubsection{The Weekplan Screen}
 
-\subsection*{Weekplan Screen}
-There are two types of weekplan screens, the citizen screen, \ref{fig:WeekplanCitProt}, and the guardian screen, \ref{fig:WeekplanGuarProt}. 
+We can see the layout for the screen in both \gls{guardian} mode and \gls{citizen} mode in \autoref{fig:WeekplanProt}. In both modes, we can see the activities planned for the day. The difference between the two modes lies in the behavior exhibited by selecting an activity and in the ability to add additional activities to the screen. In \gls{guardian} mode selecting an activity navigates the the \textit{Edit Activity screen}, whilst in \gls{citizen} mode, the activity is marked as completed.
 
-%De to kunne måske være side om side??
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.95\textwidth]{figures/Prototypes/WeekPlannerGuardianPrototype.png}
-    \end{center}
-    \caption{The guardian version of the weekplan screen}
-    \label{fig:WeekplanGuarProt}
+\begin{figure}%
+    \centering
+    \subfloat[Guardian]{{\includegraphics[width=0.45\textwidth]{figures/Prototypes/WeekPlannerGuardianPrototype.png} }}%
+    \quad
+    \subfloat[Citizen]{{\includegraphics[width=0.45\textwidth]{figures/Prototypes/WeekPlannerCitizenPrototype.png} }}%
+    \caption{The \textit{Week-plan screen} in the two different modes}%
+    \label{fig:WeekplanProt}%
 \end{figure}
 
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.95\textwidth]{figures/Prototypes/WeekPlannerCitizenPrototype.png}
-    \end{center}
-    \caption{The citizen version of the weekplan screen}
-    \label{fig:WeekplanCitProt}
-\end{figure}
+% the old screens were:
+% Activity Page
+% Choice Board Page
+% Choose Citizen Page
+% Choose Template Page
+% Citizen Schedules Page
+% Login Page
+% New Schedule Page
+% Pictogram Search Page
+% Settings Page
+% Week-planner Page
+% Week-planner Template Page
 
-In both screens you can see the activities planned for the day, but when an activity is clicked on, on the citizen screen, they are marked as done, while they can be edited on the guardian screen. The guardian screen is also the only screen where you can add activities.
-
-The features working on the start of the semester is the following:
-\begin{itemize}
-    \item Login 
-    \item Choose citizen 
-    \item Choose weekplan
-    \item Mark activity as done 
-    \item Add activity
-    \item Remove activity
-    \item Switch to guardian mode
-\end{itemize}
-
-Other features are planned for later development.
