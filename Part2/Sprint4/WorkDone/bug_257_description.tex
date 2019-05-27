@@ -1,6 +1,6 @@
 \section{Disappearing Activities}
 
-Previously, we had helped groups fixing an issue where if we added an activity to a week-plan, it would disappear if we exited the week-plan to reenter again. This issue was initially resolved in sprint three but had reappeared in sprint four. We choose to take a look at why this had happened and fix it yet again.
+Previously, we helped groups fixing an issue where if we added an activity to a week-plan, it would disappear if we exited the week-plan to reenter again. This issue was initially resolved in sprint three but had reappeared in sprint four. We choose to take a look at why this had happened and fix it yet again.
 
 One of the benefits of using a version control system like Git is that for each change we check-in, a new version is created and stored. Each version has a set of changes and an associated description. We identified the commit where the issue was resolved initially \cite{weekplan_issue_257_fix}. This commit was committed directly onto the master branch. The commit immediately following this commit \cite{weekplan_issue_257_fix-2}  overwrote the fix, as if it was never there. We noticed that the second commit had been merged into the branch develop first, and then master. We speculate that because of the fixing commit was directly on the master branch, and the second was onto develop, that when the develop branch eventually got merged with master, the merge conflict was either overwritten or nonexistent. Either way, we had to fix the issue again. 
 

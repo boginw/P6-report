@@ -1,14 +1,17 @@
-\section{Bug fix for switch to gaurdian remembers password}
-During release preparation of sprint 3 it was discovered that the textbox to enter the password when switching to guardian mode stored the password. This made it possible for citizens to login as guardians. The bug report was:
+\section{Bug Fix for Persistent Password Field}
+
+During release preparation of sprint 3, it was discovered that the text box to enter the password when switching to \gls{guardian} mode stored the password, which made it possible for \glspl{citizen} to log in as \glspl{guardian}. The bug report was:
 
 \begin{quote}
   \textbf{Describe the bug:} When changing from citizen to guardian, the password is saved in the input field
 
-  \textbf{Is your feature request related to a problem? Please describe:} This is related to \#56 (https://github.com/aau-giraf/weekplanner/issues/56) since the password should not be saved.
+  \textbf{Is your feature request related to a problem? Please describe:} This is related to \#56 since the password should not be saved.
 
-  \textbf{Describe the solution you'd like: } I'd like a solution where the password isn't saved or auto-filled the second time the dialog box is shown.
+  \textbf{Describe the solution you'd like: } I would like a solution where the password is not saved or auto-filled the second time the dialog box is shown.
 \end{quote}
 
-The bug was caused do to an oversight in the implementation as the password field was implemented using a TextEditingController. The developer that implemented the dialog box, initialized the TextEditingController inside the initialization of the screens topbar. This means that a new controller is only created when the topbar is created, from that point the controller will exists as long as the topbar. This also means that the state of the password field would be persisted as long as the topbar of the screen. This is why the input in the password field is remembered.
+The bug was caused due to an oversight in the implementation, as the password field was implemented using a \textit{TextEditingController}. 
 
-To mitigate the bug, we moved the initialization of the TextEditingController to be inside the click-event closure of the "Switch to Guardian mode"-icon, this means that a new controller is instantiated every time the icon is clicked, which ensures that the controller can only 'remember' the state of the password field as long as the click-event closure is still active.
+The \textit{TextEditingController} was initialized in the application bar, which was only initialized when the week-plan screen is initialized. As the \textit{TextEditingController} remembers the current input, although the user might have switched mode, it is still the same instance of the \textit{TextEditingController}, which makes the password field automatically filled with the currently remembered input.
+
+To resolve this issue, we moved the initialization of the \textit{TextEditingController} inside the click-event closure of the "Switch to Guardian mode"-button, which means that a new controller is instantiated every time the button is clicked.
