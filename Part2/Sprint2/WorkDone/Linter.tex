@@ -1,29 +1,29 @@
 \section{Static program analysis} \label{sec:linter}
 
-The cost of fixing defects in post-release can be 10-25 times higher than fixing the same defect in construction\cite[p.~29]{mcconnell_code_2004}. Tools for catching errors, or things that might lead to errors, can, therefore, be immensely valuable. One such tool is static program analysis.
+The cost of fixing defects in post-release can be 10-25 times higher than fixing the same defect in construction \cite[p.~29]{mcconnell_code_2004}. Tools for catching errors, or things that might lead to errors, can, therefore, be immensely valuable. One such tool is static program analysis.
 
-Contrary to dynamic program analysis, static analysis is the analysis of the program source code, rather than the execution of the program\cite{wichmann_industrial_1995}. Static program analysis can enable automatic checking for cosmetic, layout, or formatting issues, along with detecting the use of blacklisted language constructs, flow-control analysis, assignment issues, and so on\cite{wichmann_industrial_1995}. 
+Contrary to dynamic program analysis, static analysis is the analysis of the program source code, rather than the execution of the program \cite{wichmann_industrial_1995}. Static program analysis can enable automatic checking for cosmetic, layout, or formatting issues, along with detecting the use of blacklisted language constructs, flow-control analysis, assignment issues, and so on \cite{wichmann_industrial_1995}. 
 
-Even though a programming language might be lenient towards some constructs, that does not mean, that such constructs are not dangerous. Take Fortran for instance, which allows for implicit declarations, that is, if the compiler encounters a name without a declaration, it declares it on the spot, which can lead to undetected program errors\cite{wichmann_industrial_1995}. A tool to list implicitly declared variables would be useful in such instance.
+Even though a programming language might be lenient towards some constructs, that does not mean that such constructs are not dangerous. Take Fortran for instance, which allows for implicit declarations, that is, if the compiler encounters a name without a declaration, it declares it on the spot, which can lead to undetected program errors \cite{wichmann_industrial_1995}. A tool to list implicitly declared variables would be useful in such instance.
 
 Another great feature of most static program analysis is the analysis of coding style. When adding a new person to a team, their first pull requests might not follow the team's coding-style, and rather than wasting the other team members' time in review, an automatic analysis can fail the build in this case. The new person can also run the analysis locally, which might improve their self-confidence. This tool can also assist existing team-members, experienced with the coding-style, as argued by \cite{bessey_few_2010} in the following quote:
 
 \begin{quote}
-    If programmers must obey a rule hundreds of times, then without an automatic safety net they cannot avoid mistakes.\cite{bessey_few_2010}
+    If programmers must obey a rule hundreds of times, then without an automatic safety net they cannot avoid mistakes. \cite{bessey_few_2010}
 \end{quote}
 
-Enabling the abovementioned rules is often through predefined static program analysis rules\cite{bessey_few_2010}. These rules can be anything from requiring semi-colons at the end of each line to advanced analysis of a variables assignment history to ensure initialization before use.
+Enabling the abovementioned rules is often through predefined static program analysis rules \cite{bessey_few_2010}. These rules can be anything from requiring semi-colons at the end of each line to advanced analysis of a variables assignment history to ensure initialization before use.
 
 After a meeting with \gls{sdrc} where we were recommended to use static program analysis, we found it clear, that static program analysis was a tool that would benefit the project, and decided to implement this tool into the Weekplanner's continuous integration workflow.
 
-Most programming languages offer a static program analysis tool, and Dart is no different. The Dart language provides the Dart \textit{linter}\cite{dart_linter_2019}. We chose to use Dart linter with the Weekplanner project, and together with the scrum group we defined the rules applied to the Weekplanner project (see \autoref{app:linter-rules}). With these rules applied to the Weekplanner project, we found 2.133 violations, which were all fixed by us. \autoref{lst:linter-error-examples1}, \autoref{lst:linter-error-examples2}, and \autoref{lst:linter-error-examples3} show examples of such violations where the first line has a violation, and the second has fixed the given violation.
+Most programming languages offer a static program analysis tool, and Dart is no different. The Dart language provides the \textit{Dart linter} \cite{dart_linter_2019}. We chose to use Dart linter with the Weekplanner project, and together with the scrum group, we defined the rules applied to the Weekplanner project (see \autoref{app:linter-rules}). With these rules applied to the Weekplanner project, we found 2.133 violations, which were all fixed by us. \autoref{lst:linter-error-examples1}, \autoref{lst:linter-error-examples2}, and \autoref{lst:linter-error-examples3} show examples of such violations where the first line has a violation, and the second has fixed the given violation.
 
 \begin{lstlisting}[label={lst:linter-error-examples1},caption={Missing type for parameter},language=java]
 authBloc.loggedIn.listen((v) {...});
 authBloc.loggedIn.listen((bool v) {...});
 \end{lstlisting}
 
-\begin{lstlisting}[label={lst:linter-error-examples2},caption={Missing type for array and array elements},language=java]
+\begin{lstlisting}[label={lst:linter-error-examples2},caption={Missing type for list and list elements},language=java]
 List<List<Widget>> widgets = [[...]];
 List<List<Widget>> widgets = <List<Widget>>[<Widget>[...]];
 \end{lstlisting}
@@ -32,6 +32,5 @@ List<List<Widget>> widgets = <List<Widget>>[<Widget>[...]];
 this.example = 1;
 example = 1;
 \end{lstlisting}
-
 
 The continuous integration now requires, along with tests, that the static program analysis passes all rules, which has caught several mistakes by developers since its implementation.

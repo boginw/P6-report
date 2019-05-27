@@ -1,22 +1,23 @@
 \section{Support Tasks}
+
 We predicted that some issues would arise from the \gls{fecore} as it had only been in development for a few days and by a limited number of people. Our prediction became true after the developers of \gls{G19} started to use the \gls{fecore}, several bugs, and shortcomings became known. We, therefore, at the beginning of sprint two, put many resources from our group into ironing out these bugs and shortcomings, such that the developers could finish their tasks. The complete list of \gls{fecore} issues during sprint two were:
 
 \begin{itemize}
-  \item Missing ability to send data between screens,
-  \item An issue with instantiating \glspl{bloc} which had dependencies,
-  \item Issues with the \gls{fapi} with the implementation of the static program analysis tool (see \autoref{sec:linter}),
+  \item A missing ability to send data between screens,
+  \item An issue with instantiating \glspl{bloc} with dependencies,
+  \item Issues with the \gls{fapi} with the implementation of the static program analysis tool,
   \item Issues with login- and logout-behavior,
   \item And missing continuous integration.
 \end{itemize}
 
 \subsection{Notes from the fixes}
 
-It fairly quickly became an issue that one screen was not able to share its data with another screen. For example, the screen for choosing a citizen should be able to send the citizen data model to the next screen. Several different techniques could solve this issue. One of the considered techniques was to use an application \gls{bloc} to as the communication gateway, but such a method felt unintuitive when working with Flutter.
+It fairly quickly became an issue that one screen was not able to share its data with another screen. For example, the screen for choosing a citizen should be able to send the citizen data model to the next screen. Several different techniques could solve this issue. One of the considered techniques was to use an application \gls{bloc} as the communication gateway, but such a method felt unintuitive when working with Flutter.
 
-Instead of the \gls{bloc} technique, we ended up using was Flutter's routing API as this solves the issue with minimal effort. However, because the \gls{fecore} had introduced a custom routing system that was designed to handle everything from instantiating \glspl{bloc} to authentication, the native router system could not be used. We, therefore, chose to remove the custom router and implement a dependency injector to handle the instantiation of not only \glspl{bloc} but also all other dependencies.
+Instead of the \gls{bloc} technique, we ended up using Flutter's routing \gls{api} as this solves the issue with minimal effort. However, because the \gls{fecore} had introduced a custom routing system that was designed to handle everything from instantiating \glspl{bloc} to authentication, the native routing system could not be used. We, therefore, chose to remove the custom router and implement a dependency injector to handle the instantiation of not only \glspl{bloc} but also all other dependencies.
 
-The dependency injector allows the developers to use the built-in routing system which allows for passing data from one screen to another. The developers need only register the dependencies, and can even register dependencies as singletons.
+The dependency injector allows the developers to use the built-in routing system, which allows for passing data from one screen to another. The developers need only register the dependencies, and can even register dependencies as singletons.
 
-Another benefit of the new routing approach, was the mitigation of the issue resolving login/logout, the issue in short was that doing a logout resulted in a infinite loop of routing between the login-screen and the weekplan-screen, since the new implementation of the authentication system did not suffer from the same routing bug as the old one.
+Another benefit of the new routing approach was the mitigation of the issue, resolving login, and log out. The issue, in short, was that doing a logout resulted in an infinite loop of routing between the login screen and the week-plan screen since the implementation of the new routing system did not suffer from the same bug as the old one.
 
-The rest of the issues where trivial; the issue regarding the API-module, turned out to be a human error in rewriting the code to honor the linter while the missing continuous integration is implemented using Azure Pipelines.
+The rest of the issues where trivial; the issue regarding the \gls{fapi}, turned out to be a human error in rewriting the code to honor the linter while the missing continuous integration is implemented using Azure Pipelines.
