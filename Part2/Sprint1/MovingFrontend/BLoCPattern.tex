@@ -127,7 +127,6 @@ The \textit{ReplaySubject} behaves similar to the \textit{BehaviorSubject}, but 
 
 The \gls{giraf} project alters the rules of the \gls{bloc} pattern a bit. The reason for this is that in the \gls{giraf} project, we are not using the code in other platforms than the Flutter Framework, therefore to make the use of \glspl{bloc} a bit more intuitive and flexible for the developers we have constructed the following design guideline:
 
-\subsubsection{Giraf Project BLoC Pattern Guidelines}
 \begin{itemize}
   \item Rather many small non-complex \glspl{bloc} than few large complex \glspl{bloc}
   \item Start by creating a \gls{bloc} per \gls{ui} Screen, then after implementing the functionality consider to refactor to shared \glspl{bloc}
