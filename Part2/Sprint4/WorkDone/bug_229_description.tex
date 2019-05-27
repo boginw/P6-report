@@ -1,12 +1,12 @@
 \section{Bug fix for citizen mode}
-In sprint 3 the functionality to edit a week plan was introduced. There were a bug in the implementation allowed citizens to edit a week plan. The bug report was:
+In sprint 3, the functionality to edit a week-plan was introduced. However, there was a bug in the implementation which allowed for \glspl{citizen} to edit week-plans. Below we see the bug report :
 
 \begin{quote}
   \textbf{Describe the bug:} When you tap the edit button to enter mark mode and you switch to citizen mode, then mark mode is still active.
 
   \textbf{Steps to reproduce the behavior:}
   \begin{itemize}
-    \item Go to any WeekPlanScreen (doesn't matter which).
+    \item Go to any WeekPlanScreen (does not matter which).
     \item Click on the edit button.
     \item Switch to citizen mode.
     \item See that mark mode is still active.
@@ -19,4 +19,4 @@ In sprint 3 the functionality to edit a week plan was introduced. There were a b
   Mark mode is still active after switching to citizen mode.
 \end{quote}
 
-We found out that the reason for the bug was that the citizen mode was not a part of the codebase when the "mark mode" functionality was implemented. This ment that the mode subject was not available, and the developers could not restrict access. The bug was mitigated by introducing StreamBuilders that listens for wether the application is in guardian or citizen mode. If the application is in citizen mode the StreamBuilder will disable all functionalities of the mark mode and hide the \gls{ui} widgets relevant to the mark mode.
+We found that the \gls{citizen} mode was not a part of the codebase when a mode called \textit{mark mode} was implemented, which allowed for unintended access by \glspl{citizen}, as only \glspl{guardian} should be able to use \textit{mark mode}. The bug was mitigated by introducing \textit{StreamBuilders} which listened for whether the application is in \gls{guardian} or \gls{citizen} mode. If the application is in \gls{citizen} mode the \textit{StreamBuilder} will disable all functionalities of the \textit{mark mode} and hide the \gls{ui} widgets relevant to the it.
