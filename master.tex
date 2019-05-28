@@ -1,5 +1,5 @@
 \input{setup/preamble.tex}% package inclusion and set up of the document
-\input{setup/hyphenations.tex}% 
+\input{setup/hyphenations.tex}%
 \input{setup/macros.tex}% my new macros
 \input{gls.tex}
 
@@ -14,20 +14,19 @@
 \pdfbookmark[0]{Contents}{label:contents}
 \pagestyle{fancy} %enable headers and footers again
 \tableofcontents
-\listoftodos
 %Print the glossary
 \printglossaries
 \input{sections/preface.tex}
-\input{Part1/ReadingGuide.tex}
-\input{Part1/Summary.tex}
 \cleardoublepage
 %mainmatter
 \pagenumbering{arabic} %use arabic page numbering in the mainmatter
 
+
 \input{Part1/index.tex}
 \input{Part2/index.tex}
 \input{Part3/index.tex}
-
+\bookmarksetup{startatroot}% this is it
+\addtocontents{toc}{\bigskip}% perhaps as well
 \printbibliography[heading=bibintoc]
 \label{bib:mybiblio}
 \appendix

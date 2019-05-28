@@ -68,7 +68,7 @@ The third rule is much like the second but concerns output instead of input. The
 
 The fourth rule states that all business logic-dependent selection-statements inside the \gls{ui} component should only depend on one boolean stream from the \gls{bloc}, this again is to decouple the \gls{ui} component from the business logic, since branching on the business logic in the \gls{ui} most likely would hard couple \gls{ui} and business logic.
 
-\subsection{BLoC Implementation in the \gls{giraf} Project}
+\subsection{BLoC Implementation in the GIRAF Project}
 
 The Flutter framework is not opinionated towards the architecture used, which meant we had to decide the architecture for the Weekplanner ourselves. We chose the \gls{bloc} pattern after considering other patterns like MVVM and MVC. In order to compare the different patterns, we made some goals we wanted the pattern to fulfill, which enabled us to compare the different patterns to each other and find the one that best fit our needs. These goals were:
 
@@ -123,7 +123,7 @@ The \textit{BehaviorSubject} behaves similar to the \textit{PublishSubject}, but
 
 The \textit{ReplaySubject} behaves similar to the \textit{BehaviorSubject}, but instead of only capturing the latest item, it captures all items and emits them whenever a new observer subscribes \cite{ReplaySubject}. Unlike the \textit{BehaviorSubject}, the \textit{ReplaySubject} cannot be seeded with an initial value. In \autoref{fig:ReplaySubject} we see the behavior of the \textit{ReplaySubject} across  time.
 
-\subsection{BLoC Design Guidelines of the \gls{giraf} Project}
+\subsection{BLoC Design Guidelines of the GIRAF Project}
 
 The \gls{giraf} project alters the rules of the \gls{bloc} pattern a bit. The reason for this is that in the \gls{giraf} project, we are not using the code in other platforms than the Flutter Framework, therefore to make the use of \glspl{bloc} a bit more intuitive and flexible for the developers we have constructed the following design guideline:
 
